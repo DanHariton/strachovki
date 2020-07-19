@@ -1,0 +1,63 @@
+{% extends 'page/layout.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div>
+        {{ form_errors(form) }}
+    </div>
+
+    <div>
+        <div >
+            {{ form_row(form.insuranceDuration) }}
+        </div>
+        <div >
+            {{ form_row(form.startDate) }}
+        </div>
+        <div >
+            {{ form_row(form.dateBirth) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.clientName, null, {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.clientName, {'attr': {'class': 'form-control xxx'}}) }}
+        </div>
+        <div >
+            {{ form_row(form.clientSName) }}
+        </div>
+        <div >
+            {{ form_row(form.clientEmail) }}
+        </div>
+        <div >
+            {{ form_row(form.clientMobile) }}
+        </div>
+        <div >
+            {{ form_row(form.gender) }}
+        </div>
+        <div >
+            {{ form_row(form.country) }}
+        </div>
+        <div >
+            {{ form_row(form.town) }}
+        </div>
+        <div >
+            {{ form_row(form.street) }}
+        </div>
+        <div >
+            {{ form_row(form.postCode) }}
+        </div>
+        <div >
+            {{ form_row(form.passportId) }}
+        </div>
+        <div >
+            {{ form_row(form.citizenship) }}
+        </div>
+        <div >
+            {{ form_row(form.save) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

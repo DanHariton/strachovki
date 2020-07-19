@@ -1,0 +1,58 @@
+{% extends 'admin/layout.nav.html.twig' %}
+
+{% block title %}Insurance List{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-2 text-gray-800">Insurances</h1>
+    <p class="mb-4">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus aspernatur aut commodi consequuntur
+        eligendi est facere fugit impedit ipsum, laboriosam numquam quaerat quod ratione reiciendis rem suscipit vero
+        voluptatum!
+    </p>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message|trans() }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered data-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for insurance in insurances %}
+                        <tr>
+                            <td>{{ insurance.id }}</td>
+                            <td>{{ insurance.insuranceName }}</td>
+                            <td>{{ insurance.insuranceDuration }}</td>
+                            <td>
+                                <a href="{{ path('admin_insurance_edit', {'insurance': insurance.id}) }}" class="btn btn-sm btn-secondary">Edit</a>
+                                <a
+                                        onclick="return confirm('ARE YOU SHURE?')"
+                                        href="{{ path('admin_insurance_remove', {'insurance': insurance.id}) }}"
+                                        class="btn btn-sm btn-danger">
+                                    Remove
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

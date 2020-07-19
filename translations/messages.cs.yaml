@@ -1,0 +1,16 @@
+page:
+  applyInsurance:
+    flash:
+      success: 'Ваша заявка принята!'
+form:
+  insurance:
+    gender:
+      label: 'Пол'
+      choice:
+        m: 'Мужчина'
+        f: 'Женщина'
+admin:
+  insurance:
+    remove:
+      flash:
+        success: 'messages'

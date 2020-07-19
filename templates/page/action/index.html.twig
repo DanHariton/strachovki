@@ -1,0 +1,216 @@
+{% extends 'page/layout.html.twig' %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block body %}
+    <header>
+        <nav class="nnavbar navbar-expand-lg navbar-light background-red main-menu-padding-20 fill">
+            <div class="container main-container">
+                <div class="row">
+                    <div class="col">
+                        <a class="navbar-brand color-white" href="#">Страхование Инострацев</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse col-md-auto" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item ml-3 mr-3">
+                                <a class="nav-link" href="#">Главная</a>
+                            </li>
+                            <li class="nav-item ml-3 mr-3">
+                                <a class="nav-link" href="#">Наша лицензия</a>
+                            </li>
+                            <li class="nav-item ml-3 mr-3">
+                                <a class="nav-link" href="#">Контакты</a>
+                            </li>
+                        </ul>
+                        <a class="ml-3 mr-3 rounded order-online" href="#manufacture">
+                            Оформить онлайн
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section id="main-slider" class="margin-bottom-70">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="position: relative">
+                    <div class="slide-1-text rounded pb-4 text-center pt-4 pl-3 pr-3">
+                        <p class="mb-3" style="margin: 0">Оформите старховку у нас по самой выгодной цене и получите приятный бонус</p>
+                        <a class="rounded order-online" href="#manufacture">
+                            Оформить онлайн
+                        </a>
+                    </div>
+                    <img src="{{ asset('assets/page/img/slide1.png') }}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" style="position: relative">
+                    <div class="slide-2-text rounded pb-4 text-center pt-4 pl-3 pr-3">
+                        <p class="mb-3" style="margin: 0">Покупайте страховку только у лицензированных агентов</p>
+                        <a class="rounded order-online" href="#manufacture">
+                            Наша лицензия
+                        </a>
+                    </div>
+                    <img src="{{ asset('assets/page/img/slide2.png') }}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+    <div class="container">
+        <section id="manufacture" class="text-center margin-bottom-70">
+
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message|trans() }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            <h1 class="margin-bottom-70">Комплексное медицинское страхование</h1>
+
+            <div class="row justify-content-md-center">
+                <div class="row margin-bottom-50 border-bottom-40-red">
+                    <div class="col-lg-4">
+                        <img src="{{ asset('assets/page/img/maxima-logo.png') }}" alt="Maxima pojišťovna" class="img-fluid">
+                    </div>
+                    <div class="col d-flex align-items-center flex-column justify-content-center">
+                        <p class="text-justify">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        </p>
+                        <a href="{{ path('page_apply_insurance', {'name': 'maxima'}) }}" class="rounded order-online">Оформить онлайн</a>
+                    </div>
+                </div>
+                <div class="row margin-bottom-50 border-bottom-40-red">
+                    <div class="col d-flex align-items-center flex-column justify-content-center">
+                        <p class="text-justify">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        </p>
+
+                        <a href="{{ path('page_apply_insurance', {'name': 'unica'}) }}" class="rounded order-online">Оформить онлайн</a>
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="{{ asset('assets/page/img/unica-logo.jpg') }}" alt="UNICA pojišťovna" class="img-fluid">
+                    </div>
+                </div>
+                <div class="row margin-bottom-50 border-bottom-40-red">
+                    <div class="col-lg-4">
+                        <img src="{{ asset('assets/page/img/ergo-logo.png') }}" alt="ERGO pojišťovna" class="img-fluid">
+                    </div>
+                    <div class="col d-flex align-items-center flex-column justify-content-center">
+                        <p class="text-justify">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        </p>
+
+                        <a href="{{ path('page_apply_insurance', {'name': 'ergo'}) }}" class="rounded order-online">Оформить онлайн</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex align-items-center flex-column justify-content-center">
+                        <p class="text-justify">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        </p>
+
+                        <a href="{{ path('page_apply_insurance', {'name': 'pvzp'}) }}" class="rounded order-online">Оформить онлайн</a>
+                    </div>
+                    <div class="col-lg-3">
+                        <img src="{{ asset('assets/page/img/pvzp-logo.png') }}" alt="PVZP pojišťovna" class="img-fluid">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <section id="contactUs" class="pt-5 pb-5 background-red">
+        <div class="container">
+            <h2 class="text-center text-white font-weight-bold mb-4 pt-3">Получите больше информации по телефону</h2>
+            <p class="text-center text-white mb-3">
+                Оставьте нам свой телефонный номер и мы позвоним Вам со специальным предложением.
+            </p>
+            <div class="row">
+                Тут будет форма
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <section class="pt-5 pb-5 text-center">
+            <h2 class="text-center font-weight-bold mb-4 pt-3">Узнать больше</h2>
+
+            <div class="row">
+                <div class="col-12 col-sm-4">
+                    <a class="model-link" href="{{ path('page_index') }}">
+                        <img src="{{ asset('assets/page/img/order-online.png') }}" alt="order online" class="img-fluid">
+                        <p class="mt-4">Проверить лицензию</p>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <a class="model-link" href="{{ path('page_index') }}">
+                        <img src="{{ asset('assets/page/img/faq.png') }}" alt="faq" class="img-fluid">
+                        <p class="mt-4">Часто задаваемые вопросы</p>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-4">
+                    <a class="model-link" href="{{ path('page_index') }}">
+                        <img src="{{ asset('assets/page/img/our-office.png') }}" alt="our office" class="img-fluid">
+                        <p class="mt-4">Посетите наш офис</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="background-black">
+        <div class="container">
+            <section class="d-flex justify-content-md-between pt-5 border-bottom-footer pb-3">
+                <nav class="nnavbar shift menu-footer">
+                    <h4 class="text-white pr-2 pl-2 border-bottom pb-2">Меню</h4>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mt-1 mb-1">
+                            <a class="nav-link pr-2 pl-2" href="#">Главная</a>
+                        </li>
+                        <li class="nav-item mt-1 mb-1">
+                            <a class="nav-link pr-2 pl-2" href="#">Наша лицензия</a>
+                        </li>
+                        <li class="nav-item mt-1 mb-1">
+                            <a class="nav-link pr-2 pl-2" href="#">Контакты</a>
+                        </li>
+                        <li class="nav-item mt-1 mb-1">
+                            <a class="nav-link pr-2 pl-2" href="#">Оформить онлайн</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="nnavbar shift menu-footer">
+                    <h4 class="text-white pr-2 pl-2 border-bottom pb-2">Полезные ссылки</h4>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mt-1 mb-1">
+                            <a class="nav-link pr-2 pl-2" href="#">Условия и положения</a>
+                        </li>
+                        <li class="nav-item mt-1 mb-1">
+                            <a class="nav-link pr-2 pl-2" href="#">Часто задаваемые вопросы</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="">
+                    <img class="logo-footer" src="{{ asset('assets/page/img/logo.png') }}" alt="KOŤA s.r.o.">
+                </div>
+            </section>
+            <section class="text-center footer-text-by mt-3 pb-2">
+                <p class="">© 2020 KOŤA s.r.o. | powered by ClixFox</p>
+            </section>
+        </div>
+    </footer>
+
+{% endblock %}
+
