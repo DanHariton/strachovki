@@ -42,7 +42,7 @@
                             <td>
                                 <a href="{{ path('admin_insurance_edit', {'insurance': insurance.id}) }}" class="btn btn-sm btn-secondary">Edit</a>
                                 <a
-                                        onclick="return confirm('ARE YOU SHURE?')"
+                                        onclick="return confirm('Jste jisti ze chcete vymazat tuto položku?')"
                                         href="{{ path('admin_insurance_remove', {'insurance': insurance.id}) }}"
                                         class="btn btn-sm btn-danger">
                                     Remove
