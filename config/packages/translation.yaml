@@ -2,5 +2,5 @@ framework:
     translator:
         enabled: true
         default_path: '%kernel.project_dir%/translations'
-    default_locale: 'cs'
+    default_locale: 'ru'
 

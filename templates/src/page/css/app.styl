@@ -20,14 +20,30 @@ body
   font-family MonseratRegular
   color #282828
 
-.background-red {
+.background-red
   background-color #DA1931;
-}
+
+.rotate
+  transform skew(-20deg)
+
+.custom-border-red
+  border: 2px solid #da1931;
+  border-radius: 20px 0 20px 0;
+
+.color-red
+  color #DA1931
+
+.nav-link-contact:hover
+  color #DA1931
+  text-decoration underline
 
 .border-bottom-40-red {
   border-bottom 1px solid #DA1931
   padding-bottom 40px
 }
+
+.margin-top-70
+  margin-top 70px
 
 .main-menu-padding-20
   padding-bottom 20px
@@ -36,6 +52,15 @@ body
 .color-white
   color #FFFFFF !important
 
+.service-link
+  text-decoration none
+  color #282828
+  font-size 18px
+  display block
+  height 100%
+
+.service-link img
+  max-width 80%
 
 nav ul li a,
 nav ul li a:after,
@@ -105,7 +130,18 @@ nav.fill ul li a:hover
   font-weight bold
   color #FFFFFF
 
-.order-online:hover
+#client_phone_save
+  background-color #B1E360
+  border 1px solid #B1E360
+  font-weight bold
+  color #FFFFFF
+  text-transform uppercase
+
+
+.order-online-text
+  transform: skew(+25deg);
+
+.order-online:hover, #client_phone_save:hover
   background-color #B9EC37
   color #FFFFFF
   transition all 0.3s
@@ -159,26 +195,65 @@ nav.shift ul li a:hover:after
   width 250px
 
 .slide-1-text
+  transform: skew(-15deg);
   position: absolute;
   font-weight 600
   font-size 20px
-  top: 35%;
-  left: 11%;
+  top: 18%;
+  left: 65%;
   width: 25%;
   background-color: rgba(255, 255, 255, 0.85);
   color: red;
   text-transform: uppercase;
 
-.slide-2-text
+.slide-1-text-transform
+  transform: skew(15deg);
+
+.flip-card, .flip-card-options {
+  background-color: transparent;
+  min-height 380px
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+.flip-card-options
+  min-height 240px
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
   position: absolute;
-  font-weight 600
-  font-size 20px
-  top: 25%;
-  right: 16%;
-  width: 25%
-  background-color: rgba(255, 255, 255, 0.9);
-  color: red;
-  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top 0
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back
+  color white
+  background-color #da1931
+  border-radius 0 18px 0 18px
+  transform rotateY(180deg)
+
 
 
 #banner-block

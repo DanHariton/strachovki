@@ -1,0 +1,50 @@
+{% extends 'page/layout.html.twig' %}
+
+{% block title %}Застрахуй.cz{% endblock %}
+
+{% block body %}
+    {% include 'page/components/header.html.twig' %}
+
+    <section class="container">
+        <h1 class="margin-bottom-50 margin-top-70 text-center">Комплексное медицинское страхование <strong class="color-red">Maxima</strong></h1>
+
+        <div class="row d-flex justify-content-around margin-bottom-70">
+            <div class="flip-card flip-card-options col-sm-5">
+                <div class="flip-card-inner custom-border-red pt-5 pb-5">
+                    <div class="flip-card-front">
+                        <a class="service-link text-decoration-none" href="{{ path('page_apply_insurance', {'name': 'maxima'}) }}">
+                            <img src="{{ asset('assets/page/img/maxima-logo.png') }}" alt="order bank" class="img-fluid pt-5">
+                            <p class="mt-4 mb-0 color-red">Купить через Застрахуй.cz</p>
+                        </a>
+                    </div>
+                    <div class="flip-card-back">
+                        <a class="service-link text-decoration-none d-flex align-items-center" href="{{ path('page_apply_insurance', {'name': 'maxima'}) }}">
+                            <p class="mb-0 pl-4 pr-4 text-white">Покупка на Застрахуй.cz по специальной цене</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card flip-card-options col-sm-5">
+                <div class="flip-card-inner custom-border-red pt-5 pb-5">
+                    <div class="flip-card-front">
+                        <a class="service-link text-decoration-none" href="{{ path('page_index') }}">
+                            <img src="{{ asset('assets/page/img/maxima-logo.png') }}" alt="order bank" class="img-fluid pt-5">
+                            <p class="mt-4 mb-0 color-red">Прямая покупка на сайте Maxima</p>
+                        </a>
+                    </div>
+                    <div class="flip-card-back">
+                        <a class="service-link text-decoration-none d-flex align-items-center" href="{{ path('page_index') }}">
+                            <p class="mb-0 pr-4 pl-4 text-white">
+                                Прямая покупка на сайте <strong>Maxima</strong>
+                                используя код партнера для получения <strong>CASH BACK</strong>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include 'page/components/footer.html.twig' %}
+
+{% endblock %}
+

@@ -1,0 +1,56 @@
+page:
+  applyClientPhone:
+    flash:
+      success: 'Мы вам перезвоним'
+  applyInsurance:
+    flash:
+      success: 'Ваша заявка принята!'
+form:
+  clientPhone:
+    label:
+      submit: 'Позвоните мне'
+    placeholder:
+      mobile: '+420'
+  insurance:
+    duration:
+      label: 'Длительность страхования'
+    startDate:
+      label: 'Начало действия страхования'
+    endDate:
+      label: 'Конец действия страхования'
+    birthDate:
+      label: 'Дата рождения застрахованного лица'
+      placeholder:
+        date: 'День'
+        month: 'Месяц'
+        year: 'Год'
+    name:
+      label: 'Имя'
+    sName:
+      label: 'Фамилия'
+    email:
+      label: 'Электронная почта'
+    mobile:
+      label: 'Номер телефона'
+    country:
+      label: 'Страна'
+    street:
+      label: 'Улица'
+    town:
+      label: 'Город'
+    postCode:
+      label: 'Почтовый индекс'
+    passport:
+      label: 'Номер удостоверения личности или паспорта'
+    citizenShip:
+      label: 'Гражданство'
+    gender:
+      label: 'Пол'
+      choice:
+        m: 'Мужчина'
+        f: 'Женщина'
+admin:
+  insurance:
+    remove:
+      flash:
+        success: 'messages'

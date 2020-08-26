@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\ClientsPhones;
 use App\Entity\Insurance;
+use App\Form\ClientPhoneType;
 use App\Form\InsuranceType;
 use App\Util\FakeTranslator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,10 +17,41 @@ class PageController extends AbstractController
     /**
      * @Route("/", name="page_index")
      */
-    public function indexAction()
+    public function indexAction(EntityManagerInterface $em)
+    {
+        $clientPhones = new ClientsPhones();
+        $form = $this->createForm(ClientPhoneType::class, $clientPhones);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $clientPhones = $form->getData();
+            $em->persist($clientPhones);
+            $em->flush();
+
+            $this->addFlash('success', (new FakeTranslator())->trans('page.applyClientPhone.flash.success'));
+            return $this->redirectToRoute('page_index');
+        }
+
+        return $this->render('page/action/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route ("/insuarence-maxima-options", name="page_insurance_maxima_options")
+     */
+    public function insuranceMaximaOptions()
     {
 
-        return $this->render('page/action/index.html.twig');
+        return $this->render('page/action/insurance_maxima_options.html.twig');
+    }
+
+    /**
+     * @Route("/insurance-for-foreigners", name="page_insurance_options")
+     */
+    public function insuranceOptionsAction()
+    {
+
+        return $this->render('page/action/insurance_options.html.twig');
     }
 
 
