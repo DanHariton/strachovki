@@ -3,8 +3,8 @@ require('bootstrap');
 require('select2');
 window.Vue = require('vue/dist/vue.esm').default;
 require('./components/search')
+require('./components/formInsurance');
 
 $('select').select2({
-    width: '100%',
     theme: 'bootstrap4',
 });

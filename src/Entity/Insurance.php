@@ -98,6 +98,16 @@ class Insurance
      */
     private $citizenship;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $endDate;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -279,6 +289,30 @@ class Insurance
     public function setCitizenship(string $citizenship): self
     {
         $this->citizenship = $citizenship;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

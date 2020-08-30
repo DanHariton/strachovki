@@ -7,59 +7,112 @@
 {% block body %}
     {% include 'page/components/header.html.twig' %}
     <section class="container">
-        {{ form_start(form) }}
-        <div>
-            {{ form_errors(form) }}
-        </div>
+        <h1 class="text-center margin-bottom-50 margin-top-70">
+            Медицинское страхование иностранцев <strong class="color-red">{{ insuranceName }}</strong>
+        </h1>
 
-        <div>
-            <div >
-                {{ form_row(form.dateBirth) }}
+{#        <div>#}
+{#            <ul class="progressbar">#}
+{#                <li class="active">Страхование</li>#}
+{#                <li>Оплата</li>#}
+{#                <li>Подтверждение</li>#}
+{#            </ul>#}
+{#        </div>#}
+
+
+        {{ form_start(form) }}
+            <div>
+                {{ form_errors(form) }}
             </div>
-            <div >
-                {{ form_row(form.startDate) }}
+
+            <div>
+                <div class="accordion margin-bottom-70" id="accordionExample">
+                    <div class="card custom-border-red">
+                        <div class="card-header background-red" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    1. Длительность и цена страхования
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    {{ form_label(form.dateBirth, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.dateBirth, {'attr': {'class': 'd-flex justify-content-start'}}) }}
+                                </div>
+                                <div class="d-flex justify-content-start">
+                                    <div class="w-25">
+                                        {{ form_row(form.startDate) }}
+                                    </div>
+                                    <div class="ml-5 w-25">
+                                        {{ form_row(form.insuranceDuration) }}
+                                    </div>
+                                </div>
+                                <div class="w-25 form-group">
+                                    {{ form_label(form.endDate, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.endDate, {'attr': {'class': 'form-control background-green color-red'}}) }}
+                                </div>
+                                <div class="w-25 form-group">
+                                    {{ form_label(form.price, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.price, {'attr': {'class': 'form-control background-green color-red'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card custom-border-red-form">
+                        <div class="card-header background-red" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    2. Застрахованное лицо
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    {{ form_label(form.clientName, null, {'label_attr': {'class': 'form-label'}}) }}
+                                    {{ form_widget(form.clientName, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.clientSName) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.clientEmail) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.clientMobile) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.gender) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.country) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.town) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.street) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.postCode) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.passportId) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.citizenship) }}
+                                </div>
+                                <div >
+                                    {{ form_row(form.save) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div >
-                {{ form_row(form.insuranceDuration) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.clientName, null, {'label_attr': {'class': 'form-label'}}) }}
-                {{ form_widget(form.clientName, {'attr': {'class': 'form-control xxx'}}) }}
-            </div>
-            <div >
-                {{ form_row(form.clientSName) }}
-            </div>
-            <div >
-                {{ form_row(form.clientEmail) }}
-            </div>
-            <div >
-                {{ form_row(form.clientMobile) }}
-            </div>
-            <div >
-                {{ form_row(form.gender) }}
-            </div>
-            <div >
-                {{ form_row(form.country) }}
-            </div>
-            <div >
-                {{ form_row(form.town) }}
-            </div>
-            <div >
-                {{ form_row(form.street) }}
-            </div>
-            <div >
-                {{ form_row(form.postCode) }}
-            </div>
-            <div >
-                {{ form_row(form.passportId) }}
-            </div>
-            <div >
-                {{ form_row(form.citizenship) }}
-            </div>
-            <div >
-                {{ form_row(form.save) }}
-            </div>
-        </div>
         {{ form_end(form) }}
     </section>
     {% include 'page/components/footer.html.twig' %}

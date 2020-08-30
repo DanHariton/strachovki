@@ -5,6 +5,8 @@ page:
   applyInsurance:
     flash:
       success: 'Ваша заявка принята!'
+  headlines:
+    insuranceBuy: 'Медицинское страхование иностранцев'
 form:
   clientPhone:
     label:
@@ -12,10 +14,10 @@ form:
     placeholder:
       mobile: '+420'
   insurance:
-    duration:
-      label: 'Длительность страхования'
     startDate:
       label: 'Начало действия страхования'
+    price:
+      label: 'Цена'
     endDate:
       label: 'Конец действия страхования'
     birthDate:
@@ -44,11 +46,29 @@ form:
       label: 'Номер удостоверения личности или паспорта'
     citizenShip:
       label: 'Гражданство'
+    button:
+      save: 'Подтвердить'
     gender:
       label: 'Пол'
       choice:
         m: 'Мужчина'
         f: 'Женщина'
+    duration:
+      label: 'Длительность страхования'
+      choice:
+        threeMonth: '3 месяца'
+        fourMonth: '4 месяца'
+        fiveMonth: '5 месяцев'
+        sixMonth: '6 месяцев'
+        sevenMonth: '7 месяцев'
+        eightMonth: '8 месяцев'
+        nineMonth: '9 месяцев'
+        tenMonth: '10 месяцев'
+        elevenMonth: '11 месяцев'
+        year: '12 месяцев'
+        twoYears: '24 месяца'
+
+
 admin:
   insurance:
     remove:

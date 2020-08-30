@@ -22,18 +22,36 @@ class InsuranceType extends AbstractType
         $trans = new FakeTranslator();
 
         $builder
-            ->add('insuranceDuration', RangeType::class, [
-                'label' => $trans->trans('form.insurance.duration.label'),
-                'attr' => [
-                    'min' => 1,
-                    'max' => 24
-                ],
-            ])
             ->add('startDate', DateType::class, [
                 'label' => $trans->trans('form.insurance.startDate.label'),
                 'widget' => 'single_text'
             ])
-            ->add('dateBirth', DateType::class, [
+            ->add('insuranceDuration', ChoiceType::class, [
+                'label' => $trans->trans('form.insurance.duration.label'),
+                'choices' => [
+                    $trans->trans('form.insurance.duration.choice.threeMonth') => 3,
+                    $trans->trans('form.insurance.duration.choice.fourMonth') => 4,
+                    $trans->trans('form.insurance.duration.choice.fiveMonth') => 5,
+                    $trans->trans('form.insurance.duration.choice.sixMonth') => 6,
+                    $trans->trans('form.insurance.duration.choice.sevenMonth') => 7,
+                    $trans->trans('form.insurance.duration.choice.eightMonth') => 8,
+                    $trans->trans('form.insurance.duration.choice.nineMonth') => 9,
+                    $trans->trans('form.insurance.duration.choice.tenMonth') => 10,
+                    $trans->trans('form.insurance.duration.choice.elevenMonth') => 11,
+                    $trans->trans('form.insurance.duration.choice.year') => 12,
+                    $trans->trans('form.insurance.duration.choice.twoYears') => 24
+                ],
+            ])
+            ->add('endDate', DateType::class, [
+                'disabled' => true,
+                'label' => $trans->trans('form.insurance.endDate.label'),
+                'widget' => 'single_text'
+            ])
+            ->add('price', TextType::class, [
+                'disabled' => true,
+                'label' => $trans->trans('form.insurance.price.label'),
+            ])
+            ->add('dateBirth', BirthdayType::class, [
                 'label' => $trans->trans('form.insurance.birthDate.label'),
                 'placeholder' => [
                     'year' => $trans->trans('form.insurance.birthDate.placeholder.year'),
@@ -79,7 +97,7 @@ class InsuranceType extends AbstractType
                 'label' => $trans->trans('form.insurance.citizenShip.label')
             ])
             ->add('save', SubmitType::class, [
-                'label' => $trans->trans('form.insurance.country.label')
+                'label' => $trans->trans('form.insurance.button.save')
             ])
         ;
 

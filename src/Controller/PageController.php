@@ -56,7 +56,7 @@ class PageController extends AbstractController
 
 
     /**
-     * @Route("/apply/{name}", name="page_apply_insurance", requirements={"name"="ergo|unica|pvzp|maxima"})
+     * @Route("/apply/{name}", name="page_apply_insurance", requirements={"name"="ergo|uniqa|pvzp|maxima"})
      */
     public function applyInsuranceAction($name, Request $request, EntityManagerInterface $em)
     {
@@ -64,6 +64,22 @@ class PageController extends AbstractController
         $insurance->setInsuranceName($name);
         $form = $this->createForm(InsuranceType::class, $insurance)
          ->handleRequest($request);
+
+        switch ($name) {
+            case 'maxima':
+                $insuranceName = 'Maxima';
+                break;
+            case 'ergo':
+                $insuranceName = 'Ergo';
+                break;
+            case 'pvzp':
+                $insuranceName = 'Pojišťovna VZP';
+                break;
+            default:
+                $insuranceName = 'Uniqa';
+                break;
+        }
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Insurance $insurance */
@@ -77,6 +93,7 @@ class PageController extends AbstractController
 
         return $this->render('page/action/apply_insurance.html.twig', [
             'form' => $form->createView(),
+            'insuranceName' => $insuranceName
         ]);
     }
 }
