@@ -23,8 +23,16 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Duration</th>
+                        <th>Pojištění</th>
+                        <th>Začátek pojištění</th>
+                        <th>Doba trvání</th>
+                        <th>Konec pojištění</th>
+                        <th>Cena</th>
+                        <th>Jméno</th>
+                        <th>Příjmení</th>
+                        <th>Datum narození</th>
+                        <th>Telefon</th>
+                        <th>E-mail</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -33,7 +41,15 @@
                         <tr>
                             <td>{{ insurance.id }}</td>
                             <td>{{ insurance.insuranceName }}</td>
+                            <td>{{ insurance.startDate|date('d.m.Y') }}</td>
                             <td>{{ insurance.insuranceDuration }}</td>
+                            <td>{{ insurance.endDate|date('d.m.Y') }}</td>
+                            <td>{{ insurance.price }}</td>
+                            <td>{{ insurance.clientName }}</td>
+                            <td>{{ insurance.clientSName }}</td>
+                            <td>{{ insurance.dateBirth|date('d.m.Y') }}</td>
+                            <td>{{ insurance.clientMobile }}</td>
+                            <td>{{ insurance.clientEmail }}</td>
                             <td>
                                 <a href="{{ path('admin_insurance_edit', {'insurance': insurance.id}) }}" class="btn btn-sm btn-secondary">Edit</a>
                                 <a

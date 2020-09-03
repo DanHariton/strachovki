@@ -14,6 +14,13 @@ form:
     placeholder:
       mobile: '+420'
   insurance:
+    insuranceName:
+      label: 'Страховая'
+      choice:
+        uniqa: 'UNIQA'
+        maxima: 'MAXIMA'
+        ergo: 'ERGO'
+        pvzp: 'pVZP'
     startDate:
       label: 'Начало действия страхования'
     price:
@@ -70,10 +77,9 @@ form:
 
 
 admin:
-  price:
-    edit:
-      flush:
-        success: 'Změna úspěšně uložena'
+  edit:
+    flush:
+      success: 'Změna úspěšně uložena'
   insurance:
     remove:
       flash:

@@ -47,7 +47,7 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            $this->addFlash('success', (new FakeTranslator())->trans('admin.price.edit.flush.success'));
+            $this->addFlash('success', (new FakeTranslator())->trans('admin.edit.flush.success'));
             return $this->redirectToRoute('admin_price_list');
         }
 
@@ -68,20 +68,24 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/insurance/edit/{insurance}", name="admin_insurance_edit")
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function insuranceEditAction(Insurance $insurance, Request $request, EntityManagerInterface $em)
     {
         $form = $this->createForm(InsuranceEditType::class, $insurance)
             ->handleRequest($request);
 
+        $insurancePrice = $em->getRepository(InsurancePrice::class)->findOneByName($insurance->getInsuranceName());
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            $this->addFlash('success', (new FakeTranslator())->trans('admin.insurance.edit.flash.success'));
+            $this->addFlash('success', (new FakeTranslator())->trans('admin.edit.flush.success'));
             return $this->redirectToRoute('admin_insurance_list');
         }
 
         return $this->render('admin/action/insurance/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'insurancePrice' => $insurancePrice ? base64_encode(json_encode($insurancePrice->toArray())) : ''
         ]);
     }
 

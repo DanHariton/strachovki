@@ -4,17 +4,13 @@
 
 {% block content %}
     <h1 class="h3 mb-2 text-gray-800">Edit Insurance</h1>
-    <p class="mb-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, alias beatae commodi consequuntur enim
-        excepturi harum impedit necessitatibus nostrum obcaecati perferendis quasi, reiciendis ullam voluptas
-        voluptatem! Quas quod tempore vel.
-    </p>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Edit</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Info</h6>
         </div>
         <div class="card-body">
+            <div id="insurance-price" data-array="{{ insurancePrice }}"></div>
             {{ form(form) }}
         </div>
     </div>

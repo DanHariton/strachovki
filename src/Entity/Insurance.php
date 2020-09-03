@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Insurance
 {
     const INSURANCE_ERGO = 'ergo';
-    const INSURANCE_UNICA = 'unica';
+    const INSURANCE_UNIQA = 'uniqa';
     const INSURANCE_PVZP = 'pvzp';
     const INSURANCE_MAXIMA = 'maxima';
     const STATUS_NEW = 0;
@@ -333,7 +333,7 @@ class Insurance
 
         return $this;
     }
-    
+
     public function recalculatePrice(InsurancePrice $insurancePrice) {
         switch ($this->getInsuranceDuration()) {
             case 3:

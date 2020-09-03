@@ -2,6 +2,7 @@ window.$ = window.jQuery = require('jquery/dist/jquery');
 require('bootstrap');
 require('startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.js');
 require('startbootstrap-sb-admin-2/js/sb-admin-2');
+require('./components/formEditInsurance');
 window.$.fn.DataTable = require('startbootstrap-sb-admin-2/vendor/datatables/jquery.dataTables.min.js');
 window.$.fn.DataTable = require('startbootstrap-sb-admin-2/vendor/datatables/dataTables.bootstrap4.min.js');
 

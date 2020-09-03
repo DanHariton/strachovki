@@ -19,7 +19,7 @@ $('#insurance_insuranceDuration').change(function () {
             $('#insurance_price').val(price.sixMonth);
             break;
         case "7":
-            $('#insurance_price').val(price.sevenMoth);
+            $('#insurance_price').val(price.sevenMonth);
             break;
         case "8":
             $('#insurance_price').val(price.eightMonth);
