@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Insurance;
+use App\Entity\InsurancePrice;
 use App\Form\InsuranceEditType;
+use App\Form\InsurancePriceEditType;
 use App\Repository\InsuranceRepository;
+use App\Repository\InsurancePriceRepository;
 use App\Util\FakeTranslator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,6 +25,35 @@ class AdminController extends AbstractController
     public function indexAction()
     {
         return $this->render('admin/action/index.html.twig');
+    }
+
+    /**
+     * @Route("/prices", name="admin_price_list")
+     */
+    public function priceListAction(InsurancePriceRepository $inusrancePriceRepository)
+    {
+        return $this->render('admin/action/price/list.html.twig', [
+            'prices' => $inusrancePriceRepository->findAll()
+        ]);
+    }
+
+    /**
+     * @Route("/price/edit/{inusrancePrice}", name="admin_price_edit")
+     */
+    public function priceEditAction(InsurancePrice $inusrancePrice, Request $request, EntityManagerInterface $em)
+    {
+        $form = $this->createForm(InsurancePriceEditType::class, $inusrancePrice)
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            $this->addFlash('success', (new FakeTranslator())->trans('admin.price.edit.flush.success'));
+            return $this->redirectToRoute('admin_price_list');
+        }
+
+        return $this->render('admin/action/price/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**

@@ -5,7 +5,7 @@
 {% block body %}
     {% include 'page/components/header.html.twig' %}
     <section class="container">
-        <h1 class="font-weight-bold text-center margin-top-70 margin-bottom-30">Комплексное медецинское страхование</h1>
+        <h1 class="font-weight-bold text-center margin-top-70 margin-bottom-30">{{ 'page.headlines.insuranceBuy'|trans }}</h1>
         <p class="margin-bottom-50">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -14,7 +14,7 @@
             mollit anim id est laborum.
         </p>
         <div class="row justify-content-md-center margin-bottom-70">
-            <div class="row margin-bottom-50 border-bottom-40-red">
+            <div class="row margin-bottom-50 border-bottom-40-red wow bounceInUp">
                 <div class="col-lg-4">
                     <img src="{{ asset('assets/page/img/maxima-logo.png') }}" alt="Maxima pojišťovna" class="img-fluid">
                 </div>
@@ -43,7 +43,7 @@
                     <img src="{{ asset('assets/page/img/unica-logo.jpg') }}" alt="UNIQA pojišťovna" class="img-fluid">
                 </div>
             </div>
-            <div class="row margin-bottom-50 border-bottom-40-red">
+            <div class="row margin-bottom-50 border-bottom-40-red wow rollIn">
                 <div class="col-lg-4">
                     <img src="{{ asset('assets/page/img/ergo-logo.png') }}" alt="ERGO pojišťovna" class="img-fluid">
                 </div>

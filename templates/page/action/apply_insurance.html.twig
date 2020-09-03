@@ -6,18 +6,23 @@
 
 {% block body %}
     {% include 'page/components/header.html.twig' %}
+    <div id="insurance-price" data-array="{{ insurancePrice }}"></div>
     <section class="container">
         <h1 class="text-center margin-bottom-50 margin-top-70">
-            Медицинское страхование иностранцев <strong class="color-red">{{ insuranceName }}</strong>
+            Медицинское страхование иностранцев
+            {% if name == 'maxima' %}
+                <strong class="color-red">Maxima</strong>
+            {% endif %}
         </h1>
 
-{#        <div>#}
-{#            <ul class="progressbar">#}
-{#                <li class="active">Страхование</li>#}
-{#                <li>Оплата</li>#}
-{#                <li>Подтверждение</li>#}
-{#            </ul>#}
-{#        </div>#}
+        <div>
+            <ul class="progressbar">
+                <li class="active">Страхование</li>
+                <li>Оплата</li>
+                <li>Подтверждение</li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
 
 
         {{ form_start(form) }}

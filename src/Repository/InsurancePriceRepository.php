@@ -2,40 +2,40 @@
 
 namespace App\Repository;
 
-use App\Entity\Insurance;
+use App\Entity\InsurancePrice;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Insurance|null find($id, $lockMode = null, $lockVersion = null)
- * @method Insurance|null findOneBy(array $criteria, array $orderBy = null)
- * @method Insurance[]    findAll()
- * @method Insurance[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method InsurancePrice|null find($id, $lockMode = null, $lockVersion = null)
+ * @method InsurancePrice|null findOneBy(array $criteria, array $orderBy = null)
+ * @method InsurancePrice[]    findAll()
+ * @method InsurancePrice[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class InsuranceRepository extends ServiceEntityRepository
+class InsurancePriceRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Insurance::class);
+        parent::__construct($registry, InsurancePrice::class);
     }
 
     /**
-     * @param $paymentId
-     * @return Insurance|null
+     * @param $name
+     * @return InsurancePrice|null
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneByPaymentId($paymentId)
+    public function findOneByName($name)
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.paymentId = :paymentId')
-            ->setParameter('paymentId', $paymentId)
+        return $this->createQueryBuilder('ip')
+            ->andWhere('ip.name = :name')
+            ->setParameter('name', $name)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
 
     // /**
-    //  * @return Insurance[] Returns an array of Insurance objects
+    //  * @return InusrancePrice[] Returns an array of InusrancePrice objects
     //  */
     /*
     public function findByExampleField($value)
@@ -52,7 +52,7 @@ class InsuranceRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Insurance
+    public function findOneBySomeField($value): ?InusrancePrice
     {
         return $this->createQueryBuilder('i')
             ->andWhere('i.exampleField = :val')

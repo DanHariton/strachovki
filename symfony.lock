@@ -102,6 +102,9 @@
     "ocramius/proxy-manager": {
         "version": "2.8.0"
     },
+    "openpayu/openpayu": {
+        "version": "2.2.12"
+    },
     "php": {
         "version": "7.4"
     },

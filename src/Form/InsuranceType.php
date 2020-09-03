@@ -43,16 +43,21 @@ class InsuranceType extends AbstractType
                 ],
             ])
             ->add('endDate', DateType::class, [
-                'disabled' => true,
+                'attr' => [
+                    'readonly' => true
+                ],
                 'label' => $trans->trans('form.insurance.endDate.label'),
                 'widget' => 'single_text'
             ])
             ->add('price', TextType::class, [
-                'disabled' => true,
+                'attr' => [
+                    'readonly' => true
+                ],
                 'label' => $trans->trans('form.insurance.price.label'),
             ])
             ->add('dateBirth', BirthdayType::class, [
                 'label' => $trans->trans('form.insurance.birthDate.label'),
+                'format' => 'dd MM yyyy',
                 'placeholder' => [
                     'year' => $trans->trans('form.insurance.birthDate.placeholder.year'),
                     'month' => $trans->trans('form.insurance.birthDate.placeholder.month'),

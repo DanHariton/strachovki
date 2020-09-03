@@ -1,0 +1,65 @@
+{% extends 'admin/layout.nav.html.twig' %}
+
+{% block title %}Insurance List{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-2 text-gray-800">Insurances</h1>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message|trans() }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered data-table">
+                    <thead>
+                    <tr>
+                        <th>Pojištění</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>11</th>
+                        <th>12</th>
+                        <th>24</th>
+                        <th>Akce</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for price in prices %}
+                        <tr>
+                            <td>{{ price.name }}</td>
+                            <td>{{ price.threeMonth }}</td>
+                            <td>{{ price.fourMonth }}</td>
+                            <td>{{ price.fiveMonth }}</td>
+                            <td>{{ price.sixMonth }}</td>
+                            <td>{{ price.sevenMonth }}</td>
+                            <td>{{ price.eightMonth }}</td>
+                            <td>{{ price.nineMonth }}</td>
+                            <td>{{ price.tenMonth }}</td>
+                            <td>{{ price.elevenMonth }}</td>
+                            <td>{{ price.year }}</td>
+                            <td>{{ price.twoYears }}</td>
+                            <td>
+                                <a href="{{ path('admin_price_edit', {'inusrancePrice': price.id}) }}" class="btn btn-sm btn-secondary">Změnit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -70,6 +70,10 @@ form:
 
 
 admin:
+  price:
+    edit:
+      flush:
+        success: 'Změna úspěšně uložena'
   insurance:
     remove:
       flash:

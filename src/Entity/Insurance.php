@@ -14,7 +14,9 @@ class Insurance
     const INSURANCE_UNICA = 'unica';
     const INSURANCE_PVZP = 'pvzp';
     const INSURANCE_MAXIMA = 'maxima';
-
+    const STATUS_NEW = 0;
+    const STATUS_PAYED_SUCCESS = 1;
+    const STATUS_PAYED_ERROR = 2;
 
     /**
      * @ORM\Id()
@@ -107,6 +109,21 @@ class Insurance
      * @ORM\Column(type="integer")
      */
     private $price;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $paymentId;
+
+    /**
+     * @ORM\Column(type="integer", options={"default" = "0"})
+     */
+    private $status;
+
+    public function __construct()
+    {
+        $this->status = self::STATUS_NEW;
+    }
 
     public function getId(): ?int
     {
@@ -313,6 +330,68 @@ class Insurance
     public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function recalculatePrice($insurancePrice) {
+        switch ($this->getInsuranceDuration()) {
+            case 3:
+                $this->setPrice($insurancePrice->threeMonth);
+                break;
+            case 4:
+                $this->setPrice($insurancePrice->fourMonth);
+                break;
+            case 5:
+                $this->setPrice($insurancePrice->fiveMonth);
+                break;
+            case 6:
+                $this->setPrice($insurancePrice->sixMonth);
+                break;
+            case 7:
+                $this->setPrice($insurancePrice->sevenMoth);
+                break;
+            case 8:
+                $this->setPrice($insurancePrice->eightMonth);
+                break;
+            case 9:
+                $this->setPrice($insurancePrice->nineMonth);
+                break;
+            case 10:
+                $this->setPrice($insurancePrice->tenMonth);
+                break;
+            case 11:
+                $this->setPrice($insurancePrice->elevenMonth);
+                break;
+            case 12:
+                $this->setPrice($insurancePrice->year);
+                break;
+            default:
+                $this->setPrice($insurancePrice->twoYears);
+                break;
+        }
+    }
+
+    public function getPaymentId(): ?string
+    {
+        return $this->paymentId;
+    }
+
+    public function setPaymentId(?string $paymentId): self
+    {
+        $this->paymentId = $paymentId;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

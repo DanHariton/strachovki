@@ -30,7 +30,13 @@
     <div class="nav-item {% if app.request.get('_route') starts with 'admin_insurance_' %}active{% endif %}">
         <a class="nav-link" href="{{ path('admin_insurance_list') }}">
             <i class="far fa-file-alt"></i>
-            <span>Insurances</span></a>
+            <span>Pojištění</span></a>
+    </div>
+
+    <div class="nav-item {% if app.request.get('_route') starts with 'admin_price_' %}active{% endif %}">
+        <a class="nav-link" href="{{ path('admin_price_list') }}">
+            <i class="far fa-file-alt"></i>
+            <span>Cena</span></a>
     </div>
 
 
