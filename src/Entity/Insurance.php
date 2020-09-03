@@ -333,41 +333,41 @@ class Insurance
 
         return $this;
     }
-
-    public function recalculatePrice($insurancePrice) {
+    
+    public function recalculatePrice(InsurancePrice $insurancePrice) {
         switch ($this->getInsuranceDuration()) {
             case 3:
-                $this->setPrice($insurancePrice->threeMonth);
+                $this->setPrice($insurancePrice->getThreeMonth());
                 break;
             case 4:
-                $this->setPrice($insurancePrice->fourMonth);
+                $this->setPrice($insurancePrice->getFourMonth());
                 break;
             case 5:
-                $this->setPrice($insurancePrice->fiveMonth);
+                $this->setPrice($insurancePrice->getFiveMonth());
                 break;
             case 6:
-                $this->setPrice($insurancePrice->sixMonth);
+                $this->setPrice($insurancePrice->getSixMonth());
                 break;
             case 7:
-                $this->setPrice($insurancePrice->sevenMoth);
+                $this->setPrice($insurancePrice->getSevenMonth());
                 break;
             case 8:
-                $this->setPrice($insurancePrice->eightMonth);
+                $this->setPrice($insurancePrice->getEightMonth());
                 break;
             case 9:
-                $this->setPrice($insurancePrice->nineMonth);
+                $this->setPrice($insurancePrice->getNineMonth());
                 break;
             case 10:
-                $this->setPrice($insurancePrice->tenMonth);
+                $this->setPrice($insurancePrice->getTenMonth());
                 break;
             case 11:
-                $this->setPrice($insurancePrice->elevenMonth);
+                $this->setPrice($insurancePrice->getElevenMonth());
                 break;
             case 12:
-                $this->setPrice($insurancePrice->year);
+                $this->setPrice($insurancePrice->getYear());
                 break;
             default:
-                $this->setPrice($insurancePrice->twoYears);
+                $this->setPrice($insurancePrice->getTwoYears());
                 break;
         }
     }
