@@ -7,6 +7,9 @@ page:
       success: 'Ваша заявка принята!'
   headlines:
     insuranceBuy: 'Медицинское страхование иностранцев'
+  successPayment:
+    text: 'Платеж совершен успешно!'
+
 form:
   clientPhone:
     label:
