@@ -15,6 +15,10 @@ $('#insurance_insuranceDuration').change(function () {
     setPrice();
 });
 
+$('#insurance_startDate').change(function () {
+    setDate();
+});
+
 function setTotalAmount() {
     $('#insurance-total-amount').empty();
     let totalMonth = $('#insurance_insuranceDuration').val();
