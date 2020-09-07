@@ -4,15 +4,15 @@ let confirmContract = null;
 
 $(document).ready(function () {
    $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
-    setTotalAmount();
     setDate();
     setPrice();
+    setTotalAmount();
 });
 
 $('#insurance_insuranceDuration').change(function () {
-    setTotalAmount();
     setDate();
     setPrice();
+    setTotalAmount();
 });
 
 $('#insurance_startDate').change(function () {
