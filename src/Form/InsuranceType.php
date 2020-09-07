@@ -58,6 +58,8 @@ class InsuranceType extends AbstractType
             ->add('dateBirth', BirthdayType::class, [
                 'label' => $trans->trans('form.insurance.birthDate.label'),
                 'format' => 'dd MM yyyy',
+                'widget' => 'choice',
+                'years' => range(2020, 1960),
                 'placeholder' => [
                     'year' => $trans->trans('form.insurance.birthDate.placeholder.year'),
                     'month' => $trans->trans('form.insurance.birthDate.placeholder.month'),
@@ -65,44 +67,136 @@ class InsuranceType extends AbstractType
                 ]
             ])
             ->add('clientName', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.name.placeholder')
+                ],
                 'label' => $trans->trans('form.insurance.name.label')
             ])
             ->add('clientSName', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.sName.placeholder')
+                ],
                 'label' => $trans->trans('form.insurance.sName.label')
             ])
             ->add('clientEmail', EmailType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.email.placeholder')
+                ],
                 'label' => $trans->trans('form.insurance.email.label')
             ])
             ->add('clientMobile', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.mobile.placeholder')
+                ],
                 'label' => $trans->trans('form.insurance.mobile.label')
             ])
             ->add('gender', ChoiceType::class, [
                 'label' => $trans->trans('form.insurance.gender.label'),
+                'empty_data' => true,
                 'choices' => [
+                    $trans->trans('form.insurance.gender.label') => '',
                     $trans->trans('form.insurance.gender.choice.m') => 'M',
                     $trans->trans('form.insurance.gender.choice.f') => 'F',
                 ]
             ])
-            ->add('country', CountryType::class, [
-                'label' => $trans->trans('form.insurance.country.label')
-            ])
             ->add('town', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.town.placeholder')
+                ],
                 'label' => $trans->trans('form.insurance.town.label')
             ])
             ->add('street', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.street.placeholder')
+                ],
                 'label' => $trans->trans('form.insurance.street.label')
             ])
             ->add('postCode', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.postCode.placeholder')
+                ],
                 'label' => $trans->trans('form.insurance.postCode.label')
             ])
             ->add('passportId', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.passport.placeholder')
+                ],
                 'label' => $trans->trans('form.insurance.passport.label')
             ])
             ->add('citizenship', CountryType::class, [
-                'label' => $trans->trans('form.insurance.citizenShip.label')
+                'placeholder' => $trans->trans('form.insurance.citizenShip.placeholder'),
+                'label' => $trans->trans('form.insurance.citizenShip.label'),
+                'preferred_choices' => [
+                    'CZ', 'UA', 'RU', 'KZ', 'BY'
+                ],
+            ])
+            ->add('nameInsurant', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.nameInsurant.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.name.label')
+            ])
+            ->add('snameInsurant', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.snameInsurant.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.sName.label')
+            ])
+            ->add('emailInsurant', EmailType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.email.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.email.label')
+            ])
+            ->add('mobileInsurant', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.mobile.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.mobile.label')
+            ])
+            ->add('genderInsurant', ChoiceType::class, [
+                'label' => $trans->trans('form.insurance.gender.label'),
+                'empty_data' => true,
+                'choices' => [
+                    $trans->trans('form.insurance.gender.label') => '',
+                    $trans->trans('form.insurance.gender.choice.m') => 'M',
+                    $trans->trans('form.insurance.gender.choice.f') => 'F',
+                ]
+            ])
+            ->add('townInsurant', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.town.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.town.label')
+            ])
+            ->add('streetInsurant', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.street.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.street.label')
+            ])
+            ->add('postCodeInsurant', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.postCode.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.postCode.label')
+            ])
+            ->add('dateBirthInsurant', BirthdayType::class, [
+                'label' => $trans->trans('form.insurance.dateBirthInsurant.label'),
+                'format' => 'dd MM yyyy',
+                'widget' => 'choice',
+                'years' => range(2020, 1960),
+                'placeholder' => [
+                    'year' => $trans->trans('form.insurance.birthDate.placeholder.year'),
+                    'month' => $trans->trans('form.insurance.birthDate.placeholder.month'),
+                    'day' => $trans->trans('form.insurance.birthDate.placeholder.date'),
+                ]
             ])
             ->add('save', SubmitType::class, [
-                'label' => $trans->trans('form.insurance.button.save')
+                'label' => $trans->trans('form.insurance.button.save'),
+                'attr' => [
+                    'class' => 'submit-button hide text-uppercase'
+                ]
             ])
         ;
 

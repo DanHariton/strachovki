@@ -11,7 +11,11 @@
         </div>
         <div class="card-body">
             <div id="insurance-price" data-array="{{ insurancePrice }}"></div>
-            {{ form(form) }}
+            {{ form_start(form) }}
+                <div>
+                    {{ form_errors(form) }}
+                </div>
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

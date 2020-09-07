@@ -9,7 +9,7 @@
     <div id="insurance-price" data-array="{{ insurancePrice }}"></div>
     <section class="container">
         <h1 class="text-center margin-bottom-50 margin-top-70">
-            Медицинское страхование иностранцев
+            {{ 'page.headlines.insuranceBuy'|trans }}
             {% if name == 'maxima' %}
                 <strong class="color-red">Maxima</strong>
             {% endif %}
@@ -25,13 +25,13 @@
                     <div class="card custom-border-red">
                         <div class="card-header background-red" id="headingOne">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    1. Длительность и цена страхования
+                                <button class="btn btn-link btn-block text-left text-white text-uppercase" type="button" aria-expanded="true" aria-controls="collapseOne">
+                                    {{ 'form.texts.insuranceDuration'|trans }}
                                 </button>
                             </h2>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="mb-4">
                                     {{ form_label(form.dateBirth, null, {'label_attr': {'class': 'form-label'}}) }}
@@ -59,48 +59,178 @@
                     <div class="card custom-border-red-form">
                         <div class="card-header background-red" id="headingTwo">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    2. Застрахованное лицо
+                                <button class="btn btn-link btn-block text-left collapsed text-white text-uppercase" type="button" aria-expanded="false" aria-controls="collapseTwo">
+                                    {{ 'form.texts.insuredPerson'|trans }}
                                 </button>
                             </h2>
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
-                                <div class="form-group">
-                                    {{ form_label(form.clientName, null, {'label_attr': {'class': 'form-label'}}) }}
-                                    {{ form_widget(form.clientName, {'attr': {'class': 'form-control'}}) }}
+                                <h4 class="font-weight-bolder mb-3 mt-2">{{ 'form.texts.contactPerson'|trans }}</h4>
+                                <div class="d-flex justify-content-start">
+                                    <div class="form-group w-25">
+                                        {{ form_label(form.clientName, null, {'label_attr': {'class': 'form-label'}}) }}
+                                        {{ form_widget(form.clientName, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                    <div class="ml-5 w-25">
+                                        {{ form_label(form.clientSName, null, {'label_attr': {'class': 'form-label'}}) }}
+                                        {{ form_widget(form.clientSName, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.clientSName) }}
+                                <div class="d-flex justify-content-start">
+                                    <div class="w-25">
+                                        {{ form_row(form.clientEmail) }}
+                                    </div>
+                                    <div class="ml-5 w-25">
+                                        {{ form_row(form.clientMobile) }}
+                                    </div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.clientEmail) }}
+                                <h4 class="font-weight-bolder mb-3 mt-2">{{ 'form.texts.addressInCzech'|trans }}</h4>
+                                <div class="d-flex justify-content-start">
+                                    <div class="w-25">
+                                        {{ form_row(form.town) }}
+                                    </div>
+                                    <div class="ml-5 w-25">
+                                        {{ form_row(form.street) }}
+                                    </div>
+                                    <div class="ml-5 w-25">
+                                        {{ form_row(form.postCode) }}
+                                    </div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.clientMobile) }}
+                                <h4 class="font-weight-bolder mb-3 mt-2">{{ 'form.texts.personalData'|trans }}</h4>
+                                <div class="d-flex flex-column justify-content-start">
+                                    <div class="d-flex justify-content-start">
+                                        <div class="w-25">
+                                            {{ form_label(form.gender, null, {'label_attr': {'class': 'form-label'}}) }}
+                                            {{ form_widget(form.gender, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                        <div class="ml-5 w-25">
+                                            {{ form_row(form.citizenship) }}
+                                        </div>
+                                    </div>
+                                    <div class="w-50">
+                                        {{ form_row(form.passportId) }}
+                                    </div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.gender) }}
+                                <h5 class="font-weight-bolder mb-3 mt-4">{{ 'form.texts.himselfInsurant'|trans }}</h5>
+                                <div class="d-flex justify-content-start">
+                                    <div id="insurantChoseLeft" class="choseInsurantLeft">Да</div>
+                                    <div id="insurantChoseRight" class="choseInsurantRight">Нет</div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.country) }}
+                                <div id="insurant-data" class="hide">
+                                    <h4 class="font-weight-bolder mb-3 mt-4">{{ 'form.texts.contactDataInsurant'|trans }}</h4>
+                                    <div class="d-flex justify-content-start">
+                                        <div class="form-group w-25">
+                                            {{ form_label(form.nameInsurant, null, {'label_attr': {'class': 'form-label'}}) }}
+                                            {{ form_widget(form.nameInsurant, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                        <div class="ml-5 w-25">
+                                            {{ form_label(form.snameInsurant, null, {'label_attr': {'class': 'form-label'}}) }}
+                                            {{ form_widget(form.snameInsurant, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-start">
+                                        <div class="w-25">
+                                            {{ form_row(form.emailInsurant) }}
+                                        </div>
+                                        <div class="ml-5 w-25">
+                                            {{ form_row(form.mobileInsurant) }}
+                                        </div>
+                                    </div>
+                                    <h4 class="font-weight-bolder mb-3 mt-2">{{ 'form.texts.contactAddressInsurant'|trans }}</h4>
+                                    <div class="d-flex justify-content-start">
+                                        <div class="w-25">
+                                            {{ form_row(form.townInsurant) }}
+                                        </div>
+                                        <div class="ml-5 w-25">
+                                            {{ form_row(form.streetInsurant) }}
+                                        </div>
+                                        <div class="ml-5 w-25">
+                                            {{ form_row(form.postCodeInsurant) }}
+                                        </div>
+                                    </div>
+                                    <h4 class="font-weight-bolder mb-3 mt-2">{{ 'form.texts.privateDateInsurant'|trans }}</h4>
+                                    <div class="d-flex flex-column justify-content-start">
+                                        <div class="d-flex justify-content-start">
+                                            <div class="w-25">
+                                                {{ form_label(form.genderInsurant, null, {'label_attr': {'class': 'form-label'}}) }}
+                                                {{ form_widget(form.genderInsurant, {'attr': {'class': 'form-control'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            {{ form_row(form.dateBirthInsurant) }}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.town) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card custom-border-red-form">
+                        <div class="card-header background-red" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed text-white text-uppercase" type="button" aria-expanded="false" aria-controls="collapseTwo">
+                                    {{ 'form.texts.insuranceContract'|trans }}
+                                </button>
+                            </h2>
+                        </div>
+                        <div aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <h4 class="font-weight-bolder mb-4 mt-2">{{ 'form.texts.inportantDocuments'|trans }}</h4>
+                                <div class="row w-100 m-auto borders-conditions pb-4 pt-4">
+                                    <div class="col-2 text-center d-flex align-items-center justify-content-center">
+                                        <p class="mb-0 pdf-bages">
+                                            <strong class="order-online-text">PDF</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <a href="" class="color-red font-weight-bold conditions-links">
+                                            {{ 'form.texts.insuranceCondition1'|trans }}<br>
+                                            {{ 'form.texts.insuranceCondition2'|trans }}
+                                        </a>
+                                    </div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.street) }}
+                                <div class="row w-100 m-auto pb-4 pt-4">
+                                    <div class="col-2 text-center d-flex align-items-center justify-content-center">
+                                        <p class="mb-0 pdf-bages">
+                                            <strong class="order-online-text">PDF</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <a href="" class="color-red font-weight-bold conditions-links">
+                                            {{ 'form.texts.insuranceInfoAboutPdf'|trans }}
+                                        </a>
+                                    </div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.postCode) }}
+                                <div class="row w-100 m-auto borders-conditions pb-4 pt-4">
+                                    <div class="col-2 text-center d-flex align-items-center justify-content-center">
+                                        <p class="mb-0 pdf-bages">
+                                            <strong class="order-online-text">PDF</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <a href="" class="color-red font-weight-bold conditions-links">
+                                            {{ 'form.texts.informationAboutContract'|trans }}
+                                        </a>
+                                    </div>
                                 </div>
-                                <div >
-                                    {{ form_row(form.passportId) }}
+                                <h4 class="font-weight-bolder mb-3 mt-4">{{ 'form.texts.insuranceConditionText'|trans }}</h4>
+                                <textarea class="w-100 text-area-condition" readonly>
+                                    Общие условия страхования, Информация для потребителя, Информация о продукте и Протокол переговоров перед заключением договора являются неотъемлемой частью страхового договора. Страхователь подтверждает, что перед заключением договора страхования он был ознакомлен с Общими условиями страхования, на чешском языке ему была предоставлена ясная и понятная информация о страховщике и информация о страховых отношениях, как это понимается в § 2760 Гражданского кодекса. Страховщик уделил особое внимание положениям в условиях страхования, которые выделены цветом, и исключениям.
+                                    Страхователь заявляет, что на все письменные вопросы страховщика он ответил правдиво и полностью, и что вышеуказанные требования и пожелания были записаны правильно. Страхование покрывает опасности, от которых страхователь хочет получить защиту.
+                                    Страхователь принимает к сведению, что его персональные данные обрабатываются как страховщиком, так и его договорными партнерами. Страховщик является администратором персональных данных. Страховщик и уполномоченные страховщиком лица могут обрабатывать персональные данные в объеме, необходимом для надлежащего выполнения обязательств страховщика, указанных в договоре страхования, условиях страхования и нормативно-правовых актах (например, в законе об архивном деле, законе о противодействии легализации доходов, полученных преступным путем, в положениях по бухгалтерскому учету и налогообложению и т. д.). Страховая компания уполномочена обрабатывать персональные данные застрахованных лиц в течение срока, установленного законом, а также в течение срока действия страховки и последующих четырех (4) лет после ее прекращения, а при наличии неразрешенных споров, возникших в связи со страхованием - до их решения. Субъект данных имеет право запрашивать у страховой компании информацию об обработке его персональных данных, получить доступ к персональным данным, вносить исправления, требовать объяснений, ограничения обработки и устранения ситуации, когда личная информация, по мнению субъекта данных, обрабатывается с нарушениями настоящего договора или закона. Более подробную информацию об обработке персональных данных можно найти по адресу: https://www.maximapojistovna.cz/cs/ochrana-osobnich-udaju.
+                                    Застрахованный также имеет право обратиться к сотруднику по защите данных по всем вопросам, связанным с обработкой его персональных данных и реализацией его прав: dpo@maxima-as.cz. Если субъект данных считает, что обработка его персональных данных противоречит законам общеобязательного характера, то он имеет право подать жалобу в Департамент по защите персональных данных, который находится по адресу: pplk. Sochora 27, 170 00 Praha 7, Чешская Республика, электронная почта: posta@uoou.cz. Страхователь принимает к сведению, что страховая компания может обрабатывать его персональные данные в маркетинговых целях. Правовым основанием для такой обработки данных является законный интерес страховой компании, поскольку это необходимо для продвижения ее продуктов и услуг. Если вы не хотите получать маркетинговые материалы, вы можете отправить сообщение по адресу: info@maxima-as.cz. В связи с осуществлением прав и выполнением обязательств страховщика, вытекающих из договора страхования, настоящим я уполномочиваю страховщика задавать компетентным врачам (медицинским учреждениям) вопросы относительно состояния моего здоровья, даже после моей смерти, и получать выписки и копии документации и других записей о состоянии моего здоровья. В соответствии с § 51 п. 2 (b) Закона № 372/2011, Свод законов, я уполномочиваю врача (медицинское учреждение) предоставлять страховщику по запросу необходимую информацию в объеме полномочий, как указано выше, как если бы эта информация предоставлялась пациенту в соответствии с § 31 и последующими цитируемого закона. Настоящим я уполномочиваю страховщика получать выписки из моего личного счета о пользовании медицинскими услугами страховой медицинской компании, что связано с реализацией прав по договору страхования.
+                                    Я заявляю, что не являюсь политически значимым лицом, как это понимается в Законе № 253/2008, Свод законов. Если я стану таким лицом в течение срока действия моей страховки, то я обязуюсь немедленно уведомить страховщика.
+                                    Застрахованное лицо, не являющееся одновременно страхователем, или третье лицо, в пользу которого оформлено страхование, может выразить свое согласие с договором страхования в любое время в течение срока действия договора или при реализации права на страховое возмещение.
+                                </textarea>
+                                <div class="d-flex justify-content-start align-items-center mt-4 confirm-conditions">
+                                    <i id="info-confirmation-check-box" class="color-red ml-2 far fa-circle" aria-hidden="true"></i>
+                                    <p class="mb-0 ml-2">{{ 'form.texts.confirmConditions'|trans }}</p>
                                 </div>
-                                <div >
-                                    {{ form_row(form.citizenship) }}
-                                </div>
-                                <div >
+                                <h4 class="font-weight-bolder mb-5 mt-4 text-center">
+                                    {{ 'form.texts.insuranceAmount'|trans }}
+                                    <strong class="font-weight-bolder color-red text-uppercase" id="insurance-total-amount"></strong>
+                                </h4>
+                                <div class="text-uppercase mx-auto text-center mt-2 mb-3">
                                     {{ form_row(form.save) }}
                                 </div>
                             </div>

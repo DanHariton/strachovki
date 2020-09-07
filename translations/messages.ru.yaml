@@ -7,10 +7,43 @@ page:
       success: 'Ваша заявка принята!'
   headlines:
     insuranceBuy: 'Медицинское страхование иностранцев'
+    insuranceBuyText: 'Оформи договор страхования в несколько кликов!'
   successPayment:
     text: 'Платеж совершен успешно!'
+  insurances:
+    text: 'Комплексное медицинское страхование'
+    limit: 'Страховой лимит:'
+    limitForCase: 'Лимит на 1 случай:'
+    shengen: 'Лимит по шенгену:'
+    maxima:
+      label: 'Maxima pojišťovna'
+    ergo:
+      label: 'Ergo pojišťovna'
+    pvzp:
+      label: 'Pojišťovna VZP'
+    uniqa:
+      label: 'UNIQA pojišťovna'
 
 form:
+  texts:
+    contactPerson: 'Контактная информация застрахованного лица'
+    addressInCzech: 'Адрес проживания в Чехии'
+    personalData: 'Персональные данные'
+    insuranceContract: '3. Страховые условия'
+    insuredPerson: '2. Застрахованное лицо'
+    insuranceDuration: '1. Длительность и цена страхования'
+    inportantDocuments: 'Важные документы'
+    insuranceCondition1: 'Общие условия страхования'
+    insuranceCondition2: 'Комплексное медицинское страхование иностранцев'
+    insuranceInfoAboutPdf: 'Информация о страховом продукте'
+    informationAboutContract: 'Предварительная информация о договоре'
+    insuranceConditionText: 'Условия страхования'
+    confirmConditions: 'Я согласен с коммерческими условиями'
+    insuranceAmount: 'Стоимость страхования'
+    himselfInsurant: 'Страхование я заключаю для себя'
+    contactDataInsurant: 'Контактные данные лица, заключающего страхование (страхователя)'
+    contactAddressInsurant: 'Контактный адрес страхователя'
+    privateDateInsurant: 'Персональные данные страхователя'
   clientPhone:
     label:
       submit: 'Позвоните мне'
@@ -37,32 +70,53 @@ form:
         month: 'Месяц'
         year: 'Год'
     name:
+      placeholder: 'например, Jan'
       label: 'Имя'
+      label2: 'Имя страхователя'
     sName:
+      placeholder: 'например, Novák'
       label: 'Фамилия'
+      label2: 'Фамилия страхователя'
     email:
+      placeholder: 'например, jan@novak.cz'
       label: 'Электронная почта'
+      label2: 'Электронная почта страхователя'
     mobile:
+      placeholder: ''
       label: 'Номер телефона'
-    country:
-      label: 'Страна'
+      label2: 'Номер телефона страхователя'
     street:
-      label: 'Улица'
+      placeholder: 'например, Na Poříčí 15'
+      label: 'Улица и номер дома'
+      label2: 'Улица и номер дома страхователя'
     town:
+      placeholder: 'например, Praha'
       label: 'Город'
+      label2: 'Город страхователя'
     postCode:
+      placeholder: 'например, 110 00'
       label: 'Почтовый индекс'
+      label2: 'Почтовый индекс страхователя'
     passport:
+      placeholder: 'например, RU89067987'
       label: 'Номер удостоверения личности или паспорта'
     citizenShip:
       label: 'Гражданство'
+      placeholder: 'Выберите страну'
     button:
-      save: 'Подтвердить'
+      save: 'Перейти к оплате'
     gender:
       label: 'Пол'
+      label2: 'Пол страхователя'
       choice:
         m: 'Мужчина'
         f: 'Женщина'
+    nameInsurant:
+      placeholder: 'Имя страхователя'
+    snameInsurant:
+      placeholder: 'Фамилия страхователя'
+    dateBirthInsurant:
+      label: 'Дата рождения страхователя'
     duration:
       label: 'Длительность страхования'
       choice:
@@ -77,7 +131,6 @@ form:
         elevenMonth: '11 месяцев'
         year: '12 месяцев'
         twoYears: '24 месяца'
-
 
 admin:
   edit:

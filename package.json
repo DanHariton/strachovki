@@ -28,6 +28,7 @@
     "@ttskch/select2-bootstrap4-theme": "^1.4.0",
     "animate.css": "^4.1.0",
     "bootstrap": "^4.5.0",
+    "intl-tel-input": "^17.0.3",
     "jquery": "^3.5.1",
     "moment": "^2.27.0",
     "normalize.css": "^8.0.1",

@@ -15,6 +15,23 @@
 {% block js %}
     <script src="{{ asset('assets/page/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.js"></script>
+    <script>
+        let input = document.querySelector("#insurance_clientMobile");
+        window.intlTelInput(input, {
+            utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js',
+            preferredCountries: ['cz', 'ru', 'ua', 'by', 'kz'],
+            autoFormat: true,
+            nationalMode: true
+        });
+        let inputInsurant = document.querySelector("#insurance_mobileInsurant");
+        window.intlTelInput(inputInsurant, {
+            utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js',
+            preferredCountries: ['cz', 'ru', 'ua', 'by', 'kz'],
+            autoFormat: true,
+            nationalMode: true
+        });
+    </script>
     <script>new WOW().init();</script>
 {% endblock %}
 </body>

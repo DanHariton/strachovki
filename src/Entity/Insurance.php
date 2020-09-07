@@ -120,6 +120,51 @@ class Insurance
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nameInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $snameInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $emailInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $mobileInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $townInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $streetInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $postCodeInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $genderInsurant;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateBirthInsurant;
+
     public function __construct()
     {
         $this->status = self::STATUS_NEW;
@@ -392,6 +437,114 @@ class Insurance
     public function setStatus(int $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getNameInsurant(): ?string
+    {
+        return $this->nameInsurant;
+    }
+
+    public function setNameInsurant(?string $nameInsurant): self
+    {
+        $this->nameInsurant = $nameInsurant;
+
+        return $this;
+    }
+
+    public function getSnameInsurant(): ?string
+    {
+        return $this->snameInsurant;
+    }
+
+    public function setSnameInsurant(?string $snameInsurant): self
+    {
+        $this->snameInsurant = $snameInsurant;
+
+        return $this;
+    }
+
+    public function getEmailInsurant(): ?string
+    {
+        return $this->emailInsurant;
+    }
+
+    public function setEmailInsurant(?string $emailInsurant): self
+    {
+        $this->emailInsurant = $emailInsurant;
+
+        return $this;
+    }
+
+    public function getMobileInsurant(): ?string
+    {
+        return $this->mobileInsurant;
+    }
+
+    public function setMobileInsurant(?string $mobileInsurant): self
+    {
+        $this->mobileInsurant = $mobileInsurant;
+
+        return $this;
+    }
+
+    public function getTownInsurant(): ?string
+    {
+        return $this->townInsurant;
+    }
+
+    public function setTownInsurant(?string $townInsurant): self
+    {
+        $this->townInsurant = $townInsurant;
+
+        return $this;
+    }
+
+    public function getStreetInsurant(): ?string
+    {
+        return $this->streetInsurant;
+    }
+
+    public function setStreetInsurant(?string $streetInsurant): self
+    {
+        $this->streetInsurant = $streetInsurant;
+
+        return $this;
+    }
+
+    public function getPostCodeInsurant(): ?string
+    {
+        return $this->postCodeInsurant;
+    }
+
+    public function setPostCodeInsurant(?string $postCodeInsurant): self
+    {
+        $this->postCodeInsurant = $postCodeInsurant;
+
+        return $this;
+    }
+
+    public function getGenderInsurant(): ?string
+    {
+        return $this->genderInsurant;
+    }
+
+    public function setGenderInsurant(?string $genderInsurant): self
+    {
+        $this->genderInsurant = $genderInsurant;
+
+        return $this;
+    }
+
+    public function getDateBirthInsurant(): ?\DateTimeInterface
+    {
+        return $this->dateBirthInsurant;
+    }
+
+    public function setDateBirthInsurant(?\DateTimeInterface $dateBirthInsurant): self
+    {
+        $this->dateBirthInsurant = $dateBirthInsurant;
 
         return $this;
     }
