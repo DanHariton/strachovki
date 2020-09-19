@@ -1,0 +1,31 @@
+{% extends 'page/layout.html.twig' %}
+
+{% block title %}Застрахуй.cz{% endblock %}
+
+{% block body %}
+    {% include 'page/components/header.html.twig' %}
+    <section class="container">
+        <h1 class="text-center mt-5 mb-5 font-weight-bold">{{ 'page.payOnline.text'|trans }}</h1>
+        <h4 class="text-center color-red mb-3">{{ 'form.paymentPassword.label'|trans }}</h4>
+        <div class="row d-flex justify-content-center mb-5">
+            {{ form_start(form) }}
+            <div>
+                {{ form_errors(form) }}
+            </div>
+
+            <div class="d-flex flex-column">
+                <div class="rotate">
+                    {{ form_row(form.paymentPassword) }}
+                </div>
+                <div class="rotate text-center">
+                    {{ form_row(form.save) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </section>
+
+
+    {% include 'page/components/footer.html.twig' %}
+
+{% endblock %}

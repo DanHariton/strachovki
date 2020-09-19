@@ -1,0 +1,36 @@
+<div class="container">
+    <h2 class="font-weight-bold mb-3">{{ 'email.confirmPayment.header'|trans }}</h2>
+    <h3 class="mb-2"><u>
+            {{ 'email.detail.insuranceName'|trans }}
+            <strong style="color: #DA1931">
+                {% if insurance.insuranceName == 'maxima' %}
+                    Maxima pojišťovna
+                {% elseif insurance.insuranceName == 'uniqa' %}
+                    Pojišťovna UNIQA
+                {% elseif insurance.insuranceName == 'pvzp' %}
+                    Pojišťovna VZP
+                {% else %}
+                    ERGO pojišťovna
+                {% endif %}
+            </strong></u>
+    </h3>
+    <h3 class="mb-2">
+        {{ 'email.detail.forWhom'|trans }} <u><strong>{{ insurance.clientName }} {{ insurance.clientSName }}</strong></u>
+    </h3>
+    <p class="mb-2">{{ 'email.detail.dateBirth'|trans }} <strong>{{ insurance.dateBirth|date('d.m.Y') }}</strong></p>
+    <p class="mb-2">
+        {{ 'email.detail.validFrom'|trans }} <strong>{{ insurance.startDate|date('d.m.Y') }}</strong> {{ 'email.detail.validTo'|trans }} <strong>{{ insurance.endDate|date('d.m.Y') }}</strong>
+    </p>
+    <p class="mb-2">{{ 'email.detail.duration'|trans }} <strong>{{ insurance.insuranceDuration }}</strong> {{ 'email.detail.month'|trans }}</p>
+    <h2 class="font-weight-bold" style="color: #DA1931">{{ 'email.confirmPayment.thanks'|trans }}</h2>
+    <br><br>
+    <h4 class="text-center">
+        {{ 'email.automaticText'|trans }}
+    </h4>
+    <p class="mb-2 color-red">
+        {{ 'email.footer.regards.text1'|trans }}
+    </p>
+    <p class="mb-2 color-red">
+        {{ 'email.footer.regards.text2'|trans }}
+    </p>
+</div>

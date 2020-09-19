@@ -17,6 +17,8 @@ class Insurance
     const STATUS_NEW = 0;
     const STATUS_PAYED_SUCCESS = 1;
     const STATUS_PAYED_ERROR = 2;
+    const PAYMENT_METHOD_ONLINE = 0;
+    const PAYMENT_METHOD_CASH = 1;
 
     /**
      * @ORM\Id()
@@ -164,6 +166,16 @@ class Insurance
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateBirthInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $paymentPassword;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $paymentMethod;
 
     public function __construct()
     {
@@ -545,6 +557,30 @@ class Insurance
     public function setDateBirthInsurant(?\DateTimeInterface $dateBirthInsurant): self
     {
         $this->dateBirthInsurant = $dateBirthInsurant;
+
+        return $this;
+    }
+
+    public function getPaymentPassword(): ?string
+    {
+        return $this->paymentPassword;
+    }
+
+    public function setPaymentPassword(?string $paymentPassword): self
+    {
+        $this->paymentPassword = $paymentPassword;
+
+        return $this;
+    }
+
+    public function getPaymentMethod(): ?int
+    {
+        return $this->paymentMethod;
+    }
+
+    public function setPaymentMethod(int $paymentMethod): self
+    {
+        $this->paymentMethod = $paymentMethod;
 
         return $this;
     }

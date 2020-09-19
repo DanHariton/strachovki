@@ -34,6 +34,20 @@ class InsuranceRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @param $paymentPassword
+     * @return Insurance|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByPaymentPassword($paymentPassword)
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.paymentPassword = :paymentPassword')
+            ->setParameter('paymentPassword', $paymentPassword)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Insurance[] Returns an array of Insurance objects
     //  */

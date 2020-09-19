@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Insurance;
 use App\Util\FakeTranslator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
@@ -9,11 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Length;
 
 class InsuranceType extends AbstractType
 {
@@ -190,6 +189,15 @@ class InsuranceType extends AbstractType
                     'year' => $trans->trans('form.insurance.birthDate.placeholder.year'),
                     'month' => $trans->trans('form.insurance.birthDate.placeholder.month'),
                     'day' => $trans->trans('form.insurance.birthDate.placeholder.date'),
+                ]
+            ])
+            ->add('paymentMethod', ChoiceType::class, [
+                'label' => $trans->trans('form.insurance.paymentMethod.label'),
+                'required' => true,
+                'choices' => [
+                    $trans->trans('form.insurance.paymentMethod.label') => '',
+                    $trans->trans('form.insurance.paymentMethod.choice.payOnline') => Insurance::PAYMENT_METHOD_ONLINE,
+                    $trans->trans('form.insurance.paymentMethod.choice.payCash') => Insurance::PAYMENT_METHOD_CASH,
                 ]
             ])
             ->add('save', SubmitType::class, [

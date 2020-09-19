@@ -73,9 +73,30 @@ class InsurancePrice
     private $year;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $thirteenMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $fourteenMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $fifteenMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $sixteenMonth;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $twoYears;
+
 
     public function getId(): ?int
     {
@@ -219,6 +240,54 @@ class InsurancePrice
         return $this->twoYears;
     }
 
+    public function getThirteenMonth(): ?int
+    {
+        return $this->thirteenMonth;
+    }
+
+    public function setThirteenMonth(?int $thirteenMonth): self
+    {
+        $this->thirteenMonth = $thirteenMonth;
+
+        return $this;
+    }
+
+    public function getFourteenMonth(): ?int
+    {
+        return $this->fourteenMonth;
+    }
+
+    public function setFourteenMonth(?int $fourteenMonth): self
+    {
+        $this->fourteenMonth = $fourteenMonth;
+
+        return $this;
+    }
+
+    public function getFifteenMonth(): ?int
+    {
+        return $this->fifteenMonth;
+    }
+
+    public function setFifteenMonth(?int $fifteenMonth): self
+    {
+        $this->fifteenMonth = $fifteenMonth;
+
+        return $this;
+    }
+
+    public function getSixteenMonth(): ?int
+    {
+        return $this->sixteenMonth;
+    }
+
+    public function setSixteenMonth(?int $sixteenMonth): self
+    {
+        $this->sixteenMonth = $sixteenMonth;
+
+        return $this;
+    }
+
     public function setTwoYears(int $twoYears): self
     {
         $this->twoYears = $twoYears;
@@ -239,6 +308,10 @@ class InsurancePrice
             'tenMonth' => $this->tenMonth,
             'elevenMonth' => $this->elevenMonth,
             'year' => $this->year,
+            'thirteenMonth' => $this->thirteenMonth,
+            'fourteenMonth' => $this->fourteenMonth,
+            'fifteenMonth' => $this->fifteenMonth,
+            'sixteenMonth' => $this->sixteenMonth,
             'twoYears' => $this->twoYears
         ];
     }

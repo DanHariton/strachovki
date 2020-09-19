@@ -6,10 +6,11 @@ use App\Entity\ClientsPhones;
 use App\Entity\Insurance;
 use App\Entity\InsurancePrice;
 use App\Form\ClientPhoneType;
+use App\Form\InsurancePaymentByPasswordType;
 use App\Form\InsuranceType;
+use App\Service\OrderFactory;
 use App\Util\FakeTranslator;
 use Doctrine\ORM\EntityManagerInterface;
-use OpenPayU_Configuration;
 use OpenPayU_Order;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,7 +56,6 @@ class PageController extends AbstractController
      */
     public function insuranceOptionsAction()
     {
-
         return $this->render('page/action/insurance_options.html.twig');
     }
 
@@ -65,7 +65,7 @@ class PageController extends AbstractController
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \OpenPayU_Exception
      */
-    public function applyInsuranceAction($name, Request $request, EntityManagerInterface $em)
+    public function applyInsuranceAction($name, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory, \Swift_Mailer $mailer)
     {
         $insurance = new Insurance();
         $insurance->setInsuranceName($name);
@@ -79,43 +79,39 @@ class PageController extends AbstractController
             /** @var Insurance $insurance */
             $insurance = $form->getData();
             $insurance->recalculatePrice($insurancePrice);
+            $insurance->setPaymentPassword(base64_encode(date('d.m.Y h:i:s')));
 
-            //set Sandbox Environment
-            OpenPayU_Configuration::setEnvironment('sandbox');
+            $message = (new \Swift_Message('Новый заказ'))
+                ->setFrom('danilhariton@gmail.com')
+                ->setTo($insurance->getClientEmail())
+                ->setBody(
+                    $this->renderView(
+                        'emails/confirm_order.html.twig',
+                        ['insurance' => $insurance]
+                    ),
+                    'text/html'
+                )
+            ;
 
-            //set POS ID and Second MD5 Key (from merchant admin panel)
-            OpenPayU_Configuration::setMerchantPosId('393916');
-            OpenPayU_Configuration::setSignatureKey('b11ff54f1105e3729e13d37eee110556');
+            $mailer->send($message);
 
-            //set Oauth Client Id and Oauth Client Secret (from merchant admin panel)
-            OpenPayU_Configuration::setOauthClientId('393916');
-            OpenPayU_Configuration::setOauthClientSecret('09f9aa005df78b2e377ba2bd7c329ae6');
+            if ($insurance->getPaymentMethod() == Insurance::PAYMENT_METHOD_ONLINE) {
+                $response = OpenPayU_Order::create($orderFactory->createOrder($insurance,
+                    $this->generateUrl('page_success_payment', [], UrlGeneratorInterface::ABSOLUTE_URL),
+                    $this->generateUrl('page_payment_callback', [], UrlGeneratorInterface::ABSOLUTE_URL)));
 
-            $order['continueUrl'] = $this->generateUrl('page_success_payment', [], UrlGeneratorInterface::ABSOLUTE_URL);
-            $order['notifyUrl'] = $this->generateUrl('page_payment_callback', [], UrlGeneratorInterface::ABSOLUTE_URL);
-            $order['customerIp'] = $_SERVER['REMOTE_ADDR'];
-            $order['merchantPosId'] = OpenPayU_Configuration::getMerchantPosId();
-            $order['description'] = 'New order';
-            $order['currencyCode'] = 'PLN';
-            $order['totalAmount'] = $insurance->getPrice() * 100;
+                $responseData = $response->getResponse();
+                $insurance->setPaymentId($responseData->orderId);
+                $em->persist($insurance);
+                $em->flush();
 
-            $order['products'][0]['name'] = $name;
-            $order['products'][0]['unitPrice'] = $insurance->getPrice() * 100;
-            $order['products'][0]['quantity'] = 1;
+                return $this->redirect($responseData->redirectUri);
+            } else {
+                $em->persist($insurance);
+                $em->flush();
 
-            //optional section buyer
-            $order['buyer']['email'] = $insurance->getClientEmail();
-            $order['buyer']['phone'] = $insurance->getClientMobile();
-            $order['buyer']['firstName'] = $insurance->getClientName();
-            $order['buyer']['lastName'] = $insurance->getClientSName();
-
-            $response = OpenPayU_Order::create($order);
-            $responseData = $response->getResponse();
-            $insurance->setPaymentId($responseData->orderId);
-            $em->persist($insurance);
-            $em->flush();
-
-            return $this->redirect($responseData->redirectUri);
+                return $this->redirectToRoute('page_confirmation_order');
+            }
         }
 
         return $this->render('page/action/apply_insurance.html.twig', [
@@ -135,13 +131,23 @@ class PageController extends AbstractController
     }
 
     /**
+     * @Route("/confirmation-order", name="page_confirmation_order")
+     * @return Response
+     */
+    public function confirmationOrderAction()
+    {
+        return $this->render('page/action/confirmation_order.html.twig');
+    }
+
+    /**
      * @Route("/payu/paymnet-callback", name="page_payment_callback")
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param \Swift_Mailer $mailer
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function paymentCallbackAction(Request $request, EntityManagerInterface $em)
+    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, \Swift_Mailer $mailer)
     {
         $responseData = json_decode($request->getContent());
         $insurance = $em
@@ -154,7 +160,21 @@ class PageController extends AbstractController
 
         if ($responseData->order->status === 'COMPLETED') {
             $insurance->setStatus(Insurance::STATUS_PAYED_SUCCESS);
-            // TODO: send email
+
+            $message = (new \Swift_Message('Спасибо за оплату!'))
+                ->setFrom('danilhariton@gmail.com')
+                ->setTo($insurance->getClientEmail())
+                ->setBody(
+                    $this->renderView(
+                        'emails/payment_success.html.twig',
+                        ['insurance' => $insurance]
+                    ),
+                    'text/html'
+                )
+            ;
+
+            $mailer->send($message);
+
             $em->flush();
             return new Response();
         }
@@ -165,5 +185,57 @@ class PageController extends AbstractController
         }
 
         return new Response('', Response::HTTP_NOT_ACCEPTABLE);
+    }
+
+    /**
+     * @Route("/pay-online", name="page_pay_online")
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \OpenPayU_Exception
+     */
+    public function paymentOnlineAction(Request $request, EntityManagerInterface $em, OrderFactory $orderFactory)
+    {
+        $insurance = new Insurance();
+        $form = $this->createForm(InsurancePaymentByPasswordType::class, $insurance)
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $insurance = $form->getData();
+            $insurance = $em->getRepository(Insurance::class)->findOneByPaymentPassword($insurance->getPaymentPassword());
+
+            if ($insurance == null)
+            {
+                return $this->redirectToRoute('page_order_not_found');
+            }
+            if ($insurance->getStatus() == Insurance::STATUS_PAYED_SUCCESS)
+            {
+                return $this->redirectToRoute('page_success_payment');
+            }
+
+            $response = OpenPayU_Order::create($orderFactory->createOrder($insurance,
+                $this->generateUrl('page_success_payment', [], UrlGeneratorInterface::ABSOLUTE_URL),
+                $this->generateUrl('page_payment_callback', [], UrlGeneratorInterface::ABSOLUTE_URL)));
+
+            $responseData = $response->getResponse();
+            $insurance->setPaymentId($responseData->orderId);
+
+            $em->persist($insurance);
+            $em->flush();
+
+            return $this->redirect($responseData->redirectUri);
+        }
+
+        return $this->render('page/action/pay_online.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
+    }
+
+    /**
+     * @Route("/order-not-found", name="page_order_not_found")
+     * @return Response
+     */
+    public function orderNotFoundAction()
+    {
+        return $this->render('page/action/order_not_found.html.twig');
     }
 }

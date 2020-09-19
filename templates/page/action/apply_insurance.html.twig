@@ -47,11 +47,11 @@
                                 </div>
                                 <div class="w-25 form-group">
                                     {{ form_label(form.endDate, null, {'label_attr': {'class': 'form-label'}}) }}
-                                    {{ form_widget(form.endDate, {'attr': {'class': 'form-control background-green color-red'}}) }}
+                                    {{ form_widget(form.endDate, {'attr': {'class': 'form-control color-red'}}) }}
                                 </div>
                                 <div class="w-25 form-group">
                                     {{ form_label(form.price, null, {'label_attr': {'class': 'form-label'}}) }}
-                                    {{ form_widget(form.price, {'attr': {'class': 'form-control background-green color-red'}}) }}
+                                    {{ form_widget(form.price, {'attr': {'class': 'form-control color-red'}}) }}
                                 </div>
                             </div>
                         </div>
@@ -225,6 +225,24 @@
                                 <div class="d-flex justify-content-start align-items-center mt-4 confirm-conditions">
                                     <i id="info-confirmation-check-box" class="color-red ml-2 far fa-circle" aria-hidden="true"></i>
                                     <p class="mb-0 ml-2">{{ 'form.texts.confirmConditions'|trans }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card custom-border-red-form">
+                        <div class="card-header background-red" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed text-white text-uppercase" type="button" aria-expanded="false" aria-controls="collapseTwo">
+                                    {{ 'form.texts.paymentMethod'|trans }}
+                                </button>
+                            </h2>
+                        </div>
+                        <div aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-start">
+                                    <div class="w-50">
+                                        {{ form_row(form.paymentMethod) }}
+                                    </div>
                                 </div>
                                 <h4 class="font-weight-bolder mb-5 mt-4 text-center">
                                     {{ 'form.texts.insuranceAmount'|trans }}
