@@ -3,11 +3,19 @@
 {% block title %}Insurance List{% endblock %}
 
 {% block content %}
-    <h1 class="h3 mb-2 text-gray-800">Insurances</h1>
+    <h1 class="h3 mb-2 text-gray-800">Pojištění</h1>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message|trans() }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Objednávky</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -16,7 +24,7 @@
                     <tr>
                         <th>#</th>
                         <th>Pojištění</th>
-{#                        <th>Cislo pojistky</th>#}
+                        <th>Číslo pojištění</th>
                         <th>Příjmení</th>
                         <th>Jméno</th>
                         <th>Datum narození</th>
@@ -32,6 +40,7 @@
                         <tr>
                             <td>{{ insurance.id }}</td>
                             <td>{{ insurance.insuranceName }}</td>
+                            <td>{{ insurance.insuredNumber }}</td>
                             <td>{{ insurance.clientSName }}</td>
                             <td>{{ insurance.clientName }}</td>
                             <td>{{ insurance.dateBirth|date('d.m.Y') }}</td>
@@ -40,11 +49,21 @@
                             <td>{{ insurance.endDate|date('d.m.Y') }}</td>
                             <td>{{ insurance.price }}</td>
                             <td>
-                                <a href="{{ path('admin_insurance_edit', {'insurance': insurance.id}) }}" class="btn btn-sm btn-secondary">Detail</a>
+                                <a href="{{ path('admin_insurance_edit', {'insurance': insurance.id}) }}" class="btn btn-sm btn-secondary mb-2">Detail</a>
+                                {% if insurance.sentToClient %}
+                                    <a class="btn btn-sm btn-light mb-2" href="{{ path('admin_insurance_sent_to_client_toggle', {'insurance': insurance.id}) }}">Odesláno klientů</a>
+                                {% else %}
+                                    <a class="btn btn-sm btn-primary mb-2" href="{{ path('admin_insurance_sent_to_client_toggle', {'insurance': insurance.id}) }}">V kanceláři</a>
+                                {% endif %}
+                                {% if insurance.paidToInsuranceCompany %}
+                                    <a class="btn btn-sm btn-success mb-2" href="{{ path('admin_insurance_paid_to_insurance_toggle', {'insurance': insurance.id}) }}">Zaplaceno</a>
+                                {% else %}
+                                    <a class="btn btn-sm btn-warning mb-2" href="{{ path('admin_insurance_paid_to_insurance_toggle', {'insurance': insurance.id}) }}">Neuhrazeno</a>
+                                {% endif %}
                                 <a
                                         onclick="return confirm('Jste jisti ze chcete vymazat tuto položku?')"
                                         href="{{ path('admin_insurance_remove', {'insurance': insurance.id}) }}"
-                                        class="btn btn-sm btn-danger">
+                                        class="btn btn-sm btn-danger mb-2">
                                     Vymazat
                                 </a>
                             </td>

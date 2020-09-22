@@ -8,6 +8,7 @@ use App\Entity\InsurancePrice;
 use App\Form\ClientPhoneType;
 use App\Form\InsurancePaymentByPasswordType;
 use App\Form\InsuranceType;
+use App\Service\InsurancePriceFactory;
 use App\Service\OrderFactory;
 use App\Util\FakeTranslator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -65,21 +66,31 @@ class PageController extends AbstractController
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \OpenPayU_Exception
      */
-    public function applyInsuranceAction($name, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory, \Swift_Mailer $mailer)
+    public function applyInsuranceAction($name, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory,
+                                         \Swift_Mailer $mailer, InsurancePriceFactory $insurancePriceFactory)
     {
         $insurance = new Insurance();
         $insurance->setInsuranceName($name);
-        $insurancePrice = $em->getRepository(InsurancePrice::class)->findOneByName($name);
+        $insurancePrices = $em->getRepository(InsurancePrice::class)->findByName($name);
+        if (!empty($insurancePrices)) {
+            $insurancePriceList = [];
+            for ($i = 0; $i < count($insurancePrices); $i++) {
+                $insurancePriceList[$i] = $insurancePrices[$i]->toArray();
+            }
+        } else {
+            $insurancePriceList = null;
+        }
 
         $form = $this->createForm(InsuranceType::class, $insurance)
          ->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Insurance $insurance */
             $insurance = $form->getData();
-            $insurance->recalculatePrice($insurancePrice);
+            $insurance->setPrice($insurancePriceFactory->calculatePriceByAge($insurance));
             $insurance->setPaymentPassword(base64_encode(date('d.m.Y h:i:s')));
+            $insurance->setPaidToInsuranceCompany(false);
+            $insurance->setSentToClient(false);
 
             $message = (new \Swift_Message('Новый заказ'))
                 ->setFrom('danilhariton@gmail.com')
@@ -117,7 +128,7 @@ class PageController extends AbstractController
         return $this->render('page/action/apply_insurance.html.twig', [
             'form' => $form->createView(),
             'name' => $name,
-            'insurancePrice' => $insurancePrice ? base64_encode(json_encode($insurancePrice->toArray())) : ''
+            'insurancePrice' => $insurancePriceList ? base64_encode(json_encode($insurancePriceList)) : ''
         ]);
     }
 

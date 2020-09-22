@@ -48,6 +48,39 @@ class InsurancePriceEditType extends AbstractType
             ->add('year', TextType::class, [
                 'label' => '12 měsíců'
             ])
+            ->add('thirteenMonth', TextType::class, [
+                'label' => '13 měsíců'
+            ])
+            ->add('fourteenMonth', TextType::class, [
+                'label' => '14 měsíců'
+            ])
+            ->add('fifteenMonth', TextType::class, [
+                'label' => '15 měsíců'
+            ])
+            ->add('sixteenMonth', TextType::class, [
+                'label' => '16 měsíců'
+            ])
+            ->add('seventeenMonth', TextType::class, [
+                'label' => '17 měsíců'
+            ])
+            ->add('eighteenMonth', TextType::class, [
+                'label' => '18 měsíců'
+            ])
+            ->add('nineteenMonth', TextType::class, [
+                'label' => '19 měsíců'
+            ])
+            ->add('twentyMonth', TextType::class, [
+                'label' => '20 měsíců'
+            ])
+            ->add('twentyOneMonth', TextType::class, [
+                'label' => '21 měsíc'
+            ])
+            ->add('twentyTwoMonth', TextType::class, [
+                'label' => '22 měsíců'
+            ])
+            ->add('twentyThreeMonth', TextType::class, [
+                'label' => '23 měsíců'
+            ])
             ->add('twoYears', TextType::class, [
                 'label' => '24 měsíců'
             ])
@@ -55,6 +88,5 @@ class InsurancePriceEditType extends AbstractType
                 'label' => 'Uložit'
             ])
         ;
-
     }
 }

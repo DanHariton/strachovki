@@ -34,6 +34,19 @@ class InsurancePriceRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * @param $name
+     * @return int|mixed|string
+     */
+    public function findByName($name)
+    {
+        return $this->createQueryBuilder('ip')
+            ->andWhere('ip.name LIKE :name')
+            ->setParameter('name', $name . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return InusrancePrice[] Returns an array of InusrancePrice objects
     //  */

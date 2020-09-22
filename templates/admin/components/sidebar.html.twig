@@ -8,15 +8,6 @@
         <div class="sidebar-brand-text mx-3">KOŤA s.r.o.</div>
     </a>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
-
-    <!-- Nav Item - Dashboard -->
-    <div class="nav-item {% if app.request.get('_route') == 'admin_index' %}active{% endif %}">
-        <a class="nav-link" href="{{ path('admin_index') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </div>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -24,18 +15,24 @@
     <!-- Heading -->
 
     <div class="sidebar-heading">
-        Insurances
+        Menu
     </div>
 
     <div class="nav-item {% if app.request.get('_route') starts with 'admin_insurance_' %}active{% endif %}">
         <a class="nav-link" href="{{ path('admin_insurance_list') }}">
-            <i class="far fa-file-alt"></i>
+            <i class="fas fa-medkit"></i>
             <span>Pojištění</span></a>
+    </div>
+
+    <div class="nav-item {% if app.request.get('_route') starts with 'admin_insured_' %}active{% endif %}">
+        <a class="nav-link" href="{{ path('admin_insured_number_list') }}">
+            <i class="fas fa-hands-helping"></i>
+            <span>Zaplacení do pojišťovny</span></a>
     </div>
 
     <div class="nav-item {% if app.request.get('_route') starts with 'admin_price_' %}active{% endif %}">
         <a class="nav-link" href="{{ path('admin_price_list') }}">
-            <i class="far fa-file-alt"></i>
+            <i class="fas fa-money-bill-alt"></i>
             <span>Cena</span></a>
     </div>
 

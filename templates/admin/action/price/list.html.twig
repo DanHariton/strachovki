@@ -3,7 +3,7 @@
 {% block title %}Insurance List{% endblock %}
 
 {% block content %}
-    <h1 class="h3 mb-2 text-gray-800">Insurances</h1>
+    <h1 class="h3 mb-2 text-gray-800">Ceník</h1>
 
     {% for label, messages in app.flashes %}
         {% for message in messages %}
@@ -13,9 +13,20 @@
         {% endfor %}
     {% endfor %}
 
+    <p class="mb-4">
+        pvzpChild - <strong>od 0 do 5  |</strong> maximaYoung - <strong>od 2 do 17  |</strong> ergoYoung <strong>od 0 do 14</strong> <br>
+        pvzpYoung - <strong>od 6 do 14  |</strong> maxima - <strong>od 18 do 30  |</strong> ergoYoung <strong>od 15 do 26</strong> <br>
+        pvzp - <strong>od 15 do 26  |</strong> maximaYoung - <strong>od 31 do 50  |</strong> ergoYoung <strong>od 27 do 65</strong> <br>
+        pvzpMid - <strong>od 27 do 44  |</strong> maximaYoung - <strong>od 51 do 60  |</strong> ergoYoung <strong>od 66</strong> <br>
+        pvzpMedium - <strong>od 45 do 59</strong> <br>
+        pvzpOld - <strong>od 60 do 69</strong> <br>
+        pvzpSenior - <strong>od 70</strong> <br>
+
+    </p>
+
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Sazebník</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -33,6 +44,17 @@
                         <th>10</th>
                         <th>11</th>
                         <th>12</th>
+                        <th>13</th>
+                        <th>14</th>
+                        <th>15</th>
+                        <th>16</th>
+                        <th>17</th>
+                        <th>18</th>
+                        <th>19</th>
+                        <th>20</th>
+                        <th>21</th>
+                        <th>22</th>
+                        <th>23</th>
                         <th>24</th>
                         <th>Akce</th>
                     </tr>
@@ -51,6 +73,17 @@
                             <td>{{ price.tenMonth }}</td>
                             <td>{{ price.elevenMonth }}</td>
                             <td>{{ price.year }}</td>
+                            <td>{{ price.thirteenMonth }}</td>
+                            <td>{{ price.fourteenMonth }}</td>
+                            <td>{{ price.fifteenMonth }}</td>
+                            <td>{{ price.sixteenMonth }}</td>
+                            <td>{{ price.seventeenMonth }}</td>
+                            <td>{{ price.eighteenMonth }}</td>
+                            <td>{{ price.nineMonth }}</td>
+                            <td>{{ price.twentyMonth }}</td>
+                            <td>{{ price.twentyOneMonth }}</td>
+                            <td>{{ price.twentyTwoMonth }}</td>
+                            <td>{{ price.twentyThreeMonth }}</td>
                             <td>{{ price.twoYears }}</td>
                             <td>
                                 <a href="{{ path('admin_price_edit', {'inusrancePrice': price.id}) }}" class="btn btn-sm btn-secondary">Změnit</a>

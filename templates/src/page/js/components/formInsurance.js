@@ -1,22 +1,58 @@
 let moment = require('moment');
 let insurantHimself = null;
 let confirmContract = null;
+const INSURANCE_MAXIMA = 'maxima';
+const PRICE_MAXIMA = 'maxima';
+const PRICE_MAXIMA_MEDIUM = 'maximaMedium';
+const PRICE_MAXIMA_YOUNG = 'maximaYoung';
+const PRICE_MAXIMA_OLD = 'maximaOld';
+const INSURANCE_UNIQA = 'uniqa';
+const PRICE_UNIQA = 'uniqa';
+const INSURANCE_PVZP = 'pvzp';
+const PRICE_PVZP = 'pvzp';
+const PRICE_PVZP_MEDIUM = 'pvzpMedium';
+const PRICE_PVZP_CHILD = 'pvzpChild';
+const PRICE_PVZP_YOUNG = 'pvzpYoung';
+const PRICE_PVZP_OLD = 'pvzpOld';
+const PRICE_PVZP_SENIOR = 'pvzpSenior';
+const PRICE_PVZP_MID = 'pvzpMid';
+const INSURANCE_ERGO = 'ergo';
+const PRICE_ERGO = 'ergo';
+const PRICE_ERGO_MEDIUM = 'ergoMedium';
+const PRICE_ERGO_YOUNG = 'ergoYoung';
+const PRICE_ERGO_OLD = 'ergoOld';
+
+let insuranceSelected = null;
+let insurancePriceListIndex = null;
+let insurancePriceListIndexDefault = null;
+let priceListAll = null;
 
 $(document).ready(function () {
-   $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
+    priceListAll = JSON.parse(atob($('#insurance-price').data('array')))
+    checkInsurance();
+    checkDefaultPriceIndex(priceListAll);
+    $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
     setDate();
-    setPrice();
+    setPrice(priceListAll[insurancePriceListIndexDefault]);
     setTotalAmount();
 });
 
 $('#insurance_insuranceDuration').change(function () {
     setDate();
-    setPrice();
+    if (insurancePriceListIndex !== null) {
+        setPrice(priceListAll[insurancePriceListIndex]);
+    } else {
+        setPrice(priceListAll[insurancePriceListIndexDefault]);
+    }
     setTotalAmount();
 });
 
 $('#insurance_startDate').change(function () {
     setDate();
+});
+
+$('#insurance_dateBirth_year').change(function() {
+   checkAge($('#insurance_dateBirth_year').val(), priceListAll);
 });
 
 function setTotalAmount() {
@@ -37,8 +73,174 @@ function setDate() {
     $('#insurance_endDate').val(endDate.subtract(1, 'days').format('YYYY-MM-DD'));
 }
 
-function setPrice() {
-    let price = JSON.parse(atob($('#insurance-price').data('array')));
+function checkAge(age, priceList) {
+    let diffAge = moment().diff(age, 'years', false);
+    console.log(diffAge);
+
+    //----------------------------------------------MAXIMA-----------------------------//
+    if (insuranceSelected === INSURANCE_MAXIMA) {
+        if (diffAge >= 2 && diffAge <= 17) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_MAXIMA_YOUNG) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 18 && diffAge <= 30) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_MAXIMA) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 31 && diffAge <= 50) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_MAXIMA_MEDIUM) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 51 && diffAge <= 60) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_MAXIMA_OLD) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+    }
+    //----------------------------------------------ERGO-----------------------------//
+    if (insuranceSelected === INSURANCE_ERGO) {
+        if (diffAge >= 0 && diffAge <= 14) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_ERGO_YOUNG) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 15 && diffAge <= 26) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_ERGO) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 27 && diffAge <= 65) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_ERGO_MEDIUM) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 66) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_ERGO_OLD) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+    }
+    //----------------------------------------------PVZP-----------------------------//
+    if (insuranceSelected === INSURANCE_PVZP) {
+        if (diffAge >= 0 && diffAge <= 5) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_PVZP_CHILD) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 6 && diffAge <= 14) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_PVZP_YOUNG) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 15 && diffAge <= 26) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_PVZP) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 27 && diffAge <= 44) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_PVZP_MID) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 45 && diffAge <= 59) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_PVZP_MEDIUM) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 60 && diffAge <= 69) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_PVZP_OLD) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 70) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_PVZP_SENIOR) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+function checkDefaultPriceIndex(priceList) {
+    for (let i = 0; i < priceList.length; i++) {
+        if (priceList[i].name === PRICE_MAXIMA || priceList[i].name === PRICE_UNIQA || priceList[i].name === PRICE_PVZP || priceList[i].name === PRICE_ERGO) {
+            insurancePriceListIndexDefault = i;
+            break;
+        }
+    }
+}
+
+function checkInsurance() {
+    insuranceSelected = $('#insurance-price').data('insurance');
+    console.log('-----------------------');
+    console.log(insuranceSelected);
+    console.log('-----------------------');
+
+}
+
+function setPrice(price) {
     switch ($('#insurance_insuranceDuration').val())
     {
         case "3":
@@ -70,6 +272,39 @@ function setPrice() {
             break;
         case "12":
             $('#insurance_price').val(price.year);
+            break;
+        case "13":
+            $('#insurance_price').val(price.thirteenMonth);
+            break;
+        case "14":
+            $('#insurance_price').val(price.fourteenMonth);
+            break;
+        case "15":
+            $('#insurance_price').val(price.fifteenMonth);
+            break;
+        case "16":
+            $('#insurance_price').val(price.sixteenMonth);
+            break;
+        case "17":
+            $('#insurance_price').val(price.seventeenMonth);
+            break;
+        case "18":
+            $('#insurance_price').val(price.eighteenMonth);
+            break;
+        case "19":
+            $('#insurance_price').val(price.nineteenMonth);
+            break;
+        case "20":
+            $('#insurance_price').val(price.twentyMonth);
+            break;
+        case "21":
+            $('#insurance_price').val(price.twentyOneMonth);
+            break;
+        case "22":
+            $('#insurance_price').val(price.twentyTwoMonth);
+            break;
+        case "23":
+            $('#insurance_price').val(price.twentyThreeMonth);
             break;
         default:
             $('#insurance_price').val(price.twoYears);

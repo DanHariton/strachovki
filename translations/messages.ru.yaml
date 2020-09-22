@@ -141,6 +141,8 @@ form:
       placeholder: 'Выберите страну'
     button:
       save: 'Перейти к оплате'
+      buttonAdmin:
+        label: 'Сохранить'
     gender:
       label: 'Пол'
       label2: 'Пол страхователя'
@@ -166,12 +168,25 @@ form:
         tenMonth: '10 месяцев'
         elevenMonth: '11 месяцев'
         year: '12 месяцев'
+        thirteenMonth: '13 месяцев'
+        fourteenMonth: '14 месяцев'
+        fifteenMonth: '15 месяцев'
+        sixteenMonth: '16 месяцев'
+        seventeenMonth: '17 месяцев'
+        eighteenMonth: '18 месяцев'
+        nineteenMonth: '19 месяцев'
+        twentyMonth: '20 месяцев'
+        twentyOneMonth: '21 месяц'
+        twentyTwoMonth: '22 месяца'
+        twentyThreeMonth: '23 месяца'
         twoYears: '24 месяца'
     paymentMethod:
       label: 'Выберите способ оплаты'
       choice:
         payOnline: 'Заплатить on-line'
         payCash: 'Оплатить наличными в нашем офисе'
+    insuredNumber:
+      label: 'Номер договора'
 
 admin:
   edit:

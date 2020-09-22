@@ -24,7 +24,7 @@
     <p class="mb-2">{{ 'email.detail.duration'|trans }} <strong>{{ insurance.insuranceDuration }}</strong> {{ 'email.detail.month'|trans }}</p>
     <p class="mb-2">
         {{ 'email.paymentInfo.paidOnlineText'|trans }}
-        <strong><a class="color-red" href="http://54.38.55.53/{{ path('page_pay_online') }}">{{ 'email.paymentInfo.linkText'|trans }}</a></strong>
+        <strong><a class="color-red" href="http://54.38.55.53{{ path('page_pay_online') }}">{{ 'email.paymentInfo.linkText'|trans }}</a></strong>
     </p>
     <p class="mb-2">{{ 'email.paymentInfo.instruktion'|trans }} <mark><strong style="color: #DA1931">{{ insurance.paymentPassword }}</strong></mark></p>
     <br><br>

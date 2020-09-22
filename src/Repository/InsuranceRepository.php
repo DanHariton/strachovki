@@ -48,6 +48,16 @@ class InsuranceRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function findByInsuredNumberField()
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.insuredNumber != :null')->setParameter('null', serialize(null))
+            ->andWhere('i.insuredNumber != :empty')->setParameter('empty', serialize([]))
+            ->andWhere('i.paidToInsuranceCompany = :status')->setParameter('status', true)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Insurance[] Returns an array of Insurance objects
     //  */

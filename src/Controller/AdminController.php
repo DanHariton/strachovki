@@ -75,8 +75,6 @@ class AdminController extends AbstractController
         $form = $this->createForm(InsuranceEditType::class, $insurance)
             ->handleRequest($request);
 
-        $insurancePrice = $em->getRepository(InsurancePrice::class)->findOneByName($insurance->getInsuranceName());
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $this->addFlash('success', (new FakeTranslator())->trans('admin.edit.flush.success'));
@@ -85,7 +83,6 @@ class AdminController extends AbstractController
 
         return $this->render('admin/action/insurance/edit.html.twig', [
             'form' => $form->createView(),
-            'insurancePrice' => $insurancePrice ? base64_encode(json_encode($insurancePrice->toArray())) : ''
         ]);
     }
 
@@ -98,5 +95,41 @@ class AdminController extends AbstractController
         $em->flush();
         $this->addFlash('success', (new FakeTranslator())->trans('admin.insurance.remove.flash.success'));
         return $this->redirectToRoute('admin_insurance_list');
+    }
+
+    /**
+     * @Route("/insurance/sent-to-client/toggle/{insurance}", name="admin_insurance_sent_to_client_toggle")
+     * @param Insurance $insurance
+     * @param EntityManagerInterface $em
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function insuranceSentToClientToggleAction(Insurance $insurance, EntityManagerInterface $em)
+    {
+        $insurance->setSentToClient(!$insurance->getSentToClient());
+        $em->flush();
+        return $this->redirectToRoute('admin_insurance_list');
+    }
+
+    /**
+     * @Route("/inusrance/paid-to-insurance/toggle/{insurance}", name="admin_insurance_paid_to_insurance_toggle")
+     * @param Insurance $insurance
+     * @param EntityManagerInterface $em
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function paidToInsuranceCompanyToggleAction(Insurance $insurance, EntityManagerInterface $em)
+    {
+        $insurance->setPaidToInsuranceCompany(!$insurance->getPaidToInsuranceCompany());
+        $em->flush();
+        return $this->redirectToRoute('admin_insurance_list');
+    }
+
+    /**
+     * @Route("/insured-number/list", name="admin_insured_number_list")
+     */
+    public function insuredNumberListAction(InsuranceRepository $insuranceRepository)
+    {
+        return $this->render('admin/action/insuredNumber/list.html.twig', [
+            'insurances' => $insuranceRepository->findByInsuredNumberField()
+        ]);
     }
 }

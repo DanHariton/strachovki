@@ -10,6 +10,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class InsurancePrice
 {
+    const PRICE_MAXIMA = 'maxima';
+    const PRICE_MAXIMA_MEDIUM = 'maximaMedium';
+    const PRICE_MAXIMA_YOUNG = 'maximaYoung';
+    const PRICE_MAXIMA_OLD = 'maximaOld';
+    const PRICE_UNIQA = 'uniqa';
+    const INSURANCE_PVZP = 'pvzp';
+    const PRICE_PVZP = 'pvzp';
+    const PRICE_PVZP_MEDIUM = 'pvzpMedium';
+    const PRICE_PVZP_CHILD = 'pvzpChild';
+    const PRICE_PVZP_YOUNG = 'pvzpYoung';
+    const PRICE_PVZP_OLD = 'pvzpOld';
+    const PRICE_PVZP_SENIOR = 'pvzpSenior';
+    const PRICE_PVZP_MID = 'pvzpMid';
+    const PRICE_ERGO = 'ergo';
+    const PRICE_ERGO_MEDIUM = 'ergoMedium';
+    const PRICE_ERGO_YOUNG = 'ergoYoung';
+    const PRICE_ERGO_OLD = 'ergoOld';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -91,6 +109,41 @@ class InsurancePrice
      * @ORM\Column(type="integer", nullable=true)
      */
     private $sixteenMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $seventeenMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $eighteenMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nineteenMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $twentyMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $twentyOneMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $twentyTwoMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $twentyThreeMonth;
 
     /**
      * @ORM\Column(type="integer")
@@ -288,6 +341,90 @@ class InsurancePrice
         return $this;
     }
 
+    public function getSeventeenMonth(): ?int
+    {
+        return $this->seventeenMonth;
+    }
+
+    public function setSeventeenMonth(?int $seventeenMonth): self
+    {
+        $this->seventeenMonth = $seventeenMonth;
+
+        return $this;
+    }
+
+    public function getEighteenMonth(): ?int
+    {
+        return $this->eighteenMonth;
+    }
+
+    public function setEighteenMonth(?int $eighteenMonth): self
+    {
+        $this->eighteenMonth = $eighteenMonth;
+
+        return $this;
+    }
+
+    public function getNineteenMonth(): ?int
+    {
+        return $this->nineteenMonth;
+    }
+
+    public function setNineteenMonth(?int $nineteenMonth): self
+    {
+        $this->nineteenMonth = $nineteenMonth;
+
+        return $this;
+    }
+
+    public function getTwentyMonth(): ?int
+    {
+        return $this->twentyMonth;
+    }
+
+    public function setTwentyMonth(?int $twentyMonth): self
+    {
+        $this->twentyMonth = $twentyMonth;
+
+        return $this;
+    }
+
+    public function getTwentyOneMonth(): ?int
+    {
+        return $this->twentyOneMonth;
+    }
+
+    public function setTwentyOneMonth(?int $twentyOneMonth): self
+    {
+        $this->twentyOneMonth = $twentyOneMonth;
+
+        return $this;
+    }
+
+    public function getTwentyTwoMonth(): ?int
+    {
+        return $this->twentyTwoMonth;
+    }
+
+    public function setTwentyTwoMonth(?int $twentyTwoMonth): self
+    {
+        $this->twentyTwoMonth = $twentyTwoMonth;
+
+        return $this;
+    }
+
+    public function getTwentyThreeMonth(): ?int
+    {
+        return $this->twentyThreeMonth;
+    }
+
+    public function setTwentyThreeMonth(?int $twentyThreeMonth): self
+    {
+        $this->twentyThreeMonth = $twentyThreeMonth;
+
+        return $this;
+    }
+
     public function setTwoYears(int $twoYears): self
     {
         $this->twoYears = $twoYears;
@@ -298,6 +435,7 @@ class InsurancePrice
     public function toArray()
     {
         return [
+            'name' => $this->name,
             'threeMonth' => $this->threeMonth,
             'fourMonth' => $this->fourMonth,
             'fiveMonth' => $this->fiveMonth,
@@ -312,6 +450,13 @@ class InsurancePrice
             'fourteenMonth' => $this->fourteenMonth,
             'fifteenMonth' => $this->fifteenMonth,
             'sixteenMonth' => $this->sixteenMonth,
+            'seventeenMonth' => $this->seventeenMonth,
+            'eighteenMonth' => $this->eighteenMonth,
+            'nineteenMonth' => $this->nineteenMonth,
+            'twentyMonth' => $this->twentyMonth,
+            'twentyOneMonth' => $this->twentyOneMonth,
+            'twentyTwoMonth' => $this->twentyTwoMonth,
+            'twentyThreeMonth' => $this->twentyThreeMonth,
             'twoYears' => $this->twoYears
         ];
     }

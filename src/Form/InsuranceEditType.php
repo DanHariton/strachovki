@@ -6,6 +6,7 @@ use App\Entity\Insurance;
 use App\Util\FakeTranslator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,6 +29,9 @@ class InsuranceEditType extends AbstractType
                     $trans->trans('form.insurance.insuranceName.choice.uniqa') => Insurance::INSURANCE_UNIQA,
                 ]
             ])
+            ->add('insuredNumber', TextType::class, [
+                'label' => $trans->trans('form.insurance.insuredNumber.label')
+            ])
             ->add('startDate', DateType::class, [
                 'label' => $trans->trans('form.insurance.startDate.label'),
                 'widget' => 'single_text'
@@ -45,6 +49,17 @@ class InsuranceEditType extends AbstractType
                     $trans->trans('form.insurance.duration.choice.tenMonth') => 10,
                     $trans->trans('form.insurance.duration.choice.elevenMonth') => 11,
                     $trans->trans('form.insurance.duration.choice.year') => 12,
+                    $trans->trans('form.insurance.duration.choice.nineteenMonth') => 13,
+                    $trans->trans('form.insurance.duration.choice.fourteenMonth') => 14,
+                    $trans->trans('form.insurance.duration.choice.fifteenMonth') => 15,
+                    $trans->trans('form.insurance.duration.choice.sixteenMonth') => 16,
+                    $trans->trans('form.insurance.duration.choice.seventeenMonth') => 17,
+                    $trans->trans('form.insurance.duration.choice.eighteenMonth') => 18,
+                    $trans->trans('form.insurance.duration.choice.nineteenMonth') => 19,
+                    $trans->trans('form.insurance.duration.choice.twentyMonth') => 20,
+                    $trans->trans('form.insurance.duration.choice.twentyOneMonth') => 21,
+                    $trans->trans('form.insurance.duration.choice.twentyTwoMonth') => 22,
+                    $trans->trans('form.insurance.duration.choice.twentyThreeMonth') => 23,
                     $trans->trans('form.insurance.duration.choice.twoYears') => 24
                 ],
             ])
@@ -56,10 +71,7 @@ class InsuranceEditType extends AbstractType
                 'widget' => 'single_text'
             ])
             ->add('price', TextType::class, [
-                'attr' => [
-                    'readonly' => true
-                ],
-                'label' => $trans->trans('form.insurance.price.label'),
+                'label' => $trans->trans('form.insurance.price.label')
             ])
             ->add('dateBirth', DateType::class, [
                 'label' => $trans->trans('form.insurance.birthDate.label'),
@@ -96,8 +108,11 @@ class InsuranceEditType extends AbstractType
             ->add('passportId', TextType::class, [
                 'label' => $trans->trans('form.insurance.passport.label')
             ])
-            ->add('citizenship', TextType::class, [
-                'label' => $trans->trans('form.insurance.citizenShip.label')
+            ->add('citizenship', CountryType::class, [
+                'label' => $trans->trans('form.insurance.citizenShip.label'),
+                'preferred_choices' => [
+                    'CZ', 'UA', 'RU', 'KZ', 'BY'
+                ],
             ])
             ->add('nameInsurant', TextType::class, [
                 'attr' => [
@@ -152,12 +167,10 @@ class InsuranceEditType extends AbstractType
             ])
             ->add('dateBirthInsurant', DateType::class, [
                 'label' => $trans->trans('form.insurance.dateBirthInsurant.label'),
-                'format' => 'dd MM yyyy',
-                'widget' => 'single_text',
-                'years' => range(2020, 1960),
+                'widget' => 'single_text'
             ])
             ->add('save', SubmitType::class, [
-                'label' => $trans->trans('form.insurance.button.save')
+                'label' => $trans->trans('form.insurance.button.buttonAdmin.label')
             ])
         ;
     }

@@ -1,0 +1,41 @@
+{% extends 'admin/layout.nav.html.twig' %}
+
+{% block title %}Insurance List{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-2 text-gray-800">Zaplacení do pojišťovny</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Pojištění</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered data-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Pojištění</th>
+                        <th>Číslo pojištění</th>
+                        <th>Příjmení</th>
+                        <th>Jméno</th>
+                        <th>Cena</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for insurance in insurances %}
+                        <tr>
+                            <td>{{ insurance.id }}</td>
+                            <td>{{ insurance.insuranceName }}</td>
+                            <td>{{ insurance.insuredNumber }}</td>
+                            <td>{{ insurance.clientSName }}</td>
+                            <td>{{ insurance.clientName }}</td>
+                            <td>{{ insurance.price }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

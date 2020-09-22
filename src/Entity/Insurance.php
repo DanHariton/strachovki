@@ -177,6 +177,21 @@ class Insurance
      */
     private $paymentMethod;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $insuredNumber;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $paidToInsuranceCompany;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sentToClient;
+
     public function __construct()
     {
         $this->status = self::STATUS_NEW;
@@ -391,44 +406,6 @@ class Insurance
         return $this;
     }
 
-    public function recalculatePrice(InsurancePrice $insurancePrice) {
-        switch ($this->getInsuranceDuration()) {
-            case 3:
-                $this->setPrice($insurancePrice->getThreeMonth());
-                break;
-            case 4:
-                $this->setPrice($insurancePrice->getFourMonth());
-                break;
-            case 5:
-                $this->setPrice($insurancePrice->getFiveMonth());
-                break;
-            case 6:
-                $this->setPrice($insurancePrice->getSixMonth());
-                break;
-            case 7:
-                $this->setPrice($insurancePrice->getSevenMonth());
-                break;
-            case 8:
-                $this->setPrice($insurancePrice->getEightMonth());
-                break;
-            case 9:
-                $this->setPrice($insurancePrice->getNineMonth());
-                break;
-            case 10:
-                $this->setPrice($insurancePrice->getTenMonth());
-                break;
-            case 11:
-                $this->setPrice($insurancePrice->getElevenMonth());
-                break;
-            case 12:
-                $this->setPrice($insurancePrice->getYear());
-                break;
-            default:
-                $this->setPrice($insurancePrice->getTwoYears());
-                break;
-        }
-    }
-
     public function getPaymentId(): ?string
     {
         return $this->paymentId;
@@ -581,6 +558,42 @@ class Insurance
     public function setPaymentMethod(int $paymentMethod): self
     {
         $this->paymentMethod = $paymentMethod;
+
+        return $this;
+    }
+
+    public function getInsuredNumber(): ?string
+    {
+        return $this->insuredNumber;
+    }
+
+    public function setInsuredNumber(?string $insuredNumber): self
+    {
+        $this->insuredNumber = $insuredNumber;
+
+        return $this;
+    }
+
+    public function getPaidToInsuranceCompany(): ?bool
+    {
+        return $this->paidToInsuranceCompany;
+    }
+
+    public function setPaidToInsuranceCompany(?bool $paidToInsuranceCompany): self
+    {
+        $this->paidToInsuranceCompany = $paidToInsuranceCompany;
+
+        return $this;
+    }
+
+    public function getSentToClient(): ?bool
+    {
+        return $this->sentToClient;
+    }
+
+    public function setSentToClient(?bool $sentToClient): self
+    {
+        $this->sentToClient = $sentToClient;
 
         return $this;
     }

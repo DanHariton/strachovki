@@ -6,7 +6,7 @@
 
 {% block body %}
     {% include 'page/components/header.html.twig' %}
-    <div id="insurance-price" data-array="{{ insurancePrice }}"></div>
+    <div id="insurance-price" data-array="{{ insurancePrice }}" data-insurance="{{ name }}"></div>
     <section class="container">
         <h1 class="text-center margin-bottom-50 margin-top-70">
             {{ 'page.headlines.insuranceBuy'|trans }}
