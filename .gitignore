@@ -20,4 +20,3 @@ node_modules
 .idea
 package-lock.json
 composer.phar
-config/packages/swiftmailer.yaml
