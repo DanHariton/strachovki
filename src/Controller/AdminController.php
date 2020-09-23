@@ -125,11 +125,25 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/insured-number/list", name="admin_insured_number_list")
+     * @param InsuranceRepository $insuranceRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function insuredNumberListAction(InsuranceRepository $insuranceRepository)
     {
         return $this->render('admin/action/insuredNumber/list.html.twig', [
             'insurances' => $insuranceRepository->findByInsuredNumberField()
         ]);
+    }
+
+    /**
+     * @Route("/insurance/set-paid-status/success/toggle/{insurance}", name="admin_insurance_set_paid_status_success_toggle")
+     * @param Insurance $insurance
+     * @param EntityManagerInterface $em
+     */
+    public function setPaidStatusSuccessAction(Insurance $insurance, EntityManagerInterface $em)
+    {
+        $insurance->setStatus(Insurance::STATUS_PAYED_SUCCESS);
+        $em->flush();
+        return $this->redirectToRoute('admin_insurance_list');
     }
 }

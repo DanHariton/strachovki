@@ -30,6 +30,7 @@ class InsuranceEditType extends AbstractType
                 ]
             ])
             ->add('insuredNumber', TextType::class, [
+                'required' => false,
                 'label' => $trans->trans('form.insurance.insuredNumber.label')
             ])
             ->add('startDate', DateType::class, [
@@ -72,6 +73,15 @@ class InsuranceEditType extends AbstractType
             ])
             ->add('price', TextType::class, [
                 'label' => $trans->trans('form.insurance.price.label')
+            ])
+            ->add('status', ChoiceType::class, [
+                'label' => $trans->trans('form.insurance.status.label'),
+                'choices' => [
+                    $trans->trans('form.insurance.status.choice.new') => Insurance::STATUS_NEW,
+                    $trans->trans('form.insurance.status.choice.success') => Insurance::STATUS_PAYED_SUCCESS,
+                    $trans->trans('form.insurance.status.choice.error') => Insurance::STATUS_PAYED_ERROR,
+                ]
+
             ])
             ->add('dateBirth', DateType::class, [
                 'label' => $trans->trans('form.insurance.birthDate.label'),

@@ -19,7 +19,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered data-table">
+                <table class="table table-bordered border border-dark text-dark data-table">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -38,9 +38,12 @@
                     <tbody>
                     {% for insurance in insurances %}
                         <tr>
-                            <td {% if insurance.status == 1 %}
+                            <td {% if insurance.status == constant("App\\Entity\\Insurance::STATUS_PAYED_SUCCESS") %}
                                     style="background-color: #1e7e34"
-                                {% endif%}>
+                                {% endif%}
+                                {% if insurance.status == constant("App\\Entity\\Insurance::STATUS_PAYED_ERROR") %}
+                                    style="background-color: #78261f"
+                                {% endif %}>
                                 {{ insurance.id }}
                             </td>
                             <td>{{ insurance.insuranceName }}</td>
@@ -54,15 +57,19 @@
                             <td>{{ insurance.price }}</td>
                             <td>
                                 <a href="{{ path('admin_insurance_edit', {'insurance': insurance.id}) }}" class="btn btn-sm btn-secondary mb-2">Detail</a>
-                                {% if insurance.sentToClient %}
-                                    <a class="btn btn-sm btn-light mb-2" href="{{ path('admin_insurance_sent_to_client_toggle', {'insurance': insurance.id}) }}">Odesláno klientů</a>
+                                {% if insurance.status == constant("App\\Entity\\Insurance::STATUS_PAYED_SUCCESS") %}
+                                    {% if insurance.sentToClient %}
+                                        <a class="btn btn-sm btn-light mb-2" href="{{ path('admin_insurance_sent_to_client_toggle', {'insurance': insurance.id}) }}">Odesláno klientů</a>
+                                    {% else %}
+                                        <a class="btn btn-sm btn-primary mb-2" href="{{ path('admin_insurance_sent_to_client_toggle', {'insurance': insurance.id}) }}">V kanceláři</a>
+                                    {% endif %}
+                                    {% if insurance.paidToInsuranceCompany %}
+                                        <a class="btn btn-sm btn-success mb-2" href="{{ path('admin_insurance_paid_to_insurance_toggle', {'insurance': insurance.id}) }}">Zaplaceno do pojišťovny</a>
+                                    {% else %}
+                                        <a class="btn btn-sm btn-warning mb-2" href="{{ path('admin_insurance_paid_to_insurance_toggle', {'insurance': insurance.id}) }}">Neuhrazeno do pojišťovny</a>
+                                    {% endif %}
                                 {% else %}
-                                    <a class="btn btn-sm btn-primary mb-2" href="{{ path('admin_insurance_sent_to_client_toggle', {'insurance': insurance.id}) }}">V kanceláři</a>
-                                {% endif %}
-                                {% if insurance.paidToInsuranceCompany %}
-                                    <a class="btn btn-sm btn-success mb-2" href="{{ path('admin_insurance_paid_to_insurance_toggle', {'insurance': insurance.id}) }}">Zaplaceno</a>
-                                {% else %}
-                                    <a class="btn btn-sm btn-warning mb-2" href="{{ path('admin_insurance_paid_to_insurance_toggle', {'insurance': insurance.id}) }}">Neuhrazeno</a>
+                                    <a class="btn btn-sm btn-warning mb-2" href="{{ path('admin_insurance_set_paid_status_success_toggle', {'insurance': insurance.id}) }}">Nezaplaceno klientem</a>
                                 {% endif %}
                                 <a
                                         onclick="return confirm('Jste jisti ze chcete vymazat tuto položku?')"
