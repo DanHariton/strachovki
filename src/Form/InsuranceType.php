@@ -38,7 +38,7 @@ class InsuranceType extends AbstractType
                     $trans->trans('form.insurance.duration.choice.tenMonth') => 10,
                     $trans->trans('form.insurance.duration.choice.elevenMonth') => 11,
                     $trans->trans('form.insurance.duration.choice.year') => 12,
-                    $trans->trans('form.insurance.duration.choice.nineteenMonth') => 13,
+                    $trans->trans('form.insurance.duration.choice.thirteenMonth') => 13,
                     $trans->trans('form.insurance.duration.choice.fourteenMonth') => 14,
                     $trans->trans('form.insurance.duration.choice.fifteenMonth') => 15,
                     $trans->trans('form.insurance.duration.choice.sixteenMonth') => 16,

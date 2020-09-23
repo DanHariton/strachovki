@@ -38,7 +38,11 @@
                     <tbody>
                     {% for insurance in insurances %}
                         <tr>
-                            <td>{{ insurance.id }}</td>
+                            <td {% if insurance.status == 1 %}
+                                    style="background-color: #1e7e34"
+                                {% endif%}>
+                                {{ insurance.id }}
+                            </td>
                             <td>{{ insurance.insuranceName }}</td>
                             <td>{{ insurance.insuredNumber }}</td>
                             <td>{{ insurance.clientSName }}</td>
