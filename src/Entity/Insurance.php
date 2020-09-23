@@ -73,11 +73,6 @@ class Insurance
     private $gender;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $country;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $town;
@@ -168,7 +163,7 @@ class Insurance
     private $dateBirthInsurant;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $paymentPassword;
 
@@ -183,12 +178,12 @@ class Insurance
     private $insuredNumber;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $paidToInsuranceCompany;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $sentToClient;
 
@@ -306,18 +301,6 @@ class Insurance
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
-
-        return $this;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?string $country): self
-    {
-        $this->country = $country;
 
         return $this;
     }
