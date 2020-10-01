@@ -2,12 +2,21 @@ let moment = require('moment');
 let insurantHimself = null;
 let confirmContract = null;
 const INSURANCE_MAXIMA = 'maxima';
+const PRICE_URGENT_MAXIMA = 'maximaUrgent';
+const PRICE_URGENT_MAXIMA_MID = 'maximaUrgentMid';
+const PRICE_URGENT_MAXIMA_OLD = 'maximaUrgentOld';
 const PRICE_MAXIMA = 'maxima';
 const PRICE_MAXIMA_MEDIUM = 'maximaMedium';
 const PRICE_MAXIMA_YOUNG = 'maximaYoung';
 const PRICE_MAXIMA_OLD = 'maximaOld';
 const INSURANCE_UNIQA = 'uniqa';
 const PRICE_UNIQA = 'uniqa';
+const PRICE_UNIQA_MEDIUM = 'uniqaMedium';
+const PRICE_UNIQA_CHILD = 'uniqaChild';
+const PRICE_UNIQA_YOUNG = 'uniqaYoung';
+const PRICE_UNIQA_OLD = 'uniqaOld';
+const PRICE_UNIQA_SENIOR = 'uniqaSenior';
+const PRICE_UNIQA_MID = 'uniqaMid';
 const INSURANCE_PVZP = 'pvzp';
 const PRICE_PVZP = 'pvzp';
 const PRICE_PVZP_MEDIUM = 'pvzpMedium';
@@ -21,15 +30,19 @@ const PRICE_ERGO = 'ergo';
 const PRICE_ERGO_MEDIUM = 'ergoMedium';
 const PRICE_ERGO_YOUNG = 'ergoYoung';
 const PRICE_ERGO_OLD = 'ergoOld';
+const COMPLEX_INSURANCE = 'complex';
+const URGENT_INSURANCE = 'urgent';
 
 let insuranceSelected = null;
+let insuranceType = null;
 let insurancePriceListIndex = null;
 let insurancePriceListIndexDefault = null;
 let priceListAll = null;
 
 $(document).ready(function () {
-    priceListAll = JSON.parse(atob($('#insurance-price').data('array')))
-    checkInsurance();
+    priceListAll = JSON.parse(atob($('#insurance-price').data('array')));
+    $('#insurance_dateBirth_year').val(null);
+    checkInsuranceAndType();
     checkDefaultPriceIndex(priceListAll);
     $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
     setDate();
@@ -75,43 +88,73 @@ function setDate() {
 
 function checkAge(age, priceList) {
     let diffAge = moment().diff(age, 'years', false);
-    console.log(diffAge);
 
     //----------------------------------------------MAXIMA-----------------------------//
     if (insuranceSelected === INSURANCE_MAXIMA) {
-        if (diffAge >= 2 && diffAge <= 17) {
-            for (let i = 0; i < priceList.length; i++) {
-                if (priceList[i].name === PRICE_MAXIMA_YOUNG) {
-                    insurancePriceListIndex = i;
-                    setPrice(priceList[insurancePriceListIndex]);
-                    break;
+        if (insuranceType === COMPLEX_INSURANCE) {
+            if (diffAge >= 2 && diffAge <= 17) {
+                for (let i = 0; i < priceList.length; i++) {
+                    if (priceList[i].name === PRICE_MAXIMA_YOUNG) {
+                        insurancePriceListIndex = i;
+                        setPrice(priceList[insurancePriceListIndex]);
+                        break;
+                    }
+                }
+            }
+            if (diffAge >= 18 && diffAge <= 30) {
+                for (let i = 0; i < priceList.length; i++) {
+                    if (priceList[i].name === PRICE_MAXIMA) {
+                        insurancePriceListIndex = i;
+                        setPrice(priceList[insurancePriceListIndex]);
+                        break;
+                    }
+                }
+            }
+            if (diffAge >= 31 && diffAge <= 50) {
+                for (let i = 0; i < priceList.length; i++) {
+                    if (priceList[i].name === PRICE_MAXIMA_MEDIUM) {
+                        insurancePriceListIndex = i;
+                        setPrice(priceList[insurancePriceListIndex]);
+                        break;
+                    }
+                }
+            }
+            if (diffAge >= 51 && diffAge <= 60) {
+                for (let i = 0; i < priceList.length; i++) {
+                    if (priceList[i].name === PRICE_MAXIMA_OLD) {
+                        insurancePriceListIndex = i;
+                        setPrice(priceList[insurancePriceListIndex]);
+                        break;
+                    }
                 }
             }
         }
-        if (diffAge >= 18 && diffAge <= 30) {
-            for (let i = 0; i < priceList.length; i++) {
-                if (priceList[i].name === PRICE_MAXIMA) {
-                    insurancePriceListIndex = i;
-                    setPrice(priceList[insurancePriceListIndex]);
-                    break;
+        if (insuranceType === URGENT_INSURANCE) {
+            if (diffAge >= 1 && diffAge <= 30) {
+                for (let i = 0; i < priceList.length; i++) {
+                    if (priceList[i].name === PRICE_URGENT_MAXIMA) {
+                        insurancePriceListIndex = i;
+                        setPrice(priceList[insurancePriceListIndex]);
+                        break;
+                    }
                 }
             }
-        }
-        if (diffAge >= 31 && diffAge <= 50) {
-            for (let i = 0; i < priceList.length; i++) {
-                if (priceList[i].name === PRICE_MAXIMA_MEDIUM) {
-                    insurancePriceListIndex = i;
-                    setPrice(priceList[insurancePriceListIndex]);
-                    break;
+            if (diffAge >= 31 && diffAge <= 65) {
+                for (let i = 0; i < priceList.length; i++) {
+                    if (priceList[i].name === PRICE_URGENT_MAXIMA_MID) {
+                        insurancePriceListIndex = i;
+                        setPrice(priceList[insurancePriceListIndex]);
+                        break;
+                    }
                 }
             }
-        }
-        if (diffAge >= 51 && diffAge <= 60) {
-            for (let i = 0; i < priceList.length; i++) {
-                if (priceList[i].name === PRICE_MAXIMA_OLD) {
-                    insurancePriceListIndex = i;
-                    setPrice(priceList[insurancePriceListIndex]);
-                    break;
+            if (diffAge >= 66 && diffAge <= 80) {
+                for (let i = 0; i < priceList.length; i++) {
+                    if (priceList[i].name === PRICE_URGENT_MAXIMA_OLD) {
+                        insurancePriceListIndex = i;
+                        setPrice(priceList[insurancePriceListIndex]);
+                        break;
+                    }
                 }
             }
         }
@@ -221,28 +264,106 @@ function checkAge(age, priceList) {
             }
         }
     }
+    //---------------------------------------UNIQA-----------------------------------//
+    if (insuranceSelected === INSURANCE_UNIQA) {
+        if (diffAge >= 0 && diffAge <= 4) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_UNIQA_CHILD) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 5 && diffAge <= 14) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_UNIQA_YOUNG) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 15 && diffAge <= 39) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_UNIQA) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 40 && diffAge <= 54) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_UNIQA_MID) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 55 && diffAge <= 59) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_UNIQA_MEDIUM) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 60 && diffAge <= 64) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_UNIQA_OLD) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+        if (diffAge >= 65 && diffAge <= 69) {
+            for (let i = 0; i < priceList.length; i++) {
+                if (priceList[i].name === PRICE_UNIQA_SENIOR) {
+                    insurancePriceListIndex = i;
+                    setPrice(priceList[insurancePriceListIndex]);
+                    break;
+                }
+            }
+        }
+    }
+
 }
 
 function checkDefaultPriceIndex(priceList) {
     for (let i = 0; i < priceList.length; i++) {
-        if (priceList[i].name === PRICE_MAXIMA || priceList[i].name === PRICE_UNIQA || priceList[i].name === PRICE_PVZP || priceList[i].name === PRICE_ERGO) {
-            insurancePriceListIndexDefault = i;
-            break;
+        if (insuranceType === COMPLEX_INSURANCE) {
+            if (priceList[i].name === PRICE_MAXIMA || priceList[i].name === PRICE_UNIQA ||
+                priceList[i].name === PRICE_PVZP || priceList[i].name === PRICE_ERGO) {
+                insurancePriceListIndexDefault = i;
+                break;
+            }
+        } else {
+            if (priceList[i].name === PRICE_URGENT_MAXIMA) {
+                insurancePriceListIndexDefault = i;
+                break;
+            }
         }
     }
 }
 
-function checkInsurance() {
+function checkInsuranceAndType() {
     insuranceSelected = $('#insurance-price').data('insurance');
-    console.log('-----------------------');
-    console.log(insuranceSelected);
-    console.log('-----------------------');
-
+    insuranceType = $('#insurance-price').data('type');
 }
 
 function setPrice(price) {
     switch ($('#insurance_insuranceDuration').val())
     {
+        case "1":
+            $('#insurance_price').val(price.oneMonth);
+            break;
+        case "2":
+            $('#insurance_price').val(price.twoMonth);
+            break;
         case "3":
             $('#insurance_price').val(price.threeMonth);
             break;
@@ -326,8 +447,8 @@ $('#info-confirmation-check-box').click(function () {
 
 $('#insurance_startDate').change(function () {
     if (moment($('#insurance_startDate').val()).month() < moment().month()) {
-        alert('Веберите актуальную дату');
         $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
+        alert('Веберите актуальную дату');
     }
 });
 
@@ -370,7 +491,6 @@ $('#insurantChoseRight').click(function () {
 });
 
 function checkStatusOrder() {
-    console.log(confirmContract);
     if (insurantHimself !== null && confirmContract) {
         $('#insurance_save').removeClass('hide');
     } else {

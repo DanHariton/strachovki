@@ -13,9 +13,12 @@ use App\Service\OrderFactory;
 use App\Util\FakeTranslator;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenPayU_Order;
+use Swift_Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -48,8 +51,31 @@ class PageController extends AbstractController
      */
     public function insuranceMaximaOptions()
     {
-
         return $this->render('page/action/insurance_maxima_options.html.twig');
+    }
+
+    /**
+     * @Route ("/insuarence-uniqa-options", name="page_insurance_uniqa_options")
+     */
+    public function insuranceUniqaOptions()
+    {
+        return $this->render('page/action/insurance_uniqa_options.html.twig');
+    }
+
+    /**
+     * @Route ("/insuarence-ergo-options", name="page_insurance_ergo_options")
+     */
+    public function insuranceErgoOptions()
+    {
+        return $this->render('page/action/insurance_ergo_options.html.twig');
+    }
+
+    /**
+     * @Route ("/insuarence-pvzp-options", name="page_insurance_pvzp_options")
+     */
+    public function insurancePVZPOptions()
+    {
+        return $this->render('page/action/insurance_pvzp_options.html.twig');
     }
 
     /**
@@ -62,16 +88,25 @@ class PageController extends AbstractController
 
 
     /**
-     * @Route("/apply/{name}", name="page_apply_insurance", requirements={"name"="ergo|uniqa|pvzp|maxima"})
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @Route("/apply/{name}/{type}", name="page_apply_insurance", requirements={"name"="ergo|uniqa|pvzp|maxima", "type"="complex|urgent"})
+     * @param $name
+     * @param $type
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param OrderFactory $orderFactory
+     * @param Swift_Mailer $mailer
+     * @param InsurancePriceFactory $insurancePriceFactory
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @throws \OpenPayU_Exception
      */
-    public function applyInsuranceAction($name, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory,
-                                         \Swift_Mailer $mailer, InsurancePriceFactory $insurancePriceFactory)
+    public function applyInsuranceAction($name, $type, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory,
+                                         Swift_Mailer $mailer, InsurancePriceFactory $insurancePriceFactory)
     {
         $insurance = new Insurance();
         $insurance->setInsuranceName($name);
+        $insurance->setInsuranceType($type);
         $insurancePrices = $em->getRepository(InsurancePrice::class)->findByName($name);
+
         if (!empty($insurancePrices)) {
             $insurancePriceList = [];
             for ($i = 0; $i < count($insurancePrices); $i++) {
@@ -81,8 +116,8 @@ class PageController extends AbstractController
             $insurancePriceList = null;
         }
 
-        $form = $this->createForm(InsuranceType::class, $insurance)
-         ->handleRequest($request);
+        $form = $this->createForm(InsuranceType::class, $insurance, array('insuranceType' => $type))
+            ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Insurance $insurance */
@@ -128,6 +163,7 @@ class PageController extends AbstractController
         return $this->render('page/action/apply_insurance.html.twig', [
             'form' => $form->createView(),
             'name' => $name,
+            'type' => $type,
             'insurancePrice' => $insurancePriceList ? base64_encode(json_encode($insurancePriceList)) : ''
         ]);
     }
@@ -154,11 +190,11 @@ class PageController extends AbstractController
      * @Route("/payu/paymnet-callback", name="page_payment_callback")
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param \Swift_Mailer $mailer
+     * @param Swift_Mailer $mailer
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, \Swift_Mailer $mailer)
+    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, Swift_Mailer $mailer)
     {
         $responseData = json_decode($request->getContent());
         $insurance = $em
@@ -248,5 +284,41 @@ class PageController extends AbstractController
     public function orderNotFoundAction()
     {
         return $this->render('page/action/order_not_found.html.twig');
+    }
+
+    /**
+     * @Route("/contact", name="page_contact")
+     */
+    public function contactAction()
+    {
+        return $this->render('page/action/contact.html.twig');
+    }
+
+    /**
+     * @Route("/our-license", name="page_our_license")
+     */
+    public function ourLicenseAction()
+    {
+        return $this->render('page/action/our_license.html.twig');
+    }
+
+    /**
+     * @Route("/our-license/certifacate", name="page_license_certificate")
+     */
+    public function certificateAction()
+    {
+        $file = new File(__DIR__ . '/../../templates/src/page/pdf/certifikat.pdf');
+
+        return $this->file($file, 'certifikat.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
+     * @Route("/our-license/osvedceni", name="page_license_osvedceni")
+     */
+    public function osvedceniAction()
+    {
+        $file = new File(__DIR__ . '/../../templates/src/page/pdf/osvedceni.pdf');
+
+        return $this->file($file, 'osvedceni.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
     }
 }

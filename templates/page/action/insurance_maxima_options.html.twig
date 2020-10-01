@@ -6,38 +6,49 @@
     {% include 'page/components/header.html.twig' %}
 
     <section class="container">
-        <h1 class="margin-bottom-50 margin-top-70 text-center">Комплексное медицинское страхование <strong class="color-red">Maxima</strong></h1>
+        <h1 class="margin-bottom-50 margin-top-50 font-semi-bold text-center">
+            {{ 'page.insurances.text'|trans }} <strong class="color-red">Maxima</strong>
+        </h1>
 
         <div class="row d-flex justify-content-around margin-bottom-70">
-            <div class="flip-card flip-card-options col-sm-5">
+            <div class="flip-card flip-card-options-insurance col-sm-5">
                 <div class="flip-card-inner custom-border-red pt-5 pb-5">
                     <div class="flip-card-front">
-                        <a class="service-link text-decoration-none" href="{{ path('page_apply_insurance', {'name': 'maxima'}) }}">
-                            <img src="{{ asset('assets/page/img/logo-zastrachuj.png') }}" alt="order bank" class="img-fluid pt-5">
-                            <p class="mt-4 mb-0 color-red">Купить через Застрахуй.cz</p>
+                        <a class="service-link text-decoration-none" href="{{ path('page_apply_insurance', {'name': 'maxima', 'type': 'complex'}) }}">
+                            <img src="{{ asset('assets/page/img/maxima-logo.png') }}" alt="order bank" class="img-fluid pt-5">
+                            <p class="mt-4 mb-0 font-semi-bold color-red">{{ 'page.insurances.komplexInsurance'|trans }}</p>
                         </a>
                     </div>
                     <div class="flip-card-back">
-                        <a class="service-link text-decoration-none d-flex align-items-center" href="{{ path('page_apply_insurance', {'name': 'maxima'}) }}">
-                            <p class="mb-0 pl-4 pr-4 text-white">Покупка на Застрахуй.cz по специальной цене</p>
+                        <a class="service-link text-decoration-none d-flex align-items-center flex-column" href="{{ path('page_apply_insurance', {'name': 'maxima', 'type': 'complex'}) }}">
+                            <p class="mt-2 mb-0 p-2 h5 font-semi-bold color-white">
+                                {{ 'page.insurances.komplexInsurance'|trans }}
+                            </p>
+                            <p class="mb-2 color-white font-semi-bold">{{ 'page.insurances.longTerm'|trans }}</p>
+                            <p class="mb-0 color-white"><i class="color-green fas fa-check"></i> {{ 'page.insurances.shengenLegacy'|trans }}</p>
+                            <p class="mb-0 color-white"><i class="color-green fas fa-check"></i> {{ 'page.insurances.maxPrice1'|trans }}</p>
+                            <p class="mb-0 color-white"><i class="color-green fas fa-check"></i> {{ 'page.insurances.legacy'|trans }}</p>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="flip-card flip-card-options col-sm-5">
+            <div class="flip-card flip-card-options-insurance col-sm-5">
                 <div class="flip-card-inner custom-border-red pt-5 pb-5">
                     <div class="flip-card-front">
-                        <a class="service-link text-decoration-none" href="{{ path('page_index') }}">
+                        <a class="service-link text-decoration-none" href="{{ path('page_apply_insurance', {'name': 'maxima', 'type': 'urgent'}) }}">
                             <img src="{{ asset('assets/page/img/maxima-logo.png') }}" alt="order bank" class="img-fluid pt-5">
-                            <p class="mt-4 mb-0 color-red">Прямая покупка на сайте Maxima</p>
+                            <p class="mt-4 mb-0 font-semi-bold color-red">{{ 'page.insurances.necessaryInsurance'|trans }}</p>
                         </a>
                     </div>
                     <div class="flip-card-back">
-                        <a class="service-link text-decoration-none d-flex align-items-center" href="{{ path('page_index') }}">
-                            <p class="mb-0 pr-4 pl-4 text-white">
-                                Прямая покупка на сайте <strong>Maxima</strong>
-                                используя код партнера для получения <strong>CASH BACK</strong>
+                        <a class="service-link text-decoration-none d-flex align-items-center flex-column" href="{{ path('page_apply_insurance', {'name': 'maxima', 'type': 'urgent'}) }}">
+                            <p class="mt-2 mb-0 p-2 h5 font-semi-bold color-white">
+                                {{ 'page.insurances.necessaryInsurance'|trans }}
                             </p>
+                            <p class="mb-2 color-white font-semi-bold">{{ 'page.insurances.longTerm'|trans }}</p>
+                            <p class="mb-0 color-white"><i class="color-green fas fa-check"></i> {{ 'page.insurances.immidiatlyInsurance'|trans }}</p>
+                            <p class="mb-0 color-white"><i class="color-green fas fa-check"></i> {{ 'page.insurances.maxPrice2'|trans }}</p>
+                            <p class="mb-0 color-white"><i class="color-green fas fa-check"></i> {{ 'page.insurances.legacy'|trans }}</p>
                         </a>
                     </div>
                 </div>
@@ -63,74 +74,90 @@
         </div>
     </section>
     <section class="container">
-        <h2 class="font-weight-bold text-center mt-5 mb-4">{{ 'page.insurances.whatCanInsurance'|trans }}</h2>
+        <h2 class="font-semi-bold text-center mt-5 mb-4">{{ 'page.insurances.whatCanInsurance'|trans }}</h2>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col" class="align-middle border-table-red">{{ 'page.insurances.maxima.table.scope'|trans }}</th>
-                    <th scope="col" class="w-25 text-center border-table-red">{{ 'page.insurances.maxima.table.insuranceStandart'|trans }}</th>
+                    <th scope="col" class="w-25 text-center font-semi-bold border-table-red">{{ 'page.insurances.maxima.table.insuranceStandart'|trans }}</th>
+                    <th scope="col" class="w-25 text-center font-semi-bold border-table-red">{{ 'page.insurances.maxima.table.necessaryInsurance'|trans }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row1'|trans }}</th>
                     <td class="align-middle text-center color-green table-check"><i class="fas fa-check"></i></td>
+                    <td class="align-middle text-center color-red table-check"><i class="fas fa-times"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row2'|trans }}</th>
+                    <td class="align-middle text-center color-green table-check"><i class="fas fa-check"></i></td>
                     <td class="align-middle text-center color-green table-check"><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row3'|trans }}</th>
                     <td class="align-middle text-center">80 000 €</td>
+                    <td class="align-middle text-center">60 000 €</td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row4'|trans }}</th>
                     <td class="text-center align-middle">60 000 €</td>
+                    <td class="align-middle text-center">60 000 €</td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row5'|trans }}</th>
                     <td class="text-center align-middle">16 000 €</td>
+                    <td class="align-middle text-center">300 000 Kč</td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row6'|trans }}</th>
                     <td class="text-center align-middle">30 000 €</td>
+                    <td class="align-middle text-center color-red table-check"><i class="fas fa-times"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row7'|trans }}</th>
                     <td class="text-center color-green align-middle table-check"><i class="fas fa-check"></i></td>
+                    <td class="align-middle text-center color-red table-check"><i class="fas fa-times"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row8'|trans }}</th>
                     <td class="text-center color-green table-check align-middle"><i class="fas fa-check"></i></td>
+                    <td class="align-middle text-center color-red table-check"><i class="fas fa-times"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row9'|trans }}</th>
                     <td class="text-center color-green table-check"><i class="fas fa-check"></i></td>
+                    <td class="align-middle text-center color-green table-check"><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row10'|trans }}</th>
                     <td class="text-center align-middle">400 €</td>
+                    <td class="text-center align-middle">200 €</td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row11'|trans }}</th>
                     <td class="text-center color-green table-check"><i class="fas fa-check"></i></td>
+                    <td class="align-middle text-center color-red table-check"><i class="fas fa-times"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row12'|trans }}</th>
                     <td class="text-center color-green table-check"><i class="fas fa-check"></i></td>
+                    <td class="align-middle text-center color-red table-check"><i class="fas fa-times"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row13'|trans }}</th>
                     <td class="text-center color-green table-check"><i class="fas fa-check"></i></td>
+                    <td class="align-middle text-center color-green table-check"><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row14'|trans }}</th>
                     <td class="text-center color-green table-check"><i class="fas fa-check"></i></td>
+                    <td class="align-middle text-center color-green table-check"><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row15'|trans }}</th>
                     <td class="text-center align-middle">{{ 'page.insurances.maxima.table.row15Text'|trans }}</td>
+                    <td class="align-middle text-center color-red table-check"><i class="fas fa-times"></i></td>
                 </tr>
             </tbody>
         </table>

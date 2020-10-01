@@ -23,6 +23,9 @@ class ClientPhoneType extends AbstractType
                 ]
             ])
             ->add('save', SubmitType::class, [
+                'attr' => [
+                    'class' => 'font-semi-bold'
+                ],
                 'label' => $trans->trans('form.clientPhone.label.submit')
             ])
             ;

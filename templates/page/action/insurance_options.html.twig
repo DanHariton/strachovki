@@ -5,8 +5,8 @@
 {% block body %}
     {% include 'page/components/header.html.twig' %}
     <section class="container">
-        <h1 class="font-weight-bold text-center margin-top-50 mb-4">{{ 'page.headlines.insuranceBuy'|trans }}</h1>
-        <p class="margin-bottom-50 h3 text-center font-weight-bolder">
+        <h1 class="font-semi-bold text-center margin-top-50 mb-4">{{ 'page.headlines.insuranceBuy'|trans }}</h1>
+        <p class="margin-bottom-50 h3 text-center color-red font-weight-bolder">
             {{ 'page.headlines.insuranceBuyText'|trans }}
         </p>
         <div class="row justify-content-md-center margin-bottom-70">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="col d-flex align-items-center flex-column justify-content-center">
                     <p class="h5 text-justify mb-2">
-                        <strong>{{ 'page.insurances.maxima.label'|trans }}</strong>
+                        <strong class="font-semi-bold">{{ 'page.insurances.maxima.label'|trans }}</strong>
                     </p>
                     <p class="mb-0"><strong>{{ 'page.insurances.limit'|trans }}</strong> 80 000 EUR</p>
                     <p class="mb-0"><strong>{{ 'page.insurances.limitForCase'|trans }}</strong> 60 000 EUR</p>
@@ -24,19 +24,19 @@
                 </div>
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <a href="{{ path('page_insurance_maxima_options') }}" class="rounded order-online">
-                        <p class="mb-0 order-online-text text-uppercase">Оформить онлайн</p>
+                        <p class="mb-0 font-semi-bold order-online-text text-uppercase">Оформить онлайн</p>
                     </a>
                 </div>
             </div>
             <div class="row margin-bottom-50 border-bottom-40-red w-100">
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <a href="{{ path('page_apply_insurance', {'name': 'uniqa'}) }}" class="rounded order-online">
-                        <p class="mb-0 order-online-text text-uppercase">Оформить онлайн</p>
+                    <a href="{{ path('page_insurance_uniqa_options') }}" class="rounded order-online">
+                        <p class="mb-0 font-semi-bold order-online-text text-uppercase">Оформить онлайн</p>
                     </a>
                 </div>
                 <div class="col d-flex align-items-center flex-column justify-content-center">
                     <p class="h5 text-justify mb-2">
-                        <strong>{{ 'page.insurances.uniqa.label'|trans }}</strong>
+                        <strong class="font-semi-bold">{{ 'page.insurances.uniqa.label'|trans }}</strong>
                     </p>
                     <p class="mb-0"><strong>{{ 'page.insurances.limit'|trans }}</strong> 75 000 EUR</p>
                     <p class="mb-0"><strong>{{ 'page.insurances.limitForCase'|trans }}</strong> 75 000 EUR</p>
@@ -52,27 +52,27 @@
                 </div>
                 <div class="col d-flex align-items-center flex-column justify-content-center">
                     <p class="h5 text-justify mb-2">
-                        <strong>{{ 'page.insurances.ergo.label'|trans }}</strong>
+                        <strong class="font-semi-bold">{{ 'page.insurances.ergo.label'|trans }}</strong>
                     </p>
                     <p class="mb-0"><strong>{{ 'page.insurances.limit'|trans }}</strong> 80 000 EUR</p>
                     <p class="mb-0"><strong>{{ 'page.insurances.limitForCase'|trans }}</strong> 80 000 EUR</p>
                     <p class="mb-0"><strong>{{ 'page.insurances.shengen'|trans }}</strong> 8 000 EUR</p>
                 </div>
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <a href="{{ path('page_apply_insurance', {'name': 'ergo'}) }}" class="rounded order-online">
-                        <p class="mb-0 order-online-text text-uppercase">Оформить онлайн</p>
+                    <a href="{{ path('page_insurance_ergo_options') }}" class="rounded order-online">
+                        <p class="mb-0 font-semi-bold order-online-text text-uppercase">Оформить онлайн</p>
                     </a>
                 </div>
             </div>
             <div class="row w-100">
                 <div class="col-4 d-flex align-items-center justify-content-center">
-                    <a href="{{ path('page_apply_insurance', {'name': 'pvzp'}) }}" class="rounded order-online">
-                        <p class="mb-0 order-online-text text-uppercase">Оформить онлайн</p>
+                    <a href="{{ path('page_insurance_pvzp_options') }}" class="rounded order-online">
+                        <p class="mb-0 font-semi-bold order-online-text text-uppercase">Оформить онлайн</p>
                     </a>
                 </div>
                 <div class="col d-flex align-items-center flex-column justify-content-center">
                     <p class="h5 text-justify mb-2">
-                        <strong>{{ 'page.insurances.pvzp.label'|trans }}</strong>
+                        <strong class="font-semi-bold">{{ 'page.insurances.pvzp.label'|trans }}</strong>
                     </p>
                     <p class="mb-0"><strong>{{ 'page.insurances.limit'|trans }}</strong> 1,7 млн Kč</p>
                     <p class="mb-0"><strong>{{ 'page.insurances.limitForCase'|trans }}</strong> 1,7 млн Kč</p>

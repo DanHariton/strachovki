@@ -1,18 +1,24 @@
 <div class="container">
     <h2 class="font-weight-bold mb-3">{{ 'email.header'|trans }}</h2>
-    <h3 class="mb-2"><u>
-        {{ 'email.detail.insuranceName'|trans }}
-        <strong style="color: #DA1931">
-            {% if insurance.insuranceName == 'maxima' %}
-                Maxima pojišťovna
-            {% elseif insurance.insuranceName == 'uniqa' %}
-                Pojišťovna UNIQA
-            {% elseif insurance.insuranceName == 'pvzp' %}
-                Pojišťovna VZP
+    <h3 class="mb-2">
+        <u>
+            {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
+                {{ 'form.texts.komplexInsurance'|trans }}
             {% else %}
-                ERGO pojišťovna
+                {{ 'form.texts.necessaryInsurance'|trans }}
             {% endif %}
-        </strong></u>
+            <strong style="color: #DA1931">
+                {% if insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
+                    Maxima pojišťovna
+                {% elseif insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_UNIQA") %}
+                    Pojišťovna UNIQA
+                {% elseif insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
+                    Pojišťovna VZP
+                {% else %}
+                    ERGO pojišťovna
+                {% endif %}
+            </strong>
+        </u>
     </h3>
     <h3 class="mb-2">
         {{ 'email.detail.forWhom'|trans }} <u><strong>{{ insurance.clientName }} {{ insurance.clientSName }}</strong></u>

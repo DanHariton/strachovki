@@ -1,4 +1,13 @@
 page:
+  ourLicense:
+    text: 'Наша лицензия'
+    certifacats: 'Наши сертефикаты'
+    checkLicense: 'Вы можете проверить нашу лицензию на сайте ČNB следуя видео инструкции, перейдя по ссылке:'
+  contactPage:
+    text: 'Контакты'
+    address: 'Адресс'
+    idNumber: 'Идентификационный номер'
+    mobile: 'Телефон'
   applyClientPhone:
     flash:
       success: 'Мы вам перезвоним'
@@ -6,7 +15,7 @@ page:
     flash:
       success: 'Ваша заявка принята!'
   headlines:
-    insuranceBuy: 'Медицинское страхование иностранцев'
+    insuranceBuy: 'Медицинское страхование'
     insuranceBuyText: 'Оформи договор страхования в несколько кликов!'
   payOnline:
     text: 'Оплатите Ваш заказ on-line!'
@@ -17,8 +26,17 @@ page:
   successPayment:
     text: 'Платеж успешно совершен!'
   insurances:
-    whatCanInsurance: 'Что вы можете застраховать?'
-    text: 'Комплексное медицинское страхование'
+    komplexInsurance: 'Комплексное медицинское страхование иностранцев'
+    necessaryInsurance: 'Страхование необходимой и неотложной помощи'
+    longTerm: 'При долгосрочном пребывании'
+    shortTerm: 'При краткосрочном пребывании'
+    maxPrice1: 'Максимальная выплата до 150 000 €'
+    maxPrice2: 'Максимальная выплата 60 000 €'
+    legacy: 'Согласно закону о пребывании иностранцев'
+    shengenLegacy: 'Действительна в странах Шенгенского соглашения'
+    immidiatlyInsurance: 'Покрывает срочное лечение'
+    whatCanInsurance: 'Выберите правильный вариант страхования'
+    text: 'Медицинское страхование иностранцев'
     limit: 'Страховой лимит:'
     limitForCase: 'Лимит на 1 случай:'
     shengen: 'Лимит по шенгену:'
@@ -26,6 +44,7 @@ page:
       table:
         scope: 'ОБЪЁМ СТРАХОВАНИЯ'
         insuranceStandart: 'КОМПЛЕКСНОЕ МЕДИЦИНСКОЕ СТРАХОВАНИЕ ИНОСТРАНЦЕВ STANDARD'
+        necessaryInsurance: 'СТРАХОВАНИЕ НЕОБХОДИМОЙ И НЕОТЛОЖНОЙ ПОМОЩИ STANDARD'
         row1: 'Комплексное медицинское обслуживание'
         row2: 'Неотложная медицинская помощь'
         row3: 'Общий лимит'
@@ -61,6 +80,9 @@ form:
     placeholder: 'Пароль из e-mail'
     submit: 'Перейти к оплате'
   texts:
+    insuranceType: 'Тип страхования'
+    komplexInsurance: 'Комплексное медицинское страхование'
+    necessaryInsurance: 'Страхование необходимой и неотложной помощи'
     contactPerson: 'Контактная информация застрахованного лица'
     addressInCzech: 'Адрес проживания в Чехии'
     personalData: 'Персональные данные'
@@ -158,6 +180,8 @@ form:
     duration:
       label: 'Длительность страхования'
       choice:
+        oneMonth: '1 месяц'
+        twoMonth: '2 месяца'
         threeMonth: '3 месяца'
         fourMonth: '4 месяца'
         fiveMonth: '5 месяцев'

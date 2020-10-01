@@ -10,12 +10,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class InsurancePrice
 {
+    const PRICE_URGENT_MAXIMA = 'maximaUrgent';
+    const PRICE_URGENT_MAXIMA_MID = 'maximaUrgentMid';
+    const PRICE_URGENT_MAXIMA_OLD = 'maximaUrgentOld';
     const PRICE_MAXIMA = 'maxima';
     const PRICE_MAXIMA_MEDIUM = 'maximaMedium';
     const PRICE_MAXIMA_YOUNG = 'maximaYoung';
     const PRICE_MAXIMA_OLD = 'maximaOld';
     const PRICE_UNIQA = 'uniqa';
-    const INSURANCE_PVZP = 'pvzp';
+    const PRICE_UNIQA_MEDIUM = 'uniqaMedium';
+    const PRICE_UNIQA_CHILD = 'uniqaChild';
+    const PRICE_UNIQA_YOUNG = 'uniqaYoung';
+    const PRICE_UNIQA_OLD = 'uniqaOld';
+    const PRICE_UNIQA_SENIOR = 'uniqaSenior';
+    const PRICE_UNIQA_MID = 'uniqaMid';
     const PRICE_PVZP = 'pvzp';
     const PRICE_PVZP_MEDIUM = 'pvzpMedium';
     const PRICE_PVZP_CHILD = 'pvzpChild';
@@ -39,6 +47,16 @@ class InsurancePrice
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $oneMonth;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $twoMonth;
 
     /**
      * @ORM\Column(type="integer")
@@ -146,10 +164,9 @@ class InsurancePrice
     private $twentyThreeMonth;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $twoYears;
-
 
     public function getId(): ?int
     {
@@ -436,6 +453,8 @@ class InsurancePrice
     {
         return [
             'name' => $this->name,
+            'oneMonth' => $this->oneMonth,
+            'twoMonth' => $this->twoMonth,
             'threeMonth' => $this->threeMonth,
             'fourMonth' => $this->fourMonth,
             'fiveMonth' => $this->fiveMonth,
@@ -459,5 +478,29 @@ class InsurancePrice
             'twentyThreeMonth' => $this->twentyThreeMonth,
             'twoYears' => $this->twoYears
         ];
+    }
+
+    public function getOneMonth(): ?int
+    {
+        return $this->oneMonth;
+    }
+
+    public function setOneMonth(?int $oneMonth): self
+    {
+        $this->oneMonth = $oneMonth;
+
+        return $this;
+    }
+
+    public function getTwoMonth(): ?int
+    {
+        return $this->twoMonth;
+    }
+
+    public function setTwoMonth(?int $twoMonth): self
+    {
+        $this->twoMonth = $twoMonth;
+
+        return $this;
     }
 }

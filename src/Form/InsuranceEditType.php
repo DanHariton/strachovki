@@ -29,6 +29,16 @@ class InsuranceEditType extends AbstractType
                     $trans->trans('form.insurance.insuranceName.choice.uniqa') => Insurance::INSURANCE_UNIQA,
                 ]
             ])
+            ->add('insuranceType', ChoiceType::class, [
+                'attr' => [
+                    'readonly' => true
+                ],
+                'label' => 'form.texts.insuranceType',
+                'choices' => [
+                    $trans->trans('form.texts.komplexInsurance') => Insurance::INSURANCE_TYPE_COMPLEX,
+                    $trans->trans('form.texts.necessaryInsurance') => Insurance::INSURANCE_TYPE_URGENT,
+                ]
+            ])
             ->add('insuredNumber', TextType::class, [
                 'required' => false,
                 'label' => $trans->trans('form.insurance.insuredNumber.label')

@@ -18,6 +18,12 @@ class InsurancePriceEditType extends AbstractType
                 'label' => 'Pojištění',
                 'disabled' => true
             ])
+            ->add('oneMonth', TextType::class, [
+                'label' => '1 měsíc'
+            ])
+            ->add('twoMonth', TextType::class, [
+                'label' => '2 měsíce'
+            ])
             ->add('threeMonth', TextType::class, [
                 'label' => '3 měsíce'
             ])

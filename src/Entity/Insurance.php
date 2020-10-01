@@ -14,6 +14,8 @@ class Insurance
     const INSURANCE_UNIQA = 'uniqa';
     const INSURANCE_PVZP = 'pvzp';
     const INSURANCE_MAXIMA = 'maxima';
+    const INSURANCE_TYPE_COMPLEX = 'complex';
+    const INSURANCE_TYPE_URGENT = 'urgent';
     const STATUS_NEW = 0;
     const STATUS_PAYED_SUCCESS = 1;
     const STATUS_PAYED_ERROR = 2;
@@ -186,6 +188,12 @@ class Insurance
      * @ORM\Column(type="boolean")
      */
     private $sentToClient;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $insuranceType;
+
 
     public function __construct()
     {
@@ -577,6 +585,18 @@ class Insurance
     public function setSentToClient(?bool $sentToClient): self
     {
         $this->sentToClient = $sentToClient;
+
+        return $this;
+    }
+
+    public function getInsuranceType(): ?string
+    {
+        return $this->insuranceType;
+    }
+
+    public function setInsuranceType(string $insuranceType): self
+    {
+        $this->insuranceType = $insuranceType;
 
         return $this;
     }

@@ -7,18 +7,22 @@
 
 @font-face
   font-family MonseratBold
-  src url("./font/Montserrat-Bold.otf")
+  src url("./font/Montserrat-Bold.ttf")
 
 @font-face
   font-family MonseratRegular
-  src url('./font/Montserrat-Regular.otf')
+  src url('./font/Montserrat-Regular.ttf')
 
 @font-face
   font-family MonseratItalic
-  src url("./font/Montserrat-ExtraLightItalic.otf")
+  src url("./font/Montserrat-Italic.ttf")
+
+@font-face
+  font-family MonseratSemiBold
+  src url("./font/Montserrat-SemiBold.ttf")
 
 .iti__flag
-  background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/img/flags@2x.png") !important;
+  background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/img/flags.png") !important;
 
 *:focus, .form-control:focus
   outline none !important
@@ -27,15 +31,21 @@
   border-color #ced4da !important
   box-shadow: 0 0 0 0.2rem rgba(177, 227, 96, 0.65);
 
-.iti__flag
-  background-image url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/img/flags@2x.png")
-
 .iti
   display block !important
 
 body
   font-family MonseratRegular
   color #282828
+
+.font-bold
+  font-family MonseratBold
+
+.font-semi-bold
+  font-family MonseratSemiBold
+
+.font-italic
+  font-family MonseratItalic
 
 .logo img
   width 350px
@@ -314,6 +324,8 @@ nav.shift ul li a:hover:after
 .flip-card-options
   min-height 240px
 
+.flip-card-options-insurance
+  min-height 270px
 /* This container is needed to position the front and back side */
 .flip-card-inner {
   position: relative;
@@ -424,6 +436,12 @@ nav.shift ul li a:hover:after
   border-radius 0 20px 20px 0
   &:hover
     background-color #b1e360
+
+.pdf-icon
+  font-size 180px
+
+.license-link:hover
+  color #DA1931
 
 //-------------------------------------------------------------//
 
