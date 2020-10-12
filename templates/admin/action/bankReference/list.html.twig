@@ -1,0 +1,41 @@
+{% extends 'admin/layout.nav.html.twig' %}
+
+{% block title %}Insurance List{% endblock %}
+
+{% block content %}
+    <h1 class="h3 mb-2 text-gray-800">Bankovní reference</h1>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Žádosti</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-dark data-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Příjmení</th>
+                        <th>Jméno</th>
+                        <th>Telefon</th>
+                        <th>E-mail</th>
+                        <th>Datum obracení</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reference in references %}
+                        <tr>
+                            <td>{{ reference.id }}</td>
+                            <td>{{ reference.snameClient }}</td>
+                            <td>{{ reference.nameClient }}</td>
+                            <td>{{ reference.phone }}</td>
+                            <td>{{ reference.email }}</td>
+                            <td>{{ reference.orderTime|date('d.m.Y') }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

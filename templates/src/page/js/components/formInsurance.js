@@ -446,9 +446,17 @@ $('#info-confirmation-check-box').click(function () {
 
 
 $('#insurance_startDate').change(function () {
-    if (moment($('#insurance_startDate').val()).month() < moment().month()) {
-        $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
-        alert('Веберите актуальную дату');
+    if (insuranceSelected === INSURANCE_MAXIMA) {
+        if (moment($('#insurance_startDate').val()).month() < moment().month()) {
+            $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
+            alert('Пожулуйста, выберите актуальную дату!');
+        }
+    } else {
+        if (moment($('#insurance_startDate').val()) < moment()) {
+            $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
+            alert('Пожалуйста, берите актуальную дату!\n' +
+                'Если вы хотите выбрать прошедшую дату, свяжитесь с нами для уточнения информации');
+        }
     }
 });
 

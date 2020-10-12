@@ -10,10 +10,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active" style="position: relative">
                     <div class="slide-1-text rounded pb-4 text-center pt-4 pl-3 pr-3">
-                        <p class="mb-3 font-semi-bold slide-1-text-transform">Оформите старховку у нас по самой выгодной цене и получите приятный бонус</p>
-                        <a class="rounded order-online-carusel font-weight-bold" href="{{ path('page_insurance_options') }}">
-                            <strong class="order-online-text">Оформить онлайн</strong>
-                        </a>
+                        <p class="mb-0 font-semi-bold slide-1-text-transform">Оформите старховку у нас по самой выгодной цене и получите приятный бонус</p>
                     </div>
                     <img src="{{ asset('assets/page/img/slide1.png') }}" class="d-block w-100" alt="...">
                 </div>
@@ -33,7 +30,7 @@
 
             <h1 class="margin-bottom-50">Наши услуги</h1>
 
-            <div class="row d-flex justify-content-around margin-bottom-70">
+            <div class="row d-flex justify-content-around margin-bottom-70 our-services">
                 <div class="flip-card col-sm-5">
                     <div class="flip-card-inner custom-border-red pt-5 pb-5">
                         <div class="flip-card-front">
@@ -53,13 +50,13 @@
                 <div class="flip-card col-sm-5">
                     <div class="flip-card-inner custom-border-red pt-5 pb-5">
                         <div class="flip-card-front">
-                            <a class="service-link text-decoration-none" href="{{ path('page_index') }}">
+                            <a class="service-link text-decoration-none" href="{{ path('page_bank_reference') }}">
                                 <img src="{{ asset('assets/page/img/bank-order.jpg') }}" alt="order bank" class="img-fluid pt-5">
                                 <p class="mt-4 mb-0 color-red">Помощь в получении банковских справок</p>
                             </a>
                         </div>
                         <div class="flip-card-back">
-                            <a class="service-link text-decoration-none" href="{{ path('page_index') }}">
+                            <a class="service-link text-decoration-none" href="{{ path('page_bank_reference') }}">
                                 <img src="{{ asset('assets/page/img/bank-order.jpg') }}" alt="order bank" class="img-fluid pt-5">
                                 <p class="mt-4 mb-0 text-white">Помощь в получении банковских справок</p>
                             </a>
@@ -82,7 +79,7 @@
                         {{ form_errors(form) }}
                     </div>
 
-                    <div class="d-flex flex-row">
+                    <div class="d-flex flex-row let-phone">
                         <div class="rotate mr-4">
                             {{ form_row(form.mobile) }}
                         </div>
@@ -100,7 +97,7 @@
 
             <div class="row">
                 <div class="col-12 col-sm-4">
-                    <a class="model-link" href="{{ path('page_index') }}">
+                    <a class="model-link" href="{{ path('page_our_license') }}">
                         <img src="{{ asset('assets/page/img/order-online.png') }}" alt="order online" class="img-fluid">
                         <p class="mt-4">Проверить лицензию</p>
                     </a>

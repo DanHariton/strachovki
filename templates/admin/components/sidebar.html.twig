@@ -1,4 +1,4 @@
-<div class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<div class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('admin_index') }}">
@@ -21,19 +21,29 @@
     <div class="nav-item {% if app.request.get('_route') starts with 'admin_insurance_' %}active{% endif %}">
         <a class="nav-link" href="{{ path('admin_insurance_list') }}">
             <i class="fas fa-medkit"></i>
-            <span>Pojištění</span></a>
+            <span>Pojištění</span>
+        </a>
     </div>
 
     <div class="nav-item {% if app.request.get('_route') starts with 'admin_insured_' %}active{% endif %}">
         <a class="nav-link" href="{{ path('admin_insured_number_list') }}">
             <i class="fas fa-hands-helping"></i>
-            <span>Zaplacení do pojišťovny</span></a>
+            <span>Zaplacení do pojišťovny</span>
+        </a>
+    </div>
+
+    <div class="nav-item {% if app.request.get('_route') starts with 'admin_bank_' %}active{% endif %}">
+        <a class="nav-link" href="{{ path('admin_bank_reference_list') }}">
+            <i class="fas fa-university"></i>
+            <span>Bankovní reference</span>
+        </a>
     </div>
 
     <div class="nav-item {% if app.request.get('_route') starts with 'admin_price_' %}active{% endif %}">
         <a class="nav-link" href="{{ path('admin_price_list') }}">
             <i class="fas fa-money-bill-alt"></i>
-            <span>Cena</span></a>
+            <span>Cena</span>
+        </a>
     </div>
 
 

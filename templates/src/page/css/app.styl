@@ -34,6 +34,15 @@
 .iti
   display block !important
 
+#fixed-menu
+  position fixed
+  top 0
+  left 0
+  z-index 10
+
+#burger-menu
+  display none
+
 body
   font-family MonseratRegular
   color #282828
@@ -52,6 +61,12 @@ body
 
 .color-green
   color #b1e360
+
+.margin-bottom-50
+  margin-bottom 50px
+
+.margin-bottom-70
+  margin-bottom 70px
 
 .background-gray
   background-color #EDEEEF
@@ -197,6 +212,9 @@ nav.fill ul li a:hover
   color #FFFFFF
   display block
 
+.order-online-fixed
+  height 46px
+
 .order-online-carusel
   overflow:hidden
   -ms-transform: skew(-25deg); /* IE 9 */
@@ -305,7 +323,7 @@ nav.shift ul li a:hover:after
   position: absolute;
   font-weight 600
   font-size 20px
-  top: 18%;
+  top: 28%;
   left: 65%;
   width: 25%;
   background-color: rgba(255, 255, 255, 0.85);
@@ -566,273 +584,176 @@ header img
   width 100%
   height auto
 
-@media (min-width: 1200px)
-  .main-container
-    max-width 1500px
+@media screen and (max-width: 1390px)
+  .slide-1-text
+    width 30%
+    left 60%
 
-.margin-bottom-30
-  margin-bottom 30px
+@media screen and (max-width: 1200px)
+  .nav-link-contact
+    font-size 18px !important
+  .slide-1-text
+    width 36%
+    left 52%
 
-.margin-bottom-50
-  margin-bottom 50px
-
-.margin-bottom-70
-  margin-bottom 70px
-
-.expanded-search
-  max-height 0
-  overflow hidden
-  transition max-height 0.5s ease-in-out
-
-.expanded-search.visible
-  max-height 400px
-
-#about-car
-  margin-top 50px
-  display flex
-  flex-direction row
-
-.link-back
-  width 80%
-  margin auto
-  display flex
-  font-size 15px
-  a
-    color #282828
-    opacity 0.7
-    text-transform uppercase
-    letter-spacing: 1px;
-  a:hover
-    opacity 1
-    text-decoration none
-    color #282828
-  p
-    text-decoration underline
-    letter-spacing: 1px;
-    cursor default
-
-.lef-side
-  width 57%
-  .car-photos
-    display flex
+@media screen and (max-width: 990px)
+  .insurance-option
     flex-direction column
+    justify-content center
     align-items center
-    .smallest-photo-car
-      display flex
-      flex-direction column
-      justify-content center
-      align-items center
-      width 80%
-      margin-top 15px
-      .container-level-photo
+    .insurance-option-text
+      margin-top 25px
+      margin-bottom 25px
+    .img-fluid
+      width 50%
+    .insurance-option-button
+      flex: 0 0 70%;
+      max-width: 70%;
+  #burger-menu
+    display block
+  #manufacture
+    .flip-card
+      flex 0 0 48.666667% !important
+      max-width 48.666667% !important
+  .header-insurance
+    .col-2
+      flex: 0 0 21.667%;
+      width 21%
+      max-width 21% !important
+  .main-header
+    align-items center
+  .navbar-toggler
+    height 40px !important
+  .navbar-toggler-icon
+    background-image url('./img/menu-burger.png') !important;
+  .header-menu
+    display flex
+    justify-content end
+    .order-online
+      width 34%
+      margin-left 0 !important
+    .navbar-nav
+      li
+        margin-left 0 !important
+        margin-bottom 10px
+        margin-right 0 !important
+  .navbar-toggler
+    color #FFFFFF !important
+    border-color #FFFFFF !important
+  .header-contact-line
+    flex-direction column
+    align-items end !important
+    justify-content end !important
+  .flip-card, .flip-card-options
+    min-height 310px !important
+  .slide-1-text
+    font-size 18px
+    left 50%
+    width 43%
+    top 20%
+  .flip-card, .flip-card-options
+    min-height 365px !important
+    .flip-card-front
+      .service-link
         display flex
-        flex-direction row
-        justify-content space-between
-        margin-bottom 15px
-    #preview-photo
-      width 80%
+        flex-direction column
+        justify-content center
+        align-items center
+        .img-fluid
+          padding-top 0 !important
 
-.mark-car
-  width 80%
-  margin auto
-  padding 20px 0
-  border-bottom 1px solid #282828
-  p
-    color #282828
+@media screen and (max-width: 767px)
+  .navbar-brand
+    margin-right 0 !important
+  .brand-logo
+    padding-right 0 !important
+  .slide-1-text
+    font-size 16px
+    left 44%
+    width 50%
+    top 25%
+  .main-header
+    align-items center
+  #fixed-menu
+    text-align center
+    .logo
+      img
+        width 280px
+        margin-bottom 10px
+  .order-online-fixed
+    margin auto !important
+    height 36px
+    padding 5px 20px 5px 20px
+  .header-insurance
+    .col-2
+      flex: 0 0 24.667% !important
+      max-width 24% !important
+  .brand-logo
+    text-align center
+  .header-contact-line
+    justify-content flex-start !important
+    align-items start !important
+  .header-menu
+    .order-online
+      width 46%
+  #manufacture
+    .flip-card
+      lex: 0 0 100% !important;
+      max-width: 100% !important;
+  .our-services
+    flex-direction column
+    .flip-card:first-child
+      margin-bottom 50px
+    .flip-card-inner
+      height 380px
+  .border-bottom-footer
+    flex-direction column
+    .nnavbar
+      margin-bottom 30px
+  .footer-logo
+    text-align center
+    margin-top 50px
 
-.preview-photo-small
-  width 24%
+@media screen and (max-width: 650px)
+  .slide-1-text
+    top 22%
 
-.social-car
-  width 80%
-  margin auto
-  padding 30px 0
-  border-bottom 1px solid #282828
-  h2
-    font-weight bold
-    font-size 20px
-    color #282828
-  .social-networks
-    margin-top 20px
-    margin-bottom 20px
-    i
-      color #282828
-      font-size 45px
-      margin-right 2%
-  a
-    color #282828
-    font-size 12px
-    text-decoration underline
+@media screen and (max-width: 575px)
+  .slide-1-text
+    top 22%
+    left 35%
+    width 60%
+  .navbar-toggler
+    margin-right 35px
+  .header-menu
+    .order-online
+      width 47%
 
-.why-autoeder
-  width 80%
-  margin auto
-  border-bottom 1px solid #282828
-  padding 30px 0
-  h2
-    font-family MonseratBold
-    margin-bottom 15px
-    font-size 24px
-    color #282828
-  ul
-    padding-left 16px
-    li
-      margin-bottom 7px
+@media screen and (max-width: 550px)
+  .header-menu
+    .order-online
+      width 50%
 
-.feedback-user-car
-  width 80%
-  margin auto
-  padding 30px 0
-  h2
-    font-family MonseratBold
-    margin-bottom 15px
-    font-size 24px
-    color #282828
-  .comment-user
-    font-family MonseratItalic
-    font-size 25px
-  .user
-    text-align end
+@media screen and (max-width: 490px)
+  .slide-1-text
+    top 10%
+    left 10%
+    width 80%
+  .let-phone
+    flex-direction column !important
+    align-items center
+    .rotate
+      margin-right 0 !important
+  .header-menu
+    .order-online
+      width 58%
 
-.right-side
-  width 39%
-
-.container-right-side
-  width 98%
-  margin-top 34px
-
-.detail-manufakrura-car
-  margin 0
-  text-transform uppercase
-  font-family MonseratBold
-  font-size 15px
-
-.detail-price
-  display flex
-  flex-direction row
-  justify-content space-between
-  align-items end
-  p:first-child
-    font-family MonseratBold
-    margin-bottom 8px
-  p:last-child
-    font-family MonseratBold
-    font-size 30px
-    margin 0
-
-.detail-discount
-  text-align end
-  p
-    margin 0
-  p:last-child
-    font-family MonseratBold
-
-.question-about-car
-  margin-top 50px
-  text-align end
-  padding-bottom 80px
-  border-bottom 1px solid #282828
-  a
-    padding 20px 65px
-    background-color #e30613
-    border 1px solid #e30613
-    color #ffffff
-  a:hover
-    background-color #c40611
-    border 1px solid #c40611
-
-.detail-model-car
-  font-family MonseratBold
-  margin-bottom 30px
-  font-weight 500
-
-.complect
-  border-bottom 1px solid #282828
-
-.complect-detail
-  display flex
-  flex-direction row
-  justify-content space-between
-  border-bottom 1px solid #d8dee2
-  p
-    margin 0
-    padding 10px 0
-  p:last-child
-    font-family MonseratBold
-
-.complect-detail:last-child
-  border-bottom none
-  margin-bottom 30px
-
-.complect-detail:first-child
-  margin-top 30px
-
-.complect-choise
-  border-bottom 1px solid #282828
-  h2
-    margin-top 25px
-    font-family MonseratBold
-    margin-bottom 15px
-    font-size 24px
-    color #282828
-  ul
-    padding-left 16px
-    margin-bottom 30px
-    li
-      margin-bottom 7px
-
-.complect-in-price
-  border-bottom 1px solid #282828
-  h2
-    margin-top 25px
-    font-family MonseratBold
-    margin-bottom 15px
-    font-size 24px
-    color #282828
-  ul
-    padding-left 16px
-    margin-bottom 30px
-    li
-      margin-bottom 7px
-
-.standart-complect
-  h2
-    margin-top 25px
-    font-family MonseratBold
-    margin-bottom 25px
-    font-size 24px
-    color #282828
-  .standart-complect-name
-    font-family MonseratBold
-
-.order-test-drive-button
-  text-align end
-  margin-top 70px
-
-.order-test-drive
-  padding 20px 65px
-  background-color #e30613
-  border 1px solid #e30613
-  color #ffffff
-
-.order-test-drive:hover
-  background-color #c40611
-  border 1px solid #c40611
-  color #ffffff
-
-.detail-contacts
-  h2
-    margin-top 80px
-    font-family MonseratBold
-    margin-bottom 25px
-    font-size 24px
-    color #282828
-  .name-sale
-    font-family MonseratBold
-    margin-bottom 0
-  .position-sale
-    margin-bottom 10px
-  .sale-contact
-    margin-bottom 0
-  .last-sale-contact
-    margin-bottom 20px
+@media screen and (max-width: 390px)
+  .header-menu
+    .order-online
+      width 75%
+  .slide-1-text
+    top 5%
+    left 5%
+    width 90%
+    font-size 14px

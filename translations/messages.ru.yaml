@@ -1,4 +1,7 @@
 page:
+  bankReferecne:
+    mainText: 'Помощь в получении банковских справок'
+    text: 'Оставьте свои контактные данные и мы с Вами свяжемся'
   ourLicense:
     text: 'Наша лицензия'
     certifacats: 'Наши сертефикаты'
@@ -10,7 +13,7 @@ page:
     mobile: 'Телефон'
   applyClientPhone:
     flash:
-      success: 'Мы вам перезвоним'
+      success: 'Спасибо! Мы вам перезвоним'
   applyInsurance:
     flash:
       success: 'Ваша заявка принята!'
@@ -75,6 +78,20 @@ page:
       label: 'UNIQA pojišťovna'
 
 form:
+  bankReference:
+    phone:
+      label: 'Контактный номер телефона'
+    nameClient:
+      placeholder: 'например, Jan'
+      label: 'Ваше имя'
+    snameClient:
+      placeholder: 'например, Novák'
+      label: 'Ваша фамилия'
+    email:
+      label: 'Ваш e-mail'
+      placeholder: 'например, jan@novak.cz'
+    submit:
+      label: 'Отправить'
   paymentPassword:
     label: 'Для оплаты Вашей страховки, введите пароль, полученый в письме при заказе'
     placeholder: 'Пароль из e-mail'

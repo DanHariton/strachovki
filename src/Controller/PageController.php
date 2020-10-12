@@ -2,20 +2,24 @@
 
 namespace App\Controller;
 
+use App\Entity\BankReference;
 use App\Entity\ClientsPhones;
 use App\Entity\Insurance;
 use App\Entity\InsurancePrice;
+use App\Form\BankReferenceType;
 use App\Form\ClientPhoneType;
 use App\Form\InsurancePaymentByPasswordType;
 use App\Form\InsuranceType;
 use App\Service\InsurancePriceFactory;
 use App\Service\OrderFactory;
 use App\Util\FakeTranslator;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenPayU_Order;
 use Swift_Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
@@ -26,11 +30,15 @@ class PageController extends AbstractController
 {
     /**
      * @Route("/", name="page_index")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
      */
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(Request $request, EntityManagerInterface $em)
     {
         $clientPhones = new ClientsPhones();
-        $form = $this->createForm(ClientPhoneType::class, $clientPhones);
+        $form = $this->createForm(ClientPhoneType::class, $clientPhones)
+            ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $clientPhones = $form->getData();
@@ -96,7 +104,7 @@ class PageController extends AbstractController
      * @param OrderFactory $orderFactory
      * @param Swift_Mailer $mailer
      * @param InsurancePriceFactory $insurancePriceFactory
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return RedirectResponse|Response
      * @throws \OpenPayU_Exception
      */
     public function applyInsuranceAction($name, $type, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory,
@@ -116,7 +124,7 @@ class PageController extends AbstractController
             $insurancePriceList = null;
         }
 
-        $form = $this->createForm(InsuranceType::class, $insurance, array('insuranceType' => $type))
+        $form = $this->createForm(InsuranceType::class, $insurance, array('insuranceType' => $type, 'insuranceName' => $name))
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -133,7 +141,7 @@ class PageController extends AbstractController
                 ->setBody(
                     $this->renderView(
                         'emails/confirm_order.html.twig',
-                        ['insurance' => $insurance]
+                        ['insurance' => $insurance, 'type' => $type]
                     ),
                     'text/html'
                 )
@@ -320,5 +328,32 @@ class PageController extends AbstractController
         $file = new File(__DIR__ . '/../../templates/src/page/pdf/osvedceni.pdf');
 
         return $this->file($file, 'osvedceni.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
+     * @Route("/bank-reference", name="page_bank_reference")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
+     */
+    public function bankReferenceAction(Request $request, EntityManagerInterface $em)
+    {
+        $bankReference = new BankReference();
+        $bankReference->setOrderTime(new DateTime());
+        $form = $this->createForm(BankReferenceType::class, $bankReference)
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $bankReference = $form->getData();
+            $em->persist($bankReference);
+            $em->flush();
+
+            $this->addFlash('success', (new FakeTranslator())->trans('page.applyClientPhone.flash.success'));
+            return $this->redirectToRoute('page_index');
+        }
+
+        return $this->render('page/action/bank_reference.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

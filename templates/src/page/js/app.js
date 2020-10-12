@@ -4,6 +4,7 @@ require('select2');
 window.Vue = require('vue/dist/vue.esm').default;
 require('./components/search')
 require('./components/formInsurance');
+require('./components/fixedMenu');
 
 $('select').select2({
     theme: 'bootstrap4',

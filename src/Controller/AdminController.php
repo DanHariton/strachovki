@@ -4,14 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Insurance;
 use App\Entity\InsurancePrice;
+use App\Form\BankReferenceType;
 use App\Form\InsuranceEditType;
 use App\Form\InsurancePriceEditType;
+use App\Repository\BankReferenceRepository;
 use App\Repository\InsuranceRepository;
 use App\Repository\InsurancePriceRepository;
 use App\Util\FakeTranslator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -29,16 +33,22 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/prices", name="admin_price_list")
+     * @param InsurancePriceRepository $insurancePriceRepository
+     * @return Response
      */
-    public function priceListAction(InsurancePriceRepository $inusrancePriceRepository)
+    public function priceListAction(InsurancePriceRepository $insurancePriceRepository)
     {
         return $this->render('admin/action/price/list.html.twig', [
-            'prices' => $inusrancePriceRepository->findAll()
+            'prices' => $insurancePriceRepository->findAll()
         ]);
     }
 
     /**
      * @Route("/price/edit/{inusrancePrice}", name="admin_price_edit")
+     * @param InsurancePrice $inusrancePrice
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
      */
     public function priceEditAction(InsurancePrice $inusrancePrice, Request $request, EntityManagerInterface $em)
     {
@@ -58,6 +68,8 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/insurances", name="admin_insurance_list")
+     * @param InsuranceRepository $insuranceRepository
+     * @return Response
      */
     public function insuranceListAction(InsuranceRepository $insuranceRepository)
     {
@@ -88,6 +100,9 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/insurance/remove/{insurance}", name="admin_insurance_remove")
+     * @param Insurance $insurance
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse
      */
     public function insuranceRemoveAction(Insurance $insurance, EntityManagerInterface $em)
     {
@@ -101,7 +116,7 @@ class AdminController extends AbstractController
      * @Route("/insurance/sent-to-client/toggle/{insurance}", name="admin_insurance_sent_to_client_toggle")
      * @param Insurance $insurance
      * @param EntityManagerInterface $em
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function insuranceSentToClientToggleAction(Insurance $insurance, EntityManagerInterface $em)
     {
@@ -114,7 +129,7 @@ class AdminController extends AbstractController
      * @Route("/inusrance/paid-to-insurance/toggle/{insurance}", name="admin_insurance_paid_to_insurance_toggle")
      * @param Insurance $insurance
      * @param EntityManagerInterface $em
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function paidToInsuranceCompanyToggleAction(Insurance $insurance, EntityManagerInterface $em)
     {
@@ -126,7 +141,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/insured-number/list", name="admin_insured_number_list")
      * @param InsuranceRepository $insuranceRepository
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function insuredNumberListAction(InsuranceRepository $insuranceRepository)
     {
@@ -139,6 +154,7 @@ class AdminController extends AbstractController
      * @Route("/insurance/set-paid-status/success/toggle/{insurance}", name="admin_insurance_set_paid_status_success_toggle")
      * @param Insurance $insurance
      * @param EntityManagerInterface $em
+     * @return RedirectResponse
      */
     public function setPaidStatusSuccessAction(Insurance $insurance, EntityManagerInterface $em)
     {
@@ -146,4 +162,17 @@ class AdminController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('admin_insurance_list');
     }
+
+    /**
+     * @Route("/bank-reference/list", name="admin_bank_reference_list")
+     * @param BankReferenceRepository $bankReferenceRepository
+     * @return Response
+     */
+    public function bankReferenceListAction(BankReferenceRepository $bankReferenceRepository)
+    {
+        return $this->render('admin/action/bankReference/list.html.twig', [
+            'references' => $bankReferenceRepository->findAll()
+        ]);
+    }
+
 }

@@ -5,16 +5,16 @@
                 <h4 class="text-white pr-2 pl-2 border-bottom pb-2">Меню</h4>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mt-1 mb-1">
-                        <a class="nav-link pr-2 pl-2" href="#">Главная</a>
+                        <a class="nav-link pr-2 pl-2" href="{{ path('page_index') }}">Главная</a>
                     </li>
                     <li class="nav-item mt-1 mb-1">
-                        <a class="nav-link pr-2 pl-2" href="#">Наша лицензия</a>
+                        <a class="nav-link pr-2 pl-2" href="{{ path('page_our_license') }}">Наша лицензия</a>
                     </li>
                     <li class="nav-item mt-1 mb-1">
-                        <a class="nav-link pr-2 pl-2" href="#">Контакты</a>
+                        <a class="nav-link pr-2 pl-2" href="{{ path('page_contact') }}">Контакты</a>
                     </li>
                     <li class="nav-item mt-1 mb-1">
-                        <a class="nav-link pr-2 pl-2" href="#">Оформить онлайн</a>
+                        <a class="nav-link pr-2 pl-2" href="{{ path('page_insurance_options') }}">Оформить онлайн</a>
                     </li>
                 </ul>
             </nav>
@@ -29,9 +29,9 @@
                     </li>
                 </ul>
             </nav>
-            <div class="">
+            <a class="footer-logo" href="{{ path('page_index') }}">
                 <img class="logo-footer" src="{{ asset('assets/page/img/logo.png') }}" alt="KOŤA s.r.o.">
-            </div>
+            </a>
         </section>
         <section class="text-center footer-text-by mt-3 pb-2">
             <p class="">© 2020 KOŤA s.r.o. | powered by ClixFox</p>

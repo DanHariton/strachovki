@@ -1,0 +1,41 @@
+{% extends 'page/layout.html.twig' %}
+
+{% block title %}Застрахуй.cz | Помощь в получении банковских справок{% endblock %}
+
+{% block body %}
+    {% include 'page/components/header.html.twig' %}
+    <section class="container">
+        <h1 class="margin-top-30 font-semi-bold text-center margin-bottom-30">
+            {{ 'page.bankReferecne.mainText'|trans }}
+        </h1>
+        <h4 class="margin-top-30 margin-bottom-50 text-center">{{ 'page.bankReferecne.text'|trans }}</h4>
+        {{ form_start(form) }}
+            <div>
+                {{ form_errors(form) }}
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4">
+                    {{ form_row(form.nameClient) }}
+                </div>
+                <div class="col-4">
+                    {{ form_row(form.snameClient) }}
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-4">
+                    {{ form_row(form.phone) }}
+                </div>
+                <div class="col-4">
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+            <div class="margin-bottom-70 text-center">
+                {{ form_row(form.save) }}
+            </div>
+        {{ form_end(form) }}
+    </section>
+
+
+    {% include 'page/components/footer.html.twig' %}
+
+{% endblock %}

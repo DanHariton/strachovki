@@ -19,9 +19,11 @@ class InsurancePriceEditType extends AbstractType
                 'disabled' => true
             ])
             ->add('oneMonth', TextType::class, [
+                'required' => false,
                 'label' => '1 měsíc'
             ])
             ->add('twoMonth', TextType::class, [
+                'required' => false,
                 'label' => '2 měsíce'
             ])
             ->add('threeMonth', TextType::class, [
@@ -55,39 +57,51 @@ class InsurancePriceEditType extends AbstractType
                 'label' => '12 měsíců'
             ])
             ->add('thirteenMonth', TextType::class, [
+                'required' => false,
                 'label' => '13 měsíců'
             ])
             ->add('fourteenMonth', TextType::class, [
+                'required' => false,
                 'label' => '14 měsíců'
             ])
             ->add('fifteenMonth', TextType::class, [
+                'required' => false,
                 'label' => '15 měsíců'
             ])
             ->add('sixteenMonth', TextType::class, [
+                'required' => false,
                 'label' => '16 měsíců'
             ])
             ->add('seventeenMonth', TextType::class, [
+                'required' => false,
                 'label' => '17 měsíců'
             ])
             ->add('eighteenMonth', TextType::class, [
+                'required' => false,
                 'label' => '18 měsíců'
             ])
             ->add('nineteenMonth', TextType::class, [
+                'required' => false,
                 'label' => '19 měsíců'
             ])
             ->add('twentyMonth', TextType::class, [
+                'required' => false,
                 'label' => '20 měsíců'
             ])
             ->add('twentyOneMonth', TextType::class, [
+                'required' => false,
                 'label' => '21 měsíc'
             ])
             ->add('twentyTwoMonth', TextType::class, [
+                'required' => false,
                 'label' => '22 měsíců'
             ])
             ->add('twentyThreeMonth', TextType::class, [
+                'required' => false,
                 'label' => '23 měsíců'
             ])
             ->add('twoYears', TextType::class, [
+                'required' => false,
                 'label' => '24 měsíců'
             ])
             ->add('save', SubmitType::class, [
