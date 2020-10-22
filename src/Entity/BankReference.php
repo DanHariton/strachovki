@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class BankReference
 {
+    const STATE_NEW = 0;
+    const STATE_PROCESSED = 1;
+    const STATE_CANCELED = 2;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -28,7 +32,7 @@ class BankReference
     private $snameClient;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $phone;
 
@@ -41,6 +45,11 @@ class BankReference
      * @ORM\Column(type="datetime")
      */
     private $orderTime;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $state;
 
     public function getId(): ?int
     {
@@ -103,6 +112,18 @@ class BankReference
     public function setOrderTime(\DateTimeInterface $orderTime): self
     {
         $this->orderTime = $orderTime;
+
+        return $this;
+    }
+
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }

@@ -34,14 +34,34 @@
 .iti
   display block !important
 
+.padding-top-50
+  padding-top 50px
+
+.padding-bottom-50
+  padding-bottom 50px
+
 #fixed-menu
   position fixed
   top 0
   left 0
   z-index 10
+  .navbar-brand
+    padding-left 0
+    img
+      width 300px
+
+.margin-bottom-30
+  margin-bottom 30px
 
 #burger-menu
   display none
+
+.video-content
+  border 2px solid #DA1931
+
+.row
+  margin-left 0 !important
+  margin-right 0 !important
 
 body
   font-family MonseratRegular
@@ -129,6 +149,10 @@ body
   padding 10px 20px 10px 20px
   font-weight bold
   color #fff
+
+.submit-button:hover
+  color #FFFFFF
+  background-color #b9ec37
 
 .color-white
   color #FFFFFF !important
@@ -465,7 +489,6 @@ nav.shift ul li a:hover:after
 
 #manufacture
   h1
-    font-family MonseratBold
     letter-spacing 3px
     color: #282828;
 
@@ -582,7 +605,7 @@ nav.shift ul li a:hover:after
 
 header img
   width 100%
-  height auto
+  height 100%
 
 @media screen and (max-width: 1390px)
   .slide-1-text
@@ -598,7 +621,6 @@ header img
 
 @media screen and (max-width: 990px)
   .insurance-option
-    flex-direction column
     justify-content center
     align-items center
     .insurance-option-text
@@ -663,6 +685,10 @@ header img
           padding-top 0 !important
 
 @media screen and (max-width: 767px)
+  .certificate-container
+    flex-direction column
+    div
+      margin-bottom 20px
   .navbar-brand
     margin-right 0 !important
   .brand-logo
@@ -747,6 +773,15 @@ header img
   .header-menu
     .order-online
       width 58%
+
+@media screen and (max-width: 450px)
+  .header-menu
+    .order-online
+      width 65%
+  .insurance-option
+    .insurance-option-button
+      flex 0 0 90%
+      max-width 90%
 
 @media screen and (max-width: 390px)
   .header-menu

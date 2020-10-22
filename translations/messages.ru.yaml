@@ -1,10 +1,49 @@
 page:
+  menu:
+    products: 'Наши продукты'
+    license: 'Наша лицензия'
+    contacts: 'Контакты'
+    aboutUs: 'О нас'
+    buyOnline: 'Оформить онлайн'
+  aboutUs:
+    mainText: 'О нас'
+    part1: 'Компания KOŤA s.r.o. была создана в далёком 1999 году. За 21 год работы
+            компании на рынке, мы помогли более 1000 клиентам успешно продлить визы,
+            начать свой собственный бизнес в Чехии, открыть фирмы либо зарегистрировать ИП.'
+    part2: 'Наша компания -  бесспорный лидер в своих сегментах, одним из которых является Страхование.
+            На страховом рынке компания работает с 2010 года .Более, чем 10-ти летний опыт работы позволяет
+            нам безошибочно подобрать лучший продукт для каждого клиента.'
+    part3: 'Мы являемся основным партёнаром ведущих страховых компаний: Maxima,
+            PVZP, Ergo, Uniqa, предоставляющих услуги в сфере страхования
+            иностранцев.'
+    part4: 'А связь с нашими менеджерами 24/7 поможет вам в срочном порядке решить любой вопрос в любое время
+            суток 7 дней в неделю. Для наших постоянных клиентов действуют скидочные карты, с приятными
+            бонусами для каждого из вас. Наряду со стандартными комплексными программами страхования, по
+            согласованию с клиентами, могут быть разработаны индивидуальные пакеты
+            страховых услуг, максимально учитывающие специфику конкретного клиента.
+            Так же мы предоставляем скидки при наличии факторов, снижающих риск
+            наступления страховых событий. Именно поэтому, в зависимости от ваших
+            требований, мы поможем вам выбрать лучшую страховую компанию, которая
+            существует на рынке.'
+  whyWe:
+    mainText: 'Почему стоит выбрать именно нас?'
+    part1: '10-летний стаж работы на рынке страхования поможет нам безошибочно
+                выбрать для вас лучший продукт и лучшую цену'
+    part2: 'Мы являемся генеральными партнёрами ведущих страховых компаний в Чехии'
+    part3: 'Быстро оформление страховки онлайн, или у нас в офисе.'
+    part4: 'Всевозможные способы оплаты: наличными, картами онлайн или через
+                платёжный терминал, прямой перевод на банковский счёт. Выберите для себя
+                подходящий!'
+    part5: 'Бесплатная визовая поддержка и консультации с личным менеджером 24/7'
+    part6: 'Клиентские карты с 10-30% скидкой на последующие покупки.'
   bankReferecne:
     mainText: 'Помощь в получении банковских справок'
     text: 'Оставьте свои контактные данные и мы с Вами свяжемся'
   ourLicense:
     text: 'Наша лицензия'
     certifacats: 'Наши сертефикаты'
+    part1: 'В связи с участившимися случаями мошенничества, настоятельно рекомендуем убедиться в наличии лицензии
+            на данный вид деятельности!'
     checkLicense: 'Вы можете проверить нашу лицензию на сайте ČNB следуя видео инструкции, перейдя по ссылке:'
   contactPage:
     text: 'Контакты'
@@ -72,10 +111,67 @@ page:
       smallText4: 'Страхование ответственности и услуга TeleMedic бесплатно к договорам на год и более'
     ergo:
       label: 'Ergo pojišťovna'
+      maxPrice: 'Максимальная выплата до 80 000 €'
+      textWhyInsurance: 'Почему Вы должны застраховаться?'
+      text1: 'Заключение договора медицинского страхования является обязанностью для всех иностранных граждан, которые
+              не являются участниками всеобщего медицинского страхования в ЧР, и не являются гражданами ЕС, это также
+              является условием для получения визы и продления вида на жительство в ЧР.'
+      text2: 'Страхование признается Министерством внутренних дел ЧР – отделом по рассмотрению заявлений о
+              предоставлении убежища и миграционной политики, в качестве документа, в понимании § 180i и § 180j закона
+              № 326/1999 Свода законов, О пребывании иностранных граждан на территории ЧР, в соответствии с текстом
+              последующих предписаний. '
+      text3: 'Непрерывные ассистентские услуги оказывает ассистентская служба GLOBAL Assistance: +420 222 518 100.'
+      table:
+        row1: 'Общий максимальный лимит'
+        row2: 'Медецинская перевозка'
+        row3: 'Транспортировка останков застрахованного лица'
+        row4: 'Стоматологическая медецинская помощь'
+        row5: 'Остальные виды стоматологического лечения'
+        row6: 'Беременость и роды'
+        row7: 'Лечебно-профилактическое обслуживание'
+        row8: 'Комплексная медецинская страховка'
+        row9: 'Лекарства, выписаные на амбулаторном приеме'
+        row10: 'Ассистенская служба'
+        row11: 'Медицинское обслуживание новорожденного ребенка застрахованного лица'
+        more: '* Не действует в случае острой угрозы для жизни'
+        more1: '** На случай беременности и родов распространяется срок ожидания продолжительностью 3 месяца и 8 месяцев'
     pvzp:
       label: 'Pojišťovna VZP'
+      whatInclude: 'Co pojištění obsahuje?'
+      text1: 'Unikátní zdravotní pojištění pro cizince, které je obdobou veřejného zdravotního pojištění'
+      text2: 'Úhrada za preventivní a dispenzární zdravotní péči včetně péče
+              související s těhotenstvím a porodem, za akutní stomatologii, za lékařem
+              předepsané ambulantní léky a prostředky zdravotnické techniky'
+      text3: 'Není nutné absolvovat vstupní lékařskou prohlídku vyjma připojištění typu „Novorozenec“'
+      text4: 'Možnost připojištění typu „Novorozenec“, které zahrnuje úhradu nákladů v případě poporodní péče
+              o novorozence pojištěné matky'
+      text5: 'Nepřetržité asistenční služby renomované společnosti AXA Assistance'
+      text6: 'Pojištění lze sjednat na dobu od 4 do 60 měsíců'
+      text7: 'Výše limitu je volitelná – 1,8 mil. Kč nebo 3 mil. Kč na 1 pojistnou událost'
+      whatInsuredText: 'Na co se pojištění vztahuje?'
+      text8: 'Úhrada nákladů za zdravotní služby poskytnuté zdravotnickým zařízením
+              v souvislosti s onemocněním nebo úrazem. Rozsah pojištění včetně
+              výluk je uveden v  pojistných podmínkách  tohoto pojištění'
+      text9: 'Úhrada za preventivní a dispenzární zdravotní péči včetně péče
+               související s těhotenstvím a porodem, na akutní stomatologii, na lékařem
+               předepsané ambulantní léky a prostředky zdravotnické techniky'
+      text10: 'Možnost připojištění typu „Novorozenec“, které zahrnuje úhradu nákladů
+               v případě poporodní péče o novorozence pojištěné matky'
+      text11: 'Možnost připojištění profesionálních sportů'
+      text12: 'Možnost připojištění pojištění léčebných výloh pro území tzv.
+               schengenského prostoru'
+      text13: 'Nad rámec pojištění můžete čerpat tyto nadstandardní služby:'
+      text14: 'preventivní prohlídka ke zjištění aktuálního zdravotního stavu'
+      text15: 'prohlídky a vyšetření ke zjištění konkrétního onemocnění (např.
+               laboratorní vyšetření krve, prostaty; vyšetření na zhoubný melanom kůže)'
+      text16: 'dentální hygiena'
     uniqa:
       label: 'UNIQA pojišťovna'
+      maxPrice: 'Максимальная выплата до 100 000 €'
+      komplexInsurance: 'Комплексное медецинское страхование иностранцев'
+      text1: 'Zahrnuje ambulantní ošetření i ústavní péči (včetně pohotovostní i záchranné služby
+              a poskytnutí léků), prevenci a dispenzární péči. Výše pojistného plnění je volitelná až do
+              100 000 EUR na jednu pojistnou událost'
 
 form:
   bankReference:
@@ -97,6 +193,7 @@ form:
     placeholder: 'Пароль из e-mail'
     submit: 'Перейти к оплате'
   texts:
+    forStudents: 'Студентам для продления/получения визы'
     insuranceType: 'Тип страхования'
     komplexInsurance: 'Комплексное медицинское страхование'
     necessaryInsurance: 'Страхование необходимой и неотложной помощи'
@@ -123,7 +220,7 @@ form:
     label:
       submit: 'Позвоните мне'
     placeholder:
-      mobile: '+420'
+      mobile: 'например, +420 777 66 33 22'
   insurance:
     insuranceName:
       label: 'Страховая'
@@ -259,6 +356,10 @@ email:
     paidOnlineText: 'Вы всегда можете заплатить Ваш заказ on-line перейдя по этой'
     linkText: 'ССЫЛКЕ'
     instruktion: 'Что бы оплатить Ваш заказ, введите этот код в специльную форму по ссылке выше: '
+  bankReference:
+    text1: 'Вы заказали услугу на сайте'
+    text2: "'Помощь в получении банковской справки'"
+    text3: 'Наши сотрудники обязательно свяжутся с Вами в течении 6 часов!'
   footer:
     regards:
       text1: 'С наилучшими пожеланиями,'

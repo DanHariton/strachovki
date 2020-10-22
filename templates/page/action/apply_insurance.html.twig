@@ -8,7 +8,7 @@
     {% include 'page/components/header.html.twig' %}
     <div id="insurance-price" data-array="{{ insurancePrice }}" data-insurance="{{ name }}" data-type="{{ type }}"></div>
     <section class="container">
-        <h1 class="text-center font-semi-bold margin-bottom-50 margin-top-70">
+        <h1 class="text-center font-semi-bold mb-3 margin-top-70">
             {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
                 {{ 'form.texts.komplexInsurance'|trans }}
             {% else %}
@@ -27,6 +27,7 @@
                 <strong class="color-red">Ergo</strong>
             {% endif %}
         </h1>
+        <h4 class="text-center margin-bottom-50">{{ 'form.texts.forStudents'|trans }}</h4>
 
         {{ form_start(form) }}
             <div>
@@ -36,12 +37,24 @@
             <div>
                 <div class="accordion margin-bottom-70" id="accordionExample">
                     <div class="card custom-border-red">
-                        <div class="card-header background-red" id="headingOne">
+                        <div class="card-header d-flex justify-content-between align-items-center background-red" id="headingOne">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left text-white font-semi-bold text-uppercase" type="button" aria-expanded="true" aria-controls="collapseOne">
                                     {{ 'form.texts.insuranceDuration'|trans }}
                                 </button>
                             </h2>
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
+                                <h5 class="mb-0 text-white font-bold">Maxima pojišťovna a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_UNIQA") %}
+                                <h5 class="mb-0 text-white font-bold">UNIQA pojišťovna</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
+                                <h5 class="mb-0 text-white font-bold">Pojišťovna VZP, a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_ERGO") %}
+                                <h5 class="mb-0 text-white font-bold">ERGO pojišťovna</h5>
+                            {% endif %}
                         </div>
 
                         <div aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -70,12 +83,24 @@
                         </div>
                     </div>
                     <div class="card custom-border-red-form">
-                        <div class="card-header background-red" id="headingTwo">
+                        <div class="card-header d-flex justify-content-between align-items-center background-red" id="headingTwo">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left font-semi-bold collapsed text-white text-uppercase" type="button" aria-expanded="false" aria-controls="collapseTwo">
                                     {{ 'form.texts.insuredPerson'|trans }}
                                 </button>
                             </h2>
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
+                                <h5 class="mb-0 text-white font-bold">Maxima pojišťovna a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_UNIQA") %}
+                                <h5 class="mb-0 text-white font-bold">UNIQA pojišťovna</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
+                                <h5 class="mb-0 text-white font-bold">Pojišťovna VZP, a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_ERGO") %}
+                                <h5 class="mb-0 text-white font-bold">ERGO pojišťovna</h5>
+                            {% endif %}
                         </div>
                         <div aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
@@ -179,12 +204,24 @@
                         </div>
                     </div>
                     <div class="card custom-border-red-form">
-                        <div class="card-header background-red" id="headingTwo">
+                        <div class="card-header d-flex justify-content-between align-items-center background-red" id="headingTwo">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block font-semi-bold text-left collapsed text-white text-uppercase" type="button" aria-expanded="false" aria-controls="collapseTwo">
                                     {{ 'form.texts.insuranceContract'|trans }}
                                 </button>
                             </h2>
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
+                                <h5 class="mb-0 text-white font-bold">Maxima pojišťovna a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_UNIQA") %}
+                                <h5 class="mb-0 text-white font-bold">UNIQA pojišťovna</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
+                                <h5 class="mb-0 text-white font-bold">Pojišťovna VZP, a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_ERGO") %}
+                                <h5 class="mb-0 text-white font-bold">ERGO pojišťovna</h5>
+                            {% endif %}
                         </div>
                         <div aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
@@ -243,12 +280,24 @@
                         </div>
                     </div>
                     <div class="card custom-border-red-form">
-                        <div class="card-header background-red" id="headingTwo">
+                        <div class="card-header d-flex justify-content-between align-items-center background-red" id="headingTwo">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block font-semi-bold text-left collapsed text-white text-uppercase" type="button" aria-expanded="false" aria-controls="collapseTwo">
                                     {{ 'form.texts.paymentMethod'|trans }}
                                 </button>
                             </h2>
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
+                                <h5 class="mb-0 text-white font-bold">Maxima pojišťovna a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_UNIQA") %}
+                                <h5 class="mb-0 text-white font-bold">UNIQA pojišťovna</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
+                                <h5 class="mb-0 text-white font-bold">Pojišťovna VZP, a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_ERGO") %}
+                                <h5 class="mb-0 text-white font-bold">ERGO pojišťovna</h5>
+                            {% endif %}
                         </div>
                         <div aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">

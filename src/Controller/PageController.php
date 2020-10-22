@@ -16,13 +16,15 @@ use App\Util\FakeTranslator;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenPayU_Order;
-use Swift_Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -55,9 +57,17 @@ class PageController extends AbstractController
     }
 
     /**
+     * @Route ("/about-us", name="page_about_us")
+     */
+    public function aboutUsAction()
+    {
+        return $this->render('page/action/about_us.html.twig');
+    }
+
+    /**
      * @Route ("/insuarence-maxima-options", name="page_insurance_maxima_options")
      */
-    public function insuranceMaximaOptions()
+    public function insuranceMaximaOptionsAction()
     {
         return $this->render('page/action/insurance_maxima_options.html.twig');
     }
@@ -65,7 +75,7 @@ class PageController extends AbstractController
     /**
      * @Route ("/insuarence-uniqa-options", name="page_insurance_uniqa_options")
      */
-    public function insuranceUniqaOptions()
+    public function insuranceUniqaOptionsAction()
     {
         return $this->render('page/action/insurance_uniqa_options.html.twig');
     }
@@ -73,7 +83,7 @@ class PageController extends AbstractController
     /**
      * @Route ("/insuarence-ergo-options", name="page_insurance_ergo_options")
      */
-    public function insuranceErgoOptions()
+    public function insuranceErgoOptionsAction()
     {
         return $this->render('page/action/insurance_ergo_options.html.twig');
     }
@@ -81,7 +91,7 @@ class PageController extends AbstractController
     /**
      * @Route ("/insuarence-pvzp-options", name="page_insurance_pvzp_options")
      */
-    public function insurancePVZPOptions()
+    public function insurancePVZPOptionsAction()
     {
         return $this->render('page/action/insurance_pvzp_options.html.twig');
     }
@@ -102,13 +112,14 @@ class PageController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param OrderFactory $orderFactory
-     * @param Swift_Mailer $mailer
+     * @param MailerInterface $mailer
      * @param InsurancePriceFactory $insurancePriceFactory
      * @return RedirectResponse|Response
+     * @throws TransportExceptionInterface
      * @throws \OpenPayU_Exception
      */
     public function applyInsuranceAction($name, $type, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory,
-                                         Swift_Mailer $mailer, InsurancePriceFactory $insurancePriceFactory)
+                                         MailerInterface $mailer, InsurancePriceFactory $insurancePriceFactory)
     {
         $insurance = new Insurance();
         $insurance->setInsuranceName($name);
@@ -135,15 +146,15 @@ class PageController extends AbstractController
             $insurance->setPaidToInsuranceCompany(false);
             $insurance->setSentToClient(false);
 
-            $message = (new \Swift_Message('Новый заказ'))
-                ->setFrom('danilhariton@gmail.com')
-                ->setTo($insurance->getClientEmail())
-                ->setBody(
+            $message = (new Email())
+                ->from('info@zastrachuj.cz')
+                ->to($insurance->getClientEmail())
+                ->subject('Новый заказ')
+                ->html(
                     $this->renderView(
                         'emails/confirm_order.html.twig',
                         ['insurance' => $insurance, 'type' => $type]
-                    ),
-                    'text/html'
+                    )
                 )
             ;
 
@@ -198,11 +209,12 @@ class PageController extends AbstractController
      * @Route("/payu/paymnet-callback", name="page_payment_callback")
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param Swift_Mailer $mailer
+     * @param MailerInterface $mailer
      * @return Response
+     * @throws TransportExceptionInterface
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, Swift_Mailer $mailer)
+    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, MailerInterface $mailer)
     {
         $responseData = json_decode($request->getContent());
         $insurance = $em
@@ -216,15 +228,15 @@ class PageController extends AbstractController
         if ($responseData->order->status === 'COMPLETED') {
             $insurance->setStatus(Insurance::STATUS_PAYED_SUCCESS);
 
-            $message = (new \Swift_Message('Спасибо за оплату!'))
-                ->setFrom('danilhariton@gmail.com')
-                ->setTo($insurance->getClientEmail())
-                ->setBody(
+            $message = (new Email())
+                ->from('info@zastrachuj.cz')
+                ->to($insurance->getClientEmail())
+                ->subject('Спасибо за оплату!')
+                ->html(
                     $this->renderView(
                         'emails/payment_success.html.twig',
                         ['insurance' => $insurance]
-                    ),
-                    'text/html'
+                    )
                 )
             ;
 
@@ -244,6 +256,10 @@ class PageController extends AbstractController
 
     /**
      * @Route("/pay-online", name="page_pay_online")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @param OrderFactory $orderFactory
+     * @return RedirectResponse|Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \OpenPayU_Exception
      */
@@ -331,15 +347,28 @@ class PageController extends AbstractController
     }
 
     /**
+     * @Route("/our-license/vypis-z-seznamu", name="page_vypis_z_seznamu")
+     */
+    public function vizitkaAction()
+    {
+        $file = new File(__DIR__ . '/../../templates/src/page/pdf/vizitka.PDF');
+
+        return $this->file($file, 'vizitka.PDF', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
      * @Route("/bank-reference", name="page_bank_reference")
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param MailerInterface $mailer
      * @return RedirectResponse|Response
+     * @throws TransportExceptionInterface
      */
-    public function bankReferenceAction(Request $request, EntityManagerInterface $em)
+    public function bankReferenceAction(Request $request, EntityManagerInterface $em, MailerInterface $mailer)
     {
         $bankReference = new BankReference();
         $bankReference->setOrderTime(new DateTime());
+        $bankReference->setState(BankReference::STATE_NEW);
         $form = $this->createForm(BankReferenceType::class, $bankReference)
             ->handleRequest($request);
 
@@ -347,6 +376,20 @@ class PageController extends AbstractController
             $bankReference = $form->getData();
             $em->persist($bankReference);
             $em->flush();
+
+            $message = (new Email())
+                ->from('info@zastrachuj.cz')
+                ->to($bankReference->getEmail())
+                ->subject('Подтверждение заявки')
+                ->html(
+                    $this->renderView(
+                        'emails/confirm_bank_reference.html.twig',
+                        ['insurance' => $bankReference]
+                    )
+                )
+            ;
+
+            $mailer->send($message);
 
             $this->addFlash('success', (new FakeTranslator())->trans('page.applyClientPhone.flash.success'));
             return $this->redirectToRoute('page_index');

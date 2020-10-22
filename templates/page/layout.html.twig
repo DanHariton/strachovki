@@ -32,6 +32,13 @@
             autoFormat: true,
             nationalMode: true
         });
+        let inputBankReference = document.querySelector("#bank_reference_phone");
+        window.intlTelInput(inputBankReference, {
+            utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.min.js',
+            preferredCountries: ['cz', 'ru', 'ua', 'by', 'kz'],
+            autoFormat: true,
+            nationalMode: true
+        });
     </script>
     <script>new WOW().init();</script>
 {% endblock %}

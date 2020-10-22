@@ -20,6 +20,7 @@
                         <th>Telefon</th>
                         <th>E-mail</th>
                         <th>Datum obracení</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,6 +32,15 @@
                             <td>{{ reference.phone }}</td>
                             <td>{{ reference.email }}</td>
                             <td>{{ reference.orderTime|date('d.m.Y') }}</td>
+                            <td>
+                                {% if reference.state == constant('App\\Entity\\BankReference::STATE_NEW') %}
+                                    <a class="btn btn-sm btn-warning mb-2" href="{{ path('admin_bank_reference_toggle', {'bankReference': reference.id}) }}">Nezpracováno</a>
+                                {% elseif reference.state == constant('App\\Entity\\BankReference::STATE_PROCESSED') %}
+                                    <a class="btn btn-sm btn-success mb-2" href="{{ path('admin_bank_reference_toggle', {'bankReference': reference.id}) }}">Zpracováno</a>
+                                {% else %}
+                                    <a class="btn btn-sm btn-danger mb-2" href="{{ path('admin_bank_reference_toggle', {'bankReference': reference.id}) }}">Zrušeno</a>
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

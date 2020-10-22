@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BankReference;
 use App\Entity\Insurance;
 use App\Entity\InsurancePrice;
 use App\Form\BankReferenceType;
@@ -175,4 +176,25 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/bank-reference/toggle/{bankReference}", name="admin_bank_reference_toggle")
+     * @param BankReference $bankReference
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse
+     */
+    public function bankReferenceToggleAction(BankReference $bankReference, EntityManagerInterface $em)
+    {
+        if ($bankReference->getState() == BankReference::STATE_PROCESSED) {
+            $bankReference->setState(BankReference::STATE_CANCELED);
+        } else {
+            $bankReference->setState(BankReference::STATE_PROCESSED);
+        }
+
+        if ($bankReference->getState() == BankReference::STATE_NEW) {
+            $bankReference->setState(BankReference::STATE_PROCESSED);
+        }
+
+        $em->flush();
+        return $this->redirectToRoute('admin_bank_reference_list');
+    }
 }

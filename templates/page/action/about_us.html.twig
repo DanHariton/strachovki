@@ -1,0 +1,20 @@
+{% extends 'page/layout.html.twig' %}
+
+{% block title %}Застрахуй.cz | Конаткты{% endblock %}
+
+{% block body %}
+    {% include 'page/components/header.html.twig' %}
+    <section class="container">
+        <h1 class="margin-top-50 margin-bottom-30 text-center font-semi-bold">{{ 'page.aboutUs.mainText'|trans }}</h1>
+        <div class="margin-bottom-70">
+            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part1'|trans }}</p>
+            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part2'|trans }}</p>
+            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part3'|trans }}</p>
+            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part4'|trans }}</p>
+        </div>
+    </section>
+
+
+    {% include 'page/components/footer.html.twig' %}
+
+{% endblock %}

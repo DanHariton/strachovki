@@ -5,19 +5,22 @@
 {% block body %}
     {% include 'page/components/header.html.twig' %}
     <section class="container">
-        <h1 class="margin-top-30 font-semi-bold text-center margin-bottom-30">{{ 'page.ourLicense.text'|trans }}</h1>
+        <p class="h4 text-center color-red font-semi-bold mb-4 margin-top-30">
+            {{ 'page.ourLicense.part1'|trans }}
+        </p>
+        <h1 class="margin-top-30 text-uppercase font-semi-bold text-center margin-bottom-30">{{ 'page.ourLicense.text'|trans }}</h1>
         <p class="h4 text-justify mb-4">
             {{ 'page.ourLicense.checkLicense'|trans }}
             <a target="_blank" class="color-red font-semi-bold" href="https://apl.cnb.cz/apljerrsdad/JERRS.WEB45.LOGIN_A?p_lang=cz&amp;p_err=8">
                 apl.cnb.cz
             </a>
         </p>
-        <video width="100%" controls>
+        <video class="video-content" width="100%" controls>
             <source src="{{ asset('assets/page/img/instruction.mov') }}" type="video/mp4">
             Your browser does not support HTML video.
         </video>
-        <h2 class="text-center font-semi-bold margin-top-30">{{ 'page.ourLicense.certifacats'|trans }}</h2>
-        <div class="row mt-5 margin-bottom-50">
+        <h2 class="text-center font-semi-bold margin-top-30 text-uppercase">{{ 'page.ourLicense.certifacats'|trans }}</h2>
+        <div class="row d-flex justify-content-between certificate-container mt-5 margin-bottom-50">
             <div class="col text-center">
                 <a target="_blank" class="color-red license-link text-uppercase" href="{{ path('page_license_osvedceni') }}">
                     <i class="far fa-file-pdf pdf-icon"></i>
@@ -28,6 +31,12 @@
                 <a target="_blank" class="color-red license-link text-uppercase" href="{{ path('page_license_certificate') }}">
                     <i class="far fa-file-pdf pdf-icon"></i>
                     <p class="mt-4 h5">Certifikát</p>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a target="_blank" class="color-red license-link text-uppercase" href="{{ path('page_vypis_z_seznamu') }}">
+                    <i class="far fa-file-pdf pdf-icon"></i>
+                    <p class="mt-4 h5">Výpis ze seznamu</p>
                 </a>
             </div>
         </div>
