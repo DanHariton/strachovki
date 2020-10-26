@@ -75,15 +75,16 @@
     </section>
     <section class="container">
         <h2 class="font-semi-bold text-center mt-5 mb-4">{{ 'page.insurances.whatCanInsurance'|trans }}</h2>
-        <table class="table">
-            <thead>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                 <tr>
                     <th scope="col" class="align-middle border-table-red">{{ 'page.insurances.maxima.table.scope'|trans }}</th>
                     <th scope="col" class="w-25 text-center font-semi-bold border-table-red">{{ 'page.insurances.maxima.table.insuranceStandart'|trans }}</th>
                     <th scope="col" class="w-25 text-center font-semi-bold border-table-red">{{ 'page.insurances.maxima.table.necessaryInsurance'|trans }}</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr>
                     <th scope="row" class="align-middle">{{ 'page.insurances.maxima.table.row1'|trans }}</th>
                     <td class="align-middle text-center color-green table-check"><i class="fas fa-check"></i></td>
@@ -159,8 +160,9 @@
                     <td class="text-center align-middle">{{ 'page.insurances.maxima.table.row15Text'|trans }}</td>
                     <td class="align-middle text-center color-red table-check"><i class="fas fa-times"></i></td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
         <p class="mt-5 text-center mb-5">{{ 'page.insurances.maxima.table.more'|trans }}</p>
     </section>
     {% include 'page/components/footer.html.twig' %}

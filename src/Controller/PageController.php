@@ -391,12 +391,20 @@ class PageController extends AbstractController
 
             $mailer->send($message);
 
-            $this->addFlash('success', (new FakeTranslator())->trans('page.applyClientPhone.flash.success'));
-            return $this->redirectToRoute('page_index');
+            return $this->redirectToRoute('page_bank_reference_success');
         }
 
         return $this->render('page/action/bank_reference.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/bank-reference/success", name="page_bank_reference_success")
+     */
+    public function successApplyBankReference()
+    {
+        return $this->render('page/action/confirm_bank_reference.html.twig');
     }
 }
