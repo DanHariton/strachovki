@@ -40,6 +40,9 @@
 .padding-bottom-50
   padding-bottom 50px
 
+.padding-top-75
+  padding-top 75px
+
 #fixed-menu
   position fixed
   top 0
@@ -48,7 +51,7 @@
   .navbar-brand
     padding-left 0
     img
-      width 300px
+      width 285px
 
 .margin-bottom-30
   margin-bottom 30px
@@ -685,6 +688,21 @@ header img
           padding-top 0 !important
 
 @media screen and (max-width: 767px)
+  .maxima-options-text
+    flex-direction column
+    div
+      padding-bottom 20px
+      margin-bottom 20px
+      border-right none !important
+      border-bottom 1px solid white
+    div:last-child
+      border-bottom none
+      margin-bottom 0
+      padding-bottom 0
+  .main-header
+    flex-direction column
+  .fixed-menu
+    flex-direction column
   .wrapper-menu
    display flex
    align-items center
@@ -729,8 +747,14 @@ header img
       width 46%
   #manufacture
     .flip-card
-      lex: 0 0 100% !important;
+      flex: 0 0 100% !important;
       max-width: 100% !important;
+  .maxima-cards
+    .flip-card
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+    .flip-card:last-child
+      margin-top  50px
   .our-services
     flex-direction column
     .flip-card:first-child

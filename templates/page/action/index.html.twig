@@ -17,39 +17,51 @@
             </div>
         </div>
     </section>
-    <section>
-        <div class="container">
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }}">
-                        {{ message|trans() }}
-                    </div>
-                {% endfor %}
+    <section class="container" id="about-us">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message|trans() }}
+                </div>
             {% endfor %}
-            <h1 class="margin-bottom-30 text-center font-semi-bold text-uppercase">{{ 'page.whyWe.mainText'|trans }}</h1>
+        {% endfor %}
+        <h1 class="margin-bottom-30 text-center font-semi-bold text-uppercase">{{ 'page.aboutUs.mainText'|trans }}</h1>
+        <div class="margin-bottom-70">
+            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part1'|trans }}</p>
+            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part2'|trans }}</p>
+            <p class="text-justify h5 mb-3">
+                {{ 'page.aboutUs.part3First'|trans }} <strong class="color-red font-semi-bold">Maxima, Uniqa, pVZP, Ergo,</strong>
+                {{ 'page.aboutUs.part3Second'|trans }}
+            </p>
+            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part4'|trans }}</p>
+        </div>
+    </section>
+    <section class="background-red pt-5 pb-5">
+        <div class="container">
+            <h1 class="margin-bottom-30 text-white text-center font-semi-bold text-uppercase">{{ 'page.whyWe.mainText'|trans }}</h1>
             <div class="h4 d-flex flex-row align-items-center mb-3">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="mb-0 text-justify">{{ 'page.whyWe.part1'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part1'|trans }}</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center mb-3">
                 <i class="color-green fas fa-check-double mr-3"></i>
-                <p class="mb-0 text-justify">{{ 'page.whyWe.part2'|trans }} <strong class="color-red">(Maxima, Uniqa, pVZP, Ergo)</strong>.</p>
+                <p class="mb-0 text-justify text-white">{{ 'page.whyWe.part2'|trans }} <strong class="text-white">(Maxima, Uniqa, pVZP, Ergo)</strong>.</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center mb-3">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="mb-0 text-justify">{{ 'page.whyWe.part3'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part3'|trans }}</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center mb-3">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="mb-0 text-justify">{{ 'page.whyWe.part4'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part4'|trans }}</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center mb-3">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="mb-0 text-justify">{{ 'page.whyWe.part5'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part5'|trans }}</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="mb-0 text-justify">{{ 'page.whyWe.part6'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part6'|trans }}</p>
             </div>
         </div>
     </section>
     <div class="container">
-        <section id="manufacture" class="text-center margin-bottom-70 margin-top-70">
+        <section id="manufacture" class="text-center margin-bottom-70 padding-top-75">
             <h1 class="margin-bottom-30 font-semi-bold text-uppercase">Наши услуги</h1>
 
             <div class="row d-flex justify-content-around margin-bottom-70 our-services">
