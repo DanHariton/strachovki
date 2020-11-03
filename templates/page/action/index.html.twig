@@ -5,7 +5,7 @@
 {% block body %}
     {% include 'page/components/header.html.twig' %}
 
-    <section id="main-slider" class="margin-bottom-70">
+    <section id="main-slider">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" style="position: relative">
@@ -17,90 +17,37 @@
             </div>
         </div>
     </section>
-    <section class="container" id="about-us">
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ label }}">
-                    {{ message|trans() }}
-                </div>
-            {% endfor %}
-        {% endfor %}
-        <h1 class="margin-bottom-30 text-center font-semi-bold text-uppercase">{{ 'page.aboutUs.mainText'|trans }}</h1>
-        <div class="margin-bottom-70">
-            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part1'|trans }}</p>
-            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part2'|trans }}</p>
-            <p class="text-justify h5 mb-3">
-                {{ 'page.aboutUs.part3First'|trans }} <strong class="color-red font-semi-bold">Maxima, Uniqa, pVZP, Ergo,</strong>
-                {{ 'page.aboutUs.part3Second'|trans }}
-            </p>
-            <p class="text-justify h5 mb-3">{{ 'page.aboutUs.part4'|trans }}</p>
-        </div>
-    </section>
-    <section class="background-red pt-5 pb-5">
+    <section class="pt-5 pb-5">
         <div class="container">
-            <h1 class="margin-bottom-30 text-white text-center font-semi-bold text-uppercase">{{ 'page.whyWe.mainText'|trans }}</h1>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message|trans() }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <h1 class="margin-bottom-30 text-center font-semi-bold text-uppercase">{{ 'page.whyWe.mainText'|trans }}</h1>
             <div class="h4 d-flex flex-row align-items-center mb-3">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part1'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class="mb-0 text-justify">{{ 'page.whyWe.part1'|trans }}</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center mb-3">
                 <i class="color-green fas fa-check-double mr-3"></i>
-                <p class="mb-0 text-justify text-white">{{ 'page.whyWe.part2'|trans }} <strong class="text-white">(Maxima, Uniqa, pVZP, Ergo)</strong>.</p>
+                <p class="mb-0 text-justify">{{ 'page.whyWe.part2'|trans }} <strong class="color-red">(Maxima, Uniqa, pVZP, Ergo)</strong>.</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center mb-3">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part3'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class=" mb-0 text-justify">{{ 'page.whyWe.part3'|trans }}</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center mb-3">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part4'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class=" mb-0 text-justify">{{ 'page.whyWe.part4'|trans }}</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center mb-3">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part5'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class=" mb-0 text-justify">{{ 'page.whyWe.part5'|trans }}</p>
             </div>
             <div class="h4 d-flex flex-row align-items-center">
-                <i class="color-green fas fa-check-double mr-3"></i> <p class="text-white mb-0 text-justify">{{ 'page.whyWe.part6'|trans }}</p>
+                <i class="color-green fas fa-check-double mr-3"></i> <p class=" mb-0 text-justify">{{ 'page.whyWe.part6'|trans }}</p>
             </div>
         </div>
     </section>
-    <div class="container">
-        <section id="manufacture" class="text-center margin-bottom-70 padding-top-75">
-            <h1 class="margin-bottom-30 font-semi-bold text-uppercase">Наши услуги</h1>
-
-            <div class="row d-flex justify-content-around margin-bottom-70 our-services">
-                <div class="flip-card col-sm-5">
-                    <div class="flip-card-inner custom-border-red pt-5 pb-5">
-                        <div class="flip-card-front">
-                            <a class="service-link text-decoration-none" href="{{ path('page_insurance_options') }}">
-                                <img src="{{ asset('assets/page/img/insuarence-order.jpg') }}" alt="order insurance online" class="img-fluid pt-5">
-                                <p class="mt-4 mb-0 color-red">Страхование инострацев</p>
-                            </a>
-                        </div>
-                        <div class="flip-card-back">
-                            <a class="service-link text-decoration-none" href="{{ path('page_insurance_options') }}">
-                                <img src="{{ asset('assets/page/img/insuarence-order.jpg') }}" alt="order insurance online" class="img-fluid pt-5">
-                                <p class="mt-4 mb-0 text-white">Страхование инострацев</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="flip-card col-sm-5">
-                    <div class="flip-card-inner custom-border-red pt-5 pb-5">
-                        <div class="flip-card-front">
-                            <a class="service-link text-decoration-none" href="{{ path('page_bank_reference') }}">
-                                <img src="{{ asset('assets/page/img/bank-order.jpg') }}" alt="order bank" class="img-fluid pt-5">
-                                <p class="mt-4 mb-0 color-red">Помощь в получении банковских справок</p>
-                            </a>
-                        </div>
-                        <div class="flip-card-back">
-                            <a class="service-link text-decoration-none" href="{{ path('page_bank_reference') }}">
-                                <img src="{{ asset('assets/page/img/bank-order.jpg') }}" alt="order bank" class="img-fluid pt-5">
-                                <p class="mt-4 mb-0 text-white">Помощь в получении банковских справок</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </div>
     <section id="contactUs" class="pt-5 pb-5 background-red">
         <div class="container">
             <h2 class="text-center text-white font-semi-bold mb-4 pt-3 text-uppercase">Получите больше информации по телефону</h2>

@@ -57,6 +57,14 @@ class PageController extends AbstractController
     }
 
     /**
+     * @Route("/our-services", name="page_our_services")
+     */
+    public function ourServices()
+    {
+        return $this->render('page/action/our_services.html.twig');
+    }
+
+    /**
      * @Route ("/about-us", name="page_about_us")
      */
     public function aboutUsAction()

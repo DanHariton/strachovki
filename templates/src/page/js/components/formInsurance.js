@@ -447,7 +447,9 @@ $('#info-confirmation-check-box').click(function () {
 
 $('#insurance_startDate').change(function () {
     if (insuranceSelected === INSURANCE_MAXIMA) {
-        if (moment($('#insurance_startDate').val()).month() < moment().month()) {
+        //TODO: проверка и по годамю. В данный момент нельзя купить в 2021
+        if ((moment($('#insurance_startDate').val()).month() < moment().month() &&
+                moment($('#insurance_startDate').val()).year() < moment().year()) || moment($('#insurance_startDate').val()).year() < moment().year()) {
             $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
             alert('Пожулуйста, выберите актуальную дату!\n' +
             'Если вы хотите выбрать прошедшую дату, свяжитесь с нами для уточнения информации');

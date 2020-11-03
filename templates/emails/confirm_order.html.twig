@@ -29,10 +29,26 @@
     </p>
     <p class="mb-2">{{ 'email.detail.duration'|trans }} <strong>{{ insurance.insuranceDuration }}</strong> {{ 'email.detail.month'|trans }}</p>
     <p class="mb-2">
-        {{ 'email.paymentInfo.paidOnlineText'|trans }}
-        <strong><a class="color-red" href="http://54.38.55.53{{ path('page_pay_online') }}">{{ 'email.paymentInfo.linkText'|trans }}</a></strong>
+        {{ 'email.paymentInfo.method'|trans }}
+        {% if insurance.paymentMethod == constant("App\\Entity\\Insurance::PAYMENT_METHOD_CASH") %}
+            <strong style="color: #DA1931; font-size: 14px">
+                {{ 'email.paymentInfo.methodCash'|trans }}
+                <a href="http://54.38.55.53{{ path('page_contact') }}">{{ 'email.paymentInfo.methodLink'|trans }}</a>
+            </strong>
+        {% else %}
+            <strong style="color: #DA1931; font-size: 14px">{{ 'email.paymentInfo.methodCard'|trans }}</strong>
+        {% endif %}
     </p>
-    <p class="mb-2">{{ 'email.paymentInfo.instruktion'|trans }} <mark><strong style="color: #DA1931">{{ insurance.paymentPassword }}</strong></mark></p>
+    <p class="mb-2">
+        {{ 'email.paymentInfo.paidOnlineText'|trans }}
+    </p>
+    <p class="mb-2">
+        {{ 'email.paymentInfo.instruktion'|trans }} - <br><strong style="color: #228be6; font-size: 16px">{{ insurance.paymentPassword }}</strong>
+    </p>
+    <p class="mb-2">
+        {{ 'email.paymentInfo.instruktionForm'|trans }}
+        <strong><a href="http://54.38.55.53{{ path('page_pay_online') }}">{{ 'email.paymentInfo.linkText'|trans }}</a></strong>
+    </p>
     <br><br>
     <h4 class="text-center">
         {{ 'email.automaticText'|trans }}
