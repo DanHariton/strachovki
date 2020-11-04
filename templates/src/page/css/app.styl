@@ -34,6 +34,9 @@
 .iti
   display block !important
 
+.text-indent
+  text-indent 2.5em
+
 .padding-top-50
   padding-top 50px
 
@@ -47,7 +50,7 @@
   position fixed
   top 0
   left 0
-  z-index 10
+  z-index 11
   .navbar-brand
     padding-left 0
     img
@@ -81,6 +84,38 @@ body
 
 .logo img
   width 350px
+
+.carusel-text-1, .carusel-text-2, .carusel-text-3, .carusel-text-4
+  display: block;
+  position: absolute;
+  z-index: 10;
+  top: 45%;
+  left: 16%;
+  color: #DA1931;
+  font-weight: bold;
+  font-size: 2.8rem;
+  animation-timing-function: linear;
+  cursor: default;
+
+.carusel-text-1
+  top: 24%;
+  left: 3%;
+  display: none;
+
+.carusel-text-2
+  top: 37%;
+  left: 9%;
+  display: none;
+
+.carusel-text-3
+  top: 50%;
+  left: 17%;
+  display: none;
+
+.carusel-text-4
+  top: 63%;
+  left: 28%;
+  display: none;
 
 .color-green
   color #b1e360
@@ -345,21 +380,6 @@ nav.shift ul li a:hover:after
 .logo-footer
   width 250px
 
-.slide-1-text
-  transform: skew(-15deg);
-  position: absolute;
-  font-weight 600
-  font-size 20px
-  top: 28%;
-  left: 65%;
-  width: 25%;
-  background-color: rgba(255, 255, 255, 0.85);
-  color: red;
-  text-transform: uppercase;
-
-.slide-1-text-transform
-  transform: skew(15deg);
-
 .flip-card, .flip-card-options {
   background-color: transparent;
   min-height 380px
@@ -610,17 +630,9 @@ header img
   width 100%
   height 100%
 
-@media screen and (max-width: 1390px)
-  .slide-1-text
-    width 30%
-    left 60%
-
 @media screen and (max-width: 1200px)
   .nav-link-contact
     font-size 18px !important
-  .slide-1-text
-    width 36%
-    left 52%
 
 @media screen and (max-width: 990px)
   .insurance-option
@@ -671,11 +683,6 @@ header img
     justify-content end !important
   .flip-card, .flip-card-options
     min-height 310px !important
-  .slide-1-text
-    font-size 18px
-    left 50%
-    width 43%
-    top 20%
   .flip-card, .flip-card-options
     min-height 365px !important
     .flip-card-front
@@ -716,11 +723,6 @@ header img
     margin-right 0 !important
   .brand-logo
     padding-right 0 !important
-  .slide-1-text
-    font-size 16px
-    left 44%
-    width 50%
-    top 25%
   .main-header
     align-items center
   #fixed-menu
@@ -769,15 +771,7 @@ header img
     text-align center
     margin-top 50px
 
-@media screen and (max-width: 650px)
-  .slide-1-text
-    top 22%
-
 @media screen and (max-width: 575px)
-  .slide-1-text
-    top 22%
-    left 35%
-    width 60%
   .navbar-toggler
     margin-right 35px
   .header-menu
@@ -790,10 +784,6 @@ header img
       width 50%
 
 @media screen and (max-width: 490px)
-  .slide-1-text
-    top 10%
-    left 10%
-    width 80%
   .let-phone
     flex-direction column !important
     align-items center
@@ -816,8 +806,3 @@ header img
   .header-menu
     .order-online
       width 75%
-  .slide-1-text
-    top 5%
-    left 5%
-    width 90%
-    font-size 14px

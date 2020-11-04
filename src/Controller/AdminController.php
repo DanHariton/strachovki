@@ -29,7 +29,7 @@ class AdminController extends AbstractController
      */
     public function indexAction()
     {
-        return $this->render('admin/action/index.html.twig');
+        return $this->redirectToRoute('admin_insurance_list');
     }
 
     /**
@@ -75,7 +75,7 @@ class AdminController extends AbstractController
     public function insuranceListAction(InsuranceRepository $insuranceRepository)
     {
         return $this->render('admin/action/insurance/list.html.twig', [
-            'insurances' => $insuranceRepository->findAll()
+            'insurances' => $insuranceRepository->findBy(array(), array('id' => 'DESC'))
         ]);
     }
 
@@ -172,7 +172,7 @@ class AdminController extends AbstractController
     public function bankReferenceListAction(BankReferenceRepository $bankReferenceRepository)
     {
         return $this->render('admin/action/bankReference/list.html.twig', [
-            'references' => $bankReferenceRepository->findAll()
+            'references' => $bankReferenceRepository->findBy(array(), array('id' => 'DESC'))
         ]);
     }
 

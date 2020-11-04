@@ -33,6 +33,7 @@ const PRICE_ERGO_OLD = 'ergoOld';
 const COMPLEX_INSURANCE = 'complex';
 const URGENT_INSURANCE = 'urgent';
 
+let startMonth = moment(moment().year() + '-' + (moment().month() + 1) + '-01');
 let insuranceSelected = null;
 let insuranceType = null;
 let insurancePriceListIndex = null;
@@ -447,9 +448,7 @@ $('#info-confirmation-check-box').click(function () {
 
 $('#insurance_startDate').change(function () {
     if (insuranceSelected === INSURANCE_MAXIMA) {
-        //TODO: проверка и по годамю. В данный момент нельзя купить в 2021
-        if ((moment($('#insurance_startDate').val()).month() < moment().month() &&
-                moment($('#insurance_startDate').val()).year() < moment().year()) || moment($('#insurance_startDate').val()).year() < moment().year()) {
+        if (moment($('#insurance_startDate').val()) < startMonth) {
             $('#insurance_startDate').val(moment().format('YYYY-MM-DD'));
             alert('Пожулуйста, выберите актуальную дату!\n' +
             'Если вы хотите выбрать прошедшую дату, свяжитесь с нами для уточнения информации');

@@ -54,6 +54,7 @@ class InsuranceRepository extends ServiceEntityRepository
             ->andWhere('i.insuredNumber != :null')->setParameter('null', serialize(null))
             ->andWhere('i.insuredNumber != :empty')->setParameter('empty', serialize([]))
             ->andWhere('i.paidToInsuranceCompany = :status')->setParameter('status', true)
+            ->orderBy('i.id', 'DESC')
             ->getQuery()
             ->getResult();
     }

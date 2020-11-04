@@ -8,6 +8,7 @@ window.$.fn.DataTable = require('startbootstrap-sb-admin-2/vendor/datatables/dat
 
 $(document).ready(function () {
     $('.data-table').DataTable({
+        order: {1: "desc"},
         language: {
             "sEmptyTable":     "Tabulka neobsahuje žádná data",
             "sInfo":           "Zobrazuji _START_ až _END_ z celkem _TOTAL_ záznamů",
