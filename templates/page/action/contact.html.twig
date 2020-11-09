@@ -1,6 +1,6 @@
 {% extends 'page/layout.html.twig' %}
 
-{% block title %}Застрахуй.cz | Конаткты{% endblock %}
+{% block title %}{{ 'tittle.contacts'|trans }}{% endblock %}
 
 {% block body %}
     {% include 'page/components/header.html.twig' %}
@@ -15,8 +15,8 @@
                 <p>
                     <strong class="font-semi-bold">{{ 'page.contactPage.idNumber'|trans }}(IČO):</strong> 255 54 913
                 </p>
-                <p><strong class="font-semi-bold">{{ 'page.contactPage.mobile'|trans }}:</strong> <a class="color-red" href="tel:+420 773 030 795">+420 773 030 795</a></p>
-                <p><strong class="font-semi-bold">E-mail:</strong> <a class="color-red" href="mailto: info@zastrachuj.cz">info@zastrachuj.cz</a></p>
+                <p><strong class="font-semi-bold">{{ 'page.contactPage.mobile'|trans }}:</strong> <a class="color-red font-bold" href="tel:+420 773 030 795">+420 773 030 795</a></p>
+                <p><strong class="font-semi-bold">E-mail:</strong> <a class="color-red font-bold" href="mailto: info@zastrachuj.cz">info@zastrachuj.cz</a></p>
             </div>
 
         </div>

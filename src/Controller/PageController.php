@@ -89,6 +89,15 @@ class PageController extends AbstractController
     }
 
     /**
+     * @Route("/faq", name="page_faq")
+     * @return Response
+     */
+    public function faqAction()
+    {
+        return $this->render('page/action/faq.html.twig');
+    }
+
+    /**
      * @Route ("/insuarence-ergo-options", name="page_insurance_ergo_options")
      */
     public function insuranceErgoOptionsAction()

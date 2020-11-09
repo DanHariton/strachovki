@@ -1,6 +1,6 @@
 {% extends 'page/layout.html.twig' %}
 
-{% block title %}Застрахуй.cz{% endblock %}
+{% block title %}{{ 'tittle.index'|trans }}{% endblock %}
 
 {% block body %}
     {% include 'page/components/header.html.twig' %}
@@ -67,13 +67,13 @@
                         <div class="flip-card-front">
                             <a class="service-link text-decoration-none" href="{{ path('page_insurance_options') }}">
                                 <img src="{{ asset('assets/page/img/buy-insurance.jpg') }}" alt="order insurance online" class="img-fluid pt-5">
-                                <p class="mt-4 mb-0 color-red">Страхование инострацев</p>
+                                <p class="mt-4 mb-0 font-bold color-red">Страхование инострацев</p>
                             </a>
                         </div>
                         <div class="flip-card-back">
                             <a class="service-link text-decoration-none" href="{{ path('page_insurance_options') }}">
                                 <img src="{{ asset('assets/page/img/order-insurance.jpg') }}" alt="order insurance online" class="img-fluid pt-5">
-                                <p class="mt-4 mb-0 text-white">Страхование инострацев</p>
+                                <p class="mt-4 mb-0 font-bold text-white">Страхование инострацев</p>
                             </a>
                         </div>
                     </div>
@@ -83,13 +83,13 @@
                         <div class="flip-card-front">
                             <a class="service-link text-decoration-none" href="{{ path('page_bank_reference') }}">
                                 <img src="{{ asset('assets/page/img/bank-account-help.jpg') }}" alt="order bank" class="img-fluid pt-5">
-                                <p class="mt-4 mb-0 color-red">Помощь в получении банковских справок</p>
+                                <p class="mt-4 mb-0 font-bold color-red">Помощь в получении банковских справок</p>
                             </a>
                         </div>
                         <div class="flip-card-back">
                             <a class="service-link text-decoration-none" href="{{ path('page_bank_reference') }}">
                                 <img src="{{ asset('assets/page/img/bank-account.jpg') }}" alt="order bank" class="img-fluid pt-5">
-                                <p class="mt-4 mb-0 text-white">Помощь в получении банковских справок</p>
+                                <p class="mt-4 mb-0 font-bold text-white">Помощь в получении банковских справок</p>
                             </a>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                     </a>
                 </div>
                 <div class="col-12 col-sm-4">
-                    <a class="model-link" href="{{ path('page_index') }}">
+                    <a class="model-link" href="{{ path('page_faq') }}">
                         <img src="{{ asset('assets/page/img/faq.png') }}" alt="faq" class="img-fluid">
                         <p class="mt-4">Часто задаваемые вопросы</p>
                     </a>

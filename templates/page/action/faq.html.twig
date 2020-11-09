@@ -1,0 +1,211 @@
+{% extends 'page/layout.html.twig' %}
+
+{% block title %}{{ 'tittle.faq'|trans }}{% endblock %}
+
+{% block body %}
+    {% include 'page/components/header.html.twig' %}
+    <section class="container">
+        <h1 class="text-center text-uppercase font-semi-bold margin-top-30 margin-bottom-30">{{ 'page.faq.faqText'|trans }}</h1>
+        <div class="accordion" id="accordionExample">
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            {{ 'page.faq.faqQuset1'|trans }}
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body text-indent">
+                        {{ 'page.faq.faqAnsver1'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            {{ 'page.faq.faqQuset2'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver2'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            {{ 'page.faq.faqQuset3'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver3'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq4">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq4" aria-expanded="false" aria-controls="collapseFaq4">
+                            {{ 'page.faq.faqQuset4'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq4" class="collapse" aria-labelledby="headingFaq4" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver4'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq5">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq5" aria-expanded="false" aria-controls="collapseFaq5">
+                            {{ 'page.faq.faqQuset5'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq5" class="collapse" aria-labelledby="headingFaq5" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver5'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq6">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq6" aria-expanded="false" aria-controls="collapseFaq6">
+                            {{ 'page.faq.faqQuset6'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq6" class="collapse" aria-labelledby="headingFaq6" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver6'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq7">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq7" aria-expanded="false" aria-controls="collapseFaq7">
+                            {{ 'page.faq.faqQuset7'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq7" class="collapse" aria-labelledby="headingFaq7" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver7'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq8">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq8" aria-expanded="false" aria-controls="collapseFaq8">
+                            {{ 'page.faq.faqQuset8'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq8" class="collapse" aria-labelledby="headingFaq8" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver8'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq9">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq9" aria-expanded="false" aria-controls="collapseThree">
+                            {{ 'page.faq.faqQuset9'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq9" class="collapse" aria-labelledby="collapseFaq9" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver9P1'|trans }}
+                        <a class="color-red link-red" href="mailto:info@zastrachuj.cz">{{ 'page.faq.faqAnsver9Link'|trans }}</a>
+                        {{ 'page.faq.faqAnsver9P2'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq10">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq10" aria-expanded="false" aria-controls="collapseFaq10">
+                            {{ 'page.faq.faqQuset10'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq10" class="collapse" aria-labelledby="headingFaq10" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver10'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq11">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq11" aria-expanded="false" aria-controls="collapseFaq11">
+                            {{ 'page.faq.faqQuset11'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq11" class="collapse" aria-labelledby="headingFaq11" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver11'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom mb-4">
+                <div class="card-header border-faq-card-header" id="headingFaq12">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq12" aria-expanded="false" aria-controls="collapseFaq12">
+                            {{ 'page.faq.faqQuset12'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq12" class="collapse" aria-labelledby="headingFaq12" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver12'|trans }}
+                    </div>
+                </div>
+            </div>
+            <div class="card border-faq-bottom margin-bottom-70">
+                <div class="card-header border-faq-card-header" id="headingFaq13">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block link-red font-semi-bold text-dark text-left collapsed"
+                                type="button" data-toggle="collapse" data-target="#collapseFaq13" aria-expanded="false" aria-controls="collapseFaq13">
+                            {{ 'page.faq.faqQuset13'|trans }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFaq13" class="collapse" aria-labelledby="headingFaq13" data-parent="#accordionExample">
+                    <div class="card-body text-justify text-indent">
+                        {{ 'page.faq.faqAnsver13'|trans }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% include 'page/components/footer.html.twig' %}
+
+{% endblock %}
