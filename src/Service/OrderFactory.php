@@ -6,22 +6,27 @@ namespace App\Service;
 
 use OpenPayU_Configuration;
 use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class OrderFactory
 {
-    public function __construct()
+    private $params;
+
+    public function __construct(ParameterBagInterface $params)
     {
+        $this->params = $params;
+
         //set Sandbox Environment
         OpenPayU_Configuration::setEnvironment('sandbox');
 
         //set POS ID and Second MD5 Key (from merchant admin panel)
-        OpenPayU_Configuration::setMerchantPosId('393916');
-        OpenPayU_Configuration::setSignatureKey('b11ff54f1105e3729e13d37eee110556');
+        OpenPayU_Configuration::setMerchantPosId($this->params->get('payu_pos_id'));
+        OpenPayU_Configuration::setSignatureKey($this->params->get('payu_second_key'));
 
         //set Oauth Client Id and Oauth Client Secret (from merchant admin panel)
-        OpenPayU_Configuration::setOauthClientId('393916');
-        OpenPayU_Configuration::setOauthClientSecret('09f9aa005df78b2e377ba2bd7c329ae6');
+        OpenPayU_Configuration::setOauthClientId($this->params->get('payu_auth_id'));
+        OpenPayU_Configuration::setOauthClientSecret($this->params->get('payu_auth_password'));
     }
 
     public function createOrder($insurance, $successPaymentUrl, $callbackUrl)
@@ -31,7 +36,7 @@ class OrderFactory
         $order['customerIp'] = $_SERVER['REMOTE_ADDR'];
         $order['merchantPosId'] = OpenPayU_Configuration::getMerchantPosId();
         $order['description'] = 'New order';
-        $order['currencyCode'] = 'PLN';
+        $order['currencyCode'] = 'CZK';
         $order['totalAmount'] = $insurance->getPrice() * 100;
 
         $order['products'][0]['name'] = $insurance->getInsuranceName();

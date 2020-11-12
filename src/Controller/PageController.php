@@ -223,7 +223,7 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/payu/paymnet-callback", name="page_payment_callback")
+     * @Route("/payu/payment-callback", name="page_payment_callback")
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param MailerInterface $mailer
@@ -351,6 +351,61 @@ class PageController extends AbstractController
         $file = new File(__DIR__ . '/../../templates/src/page/pdf/certifikat.pdf');
 
         return $this->file($file, 'certifikat.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
+     * @Route("/documents/maxima-komlex-1", name="page_doc_maxima_komplex_first")
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function maximaKomplexFirstAction()
+    {
+        $file = new File(__DIR__ . '/../../templates/src/page/pdf/maxima-komplex1.pdf');
+
+        return $this->file($file, 'vseobecne_podminky.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
+     * @Route("/documents/maxima-komlex-2", name="page_doc_maxima_komplex_second")
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function maximaKomplexSecondAction()
+    {
+        $file = new File(__DIR__ . '/../../templates/src/page/pdf/maxima-komplex2.pdf');
+
+        return $this->file($file, 'informace-o-producte.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
+     * @Route("/documents/maxima-komlex-3", name="page_doc_maxima_komplex_third")
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function maximaKomplexThirdAction()
+    {
+        $file = new File(__DIR__ . '/../../templates/src/page/pdf/maxima-komplex3.pdf');
+
+        return $this->file($file, 'predsmluvni-podminky.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
+     * @Route("/documents/maxima-urgent-1", name="page_doc_maxima_urgent_first")
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function maximaUrgentFirstAction()
+    {
+        $file = new File(__DIR__ . '/../../templates/src/page/pdf/maxima-urgent1.pdf');
+
+        return $this->file($file, 'vseobecne_podminky.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
+     * @Route("/documents/maxima-urgent-2", name="page_doc_maxima_urgent_second")
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function maximaUrgentSecondAction()
+    {
+        $file = new File(__DIR__ . '/../../templates/src/page/pdf/maxima-urgent1.pdf');
+
+        return $this->file($file, 'informace-o-producte.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
     }
 
     /**

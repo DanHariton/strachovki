@@ -46,6 +46,16 @@
 .padding-top-75
   padding-top 75px
 
+.btn-green
+  background-color #b1e360
+  border 1px solid #b1e360
+  color white
+
+.btn-green:hover
+  background-color #B9EC37
+  color #FFFFFF
+  transition all 0.3s
+
 #fixed-menu
   position fixed
   top 0
@@ -668,16 +678,17 @@ header img
 
 @media screen and (max-width: 990px)
   .insurance-option
-    justify-content center
-    align-items center
+    display block
+    text-align center
     .insurance-option-text
       margin-top 25px
       margin-bottom 25px
     .img-fluid
       width 50%
     .insurance-option-button
-      flex: 0 0 70%;
-      max-width: 70%;
+      flex 0 0 70%
+      max-width 70%
+      margin auto
   #burger-menu
     display block
   #manufacture
@@ -713,6 +724,16 @@ header img
     flex-direction column
     align-items end !important
     justify-content end !important
+    width 75%
+    float left
+    a
+      padding-left 0 !important
+  #burger-menu
+    float right
+    margin-right 0 !important
+    margin-top 5%
+  .wrapper-menu
+    display inline-block
   .flip-card, .flip-card-options
     min-height 310px !important
   .flip-card, .flip-card-options
@@ -767,7 +788,18 @@ header img
       display inline-block
       float right
       margin-top 4.5%
-
+  .apply-container
+    width 100% !important
+    flex-direction column
+    div
+      width 100% !important
+      margin-left 0 !important
+  .apply-container-block
+    flex-direction column
+    .w-25
+      margin-top 15px
+      margin-left 0 !important
+      width 100% !important
   .header-contact-line
     padding-left 0 !important
   .certificate-container

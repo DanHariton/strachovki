@@ -1,5 +1,7 @@
 {% extends 'page/layout.html.twig' %}
 
+{% block description %}{{ 'description.insuranceUniqa'|trans }}{% endblock %}
+{% block keywords %}{{ 'keywords.insuranceUniqa'|trans }}{% endblock %}
 {% block title %}{{ 'tittle.insuranceUniqa'|trans }}{% endblock %}
 
 {% block body %}
@@ -36,7 +38,7 @@
     </section>
     <section class="container">
         <h2 class="font-semi-bold text-center mt-5 mb-4">{{ 'page.insurances.uniqa.komplexInsurance'|trans }}</h2>
-        <p class="text-justify mb-5">{{ 'page.insurances.uniqa.text1'|trans }}</p>
+        <p class="mb-5">{{ 'page.insurances.uniqa.text1'|trans }}</p>
     </section>
     {% include 'page/components/footer.html.twig' %}
 

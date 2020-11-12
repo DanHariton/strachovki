@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<url>
+  <loc>https://zastrachuj.cz/</loc>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/our-services</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/our-license</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/about-us</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/contact</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/insurance-for-foreigners</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/insuarence-maxima-options</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/insuarence-uniqa-options</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/insuarence-ergo-options</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/insuarence-pvzp-options</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/bank-reference</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/faq</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/apply/maxima/complex</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/apply/maxima/urgent</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/apply/uniqa/complex</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/apply/ergo/complex</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://zastrachuj.cz/apply/pvzp/complex</loc>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

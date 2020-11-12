@@ -1,5 +1,7 @@
 {% extends 'page/layout.html.twig' %}
 
+{% block description %}{{ 'description.index'|trans }}{% endblock %}
+{% block keywords %}{{ 'keywords.index'|trans }}{% endblock %}
 {% block title %}{{ 'tittle.license'|trans }}{% endblock %}
 
 {% block body %}
@@ -9,7 +11,7 @@
             {{ 'page.ourLicense.part1'|trans }}
         </p>
         <h1 class="margin-top-30 text-uppercase font-semi-bold text-center margin-bottom-30">{{ 'page.ourLicense.text'|trans }}</h1>
-        <p class="h4 text-justify mb-4">
+        <p class="h4 mb-4">
             {{ 'page.ourLicense.checkLicense'|trans }}
             <a target="_blank" class="color-red font-semi-bold" href="https://apl.cnb.cz/apljerrsdad/JERRS.WEB45.LOGIN_A?p_lang=cz&amp;p_err=8">
                 apl.cnb.cz

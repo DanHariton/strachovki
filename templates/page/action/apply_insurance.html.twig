@@ -1,5 +1,7 @@
 {% extends 'page/layout.html.twig' %}
 
+{% block description %}{{ 'description.index'|trans }}{% endblock %}
+{% block keywords %}{{ 'keywords.index'|trans }}{% endblock %}
 {% block title %}{{ 'tittle.insuranceBuy'|trans }}{% endblock %}
 
 {% block body %}
@@ -57,11 +59,11 @@
 
                         <div aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
-                                <div class="mb-4">
+                                <div class="mb-4 apply-container">
                                     {{ form_label(form.dateBirth, null, {'label_attr': {'class': 'form-label'}}) }}
                                     {{ form_widget(form.dateBirth, {'attr': {'class': 'd-flex justify-content-start'}}) }}
                                 </div>
-                                <div class="d-flex justify-content-start">
+                                <div class="d-flex justify-content-start apply-container">
                                     <div class="w-25">
                                         {{ form_row(form.startDate) }}
                                     </div>
@@ -69,11 +71,11 @@
                                         {{ form_row(form.insuranceDuration) }}
                                     </div>
                                 </div>
-                                <div class="w-25 form-group">
+                                <div class="w-25 form-group apply-container">
                                     {{ form_label(form.endDate, null, {'label_attr': {'class': 'form-label'}}) }}
                                     {{ form_widget(form.endDate, {'attr': {'class': 'form-control font-semi-bold'}}) }}
                                 </div>
-                                <div class="w-25 form-group">
+                                <div class="w-25 form-group apply-container">
                                     {{ form_label(form.price, null, {'label_attr': {'class': 'form-label'}}) }}
                                     {{ form_widget(form.price, {'attr': {'class': 'form-control font-semi-bold'}}) }}
                                 </div>
@@ -103,7 +105,7 @@
                         <div aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
                                 <h4 class="font-weight-bolder mb-3 mt-2">{{ 'form.texts.contactPerson'|trans }}</h4>
-                                <div class="d-flex justify-content-start">
+                                <div class="d-flex justify-content-start apply-container">
                                     <div class="form-group w-25">
                                         {{ form_label(form.clientName, null, {'label_attr': {'class': 'form-label'}}) }}
                                         {{ form_widget(form.clientName, {'attr': {'class': 'form-control'}}) }}
@@ -113,7 +115,7 @@
                                         {{ form_widget(form.clientSName, {'attr': {'class': 'form-control'}}) }}
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-start">
+                                <div class="d-flex justify-content-start apply-container-block">
                                     <div class="w-25">
                                         {{ form_row(form.clientEmail) }}
                                     </div>
@@ -122,7 +124,7 @@
                                     </div>
                                 </div>
                                 <h4 class="font-weight-bolder mb-3 mt-2">{{ 'form.texts.addressInCzech'|trans }}</h4>
-                                <div class="d-flex justify-content-start">
+                                <div class="d-flex justify-content-start apply-container">
                                     <div class="w-25">
                                         {{ form_row(form.town) }}
                                     </div>
@@ -135,7 +137,7 @@
                                 </div>
                                 <h4 class="font-weight-bolder mb-3 mt-2">{{ 'form.texts.personalData'|trans }}</h4>
                                 <div class="d-flex flex-column justify-content-start">
-                                    <div class="d-flex justify-content-start">
+                                    <div class="d-flex justify-content-start apply-container">
                                         <div class="w-25">
                                             {{ form_label(form.gender, null, {'label_attr': {'class': 'form-label'}}) }}
                                             {{ form_widget(form.gender, {'attr': {'class': 'form-control'}}) }}
@@ -144,7 +146,7 @@
                                             {{ form_row(form.citizenship) }}
                                         </div>
                                     </div>
-                                    <div class="w-50">
+                                    <div class="w-50 apply-container">
                                         {{ form_row(form.passportId) }}
                                     </div>
                                 </div>
@@ -231,7 +233,11 @@
                                         </p>
                                     </div>
                                     <div class="col d-flex align-items-center">
-                                        <a href="" class="color-red font-weight-bold conditions-links">
+                                        {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
+                                            <a href="{{ path('page_doc_maxima_komplex_first') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                                {% else %}
+                                                    <a href="{{ path('page_doc_maxima_urgent_first') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                                {% endif%}
                                             {{ 'form.texts.insuranceCondition1'|trans }}<br>
                                             {{ 'form.texts.insuranceCondition2'|trans }}
                                         </a>
@@ -244,9 +250,13 @@
                                         </p>
                                     </div>
                                     <div class="col d-flex align-items-center">
-                                        <a href="" class="color-red font-weight-bold conditions-links">
-                                            {{ 'form.texts.insuranceInfoAboutPdf'|trans }}
-                                        </a>
+                                        {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
+                                            <a href="{{ path('page_doc_maxima_komplex_second') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                        {% else %}
+                                                <a href="{{ path('page_doc_maxima_urgent_second') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                        {% endif%}
+                                                {{ 'form.texts.insuranceInfoAboutPdf'|trans }}
+                                            </a>
                                     </div>
                                 </div>
                                 <div class="row w-100 m-auto borders-conditions pb-4 pt-4">
@@ -256,7 +266,7 @@
                                         </p>
                                     </div>
                                     <div class="col d-flex align-items-center">
-                                        <a href="" class="color-red font-weight-bold conditions-links">
+                                        <a href="{{ path('page_doc_maxima_komplex_third') }}" target="_blank" class="color-red font-weight-bold conditions-links">
                                             {{ 'form.texts.informationAboutContract'|trans }}
                                         </a>
                                     </div>
