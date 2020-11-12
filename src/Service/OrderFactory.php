@@ -18,7 +18,7 @@ class OrderFactory
         $this->params = $params;
 
         //set Sandbox Environment
-        OpenPayU_Configuration::setEnvironment('sandbox');
+        OpenPayU_Configuration::setEnvironment('secure');
 
         //set POS ID and Second MD5 Key (from merchant admin panel)
         OpenPayU_Configuration::setMerchantPosId($this->params->get('payu_pos_id'));

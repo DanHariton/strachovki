@@ -33,7 +33,7 @@
         {% if insurance.paymentMethod == constant("App\\Entity\\Insurance::PAYMENT_METHOD_CASH") %}
             <strong style="color: #DA1931; font-size: 14px">
                 {{ 'email.paymentInfo.methodCash'|trans }}
-                <a href="http://54.38.55.53{{ path('page_contact') }}">{{ 'email.paymentInfo.methodLink'|trans }}</a>
+                <a href="https://zastrachuj.cz{{ path('page_contact') }}">{{ 'email.paymentInfo.methodLink'|trans }}</a>
             </strong>
         {% else %}
             <strong style="color: #DA1931; font-size: 14px">{{ 'email.paymentInfo.methodCard'|trans }}</strong>
@@ -47,7 +47,7 @@
     </p>
     <p class="mb-2">
         {{ 'email.paymentInfo.instruktionForm'|trans }}
-        <strong><a href="http://54.38.55.53{{ path('page_pay_online') }}">{{ 'email.paymentInfo.linkText'|trans }}</a></strong>
+        <strong><a href="https://zastrachuj.cz{{ path('page_pay_online') }}">{{ 'email.paymentInfo.linkText'|trans }}</a></strong>
     </p>
     <br><br>
     <h4 class="text-center">
