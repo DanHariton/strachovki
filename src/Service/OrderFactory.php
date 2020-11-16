@@ -48,6 +48,7 @@ class OrderFactory
         $order['buyer']['phone'] = $insurance->getClientMobile();
         $order['buyer']['firstName'] = $insurance->getClientName();
         $order['buyer']['lastName'] = $insurance->getClientSName();
+        $order['buyer']['language'] = 'cs';
 
         return $order;
     }
