@@ -10,6 +10,7 @@ use App\Form\BankReferenceType;
 use App\Form\ClientPhoneType;
 use App\Form\InsurancePaymentByPasswordType;
 use App\Form\InsuranceType;
+use App\Service\EmailSender;
 use App\Service\InsurancePriceFactory;
 use App\Service\OrderFactory;
 use App\Util\FakeTranslator;
@@ -22,9 +23,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -129,14 +127,16 @@ class PageController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $em
      * @param OrderFactory $orderFactory
-     * @param MailerInterface $mailer
      * @param InsurancePriceFactory $insurancePriceFactory
+     * @param EmailSender $mailer
      * @return RedirectResponse|Response
-     * @throws TransportExceptionInterface
      * @throws \OpenPayU_Exception
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
     public function applyInsuranceAction($name, $type, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory,
-                                         MailerInterface $mailer, InsurancePriceFactory $insurancePriceFactory)
+                                         InsurancePriceFactory $insurancePriceFactory, EmailSender $mailer)
     {
         $insurance = new Insurance();
         $insurance->setInsuranceName($name);
@@ -163,19 +163,8 @@ class PageController extends AbstractController
             $insurance->setPaidToInsuranceCompany(false);
             $insurance->setSentToClient(false);
 
-            $message = (new Email())
-                ->from('info@zastrachuj.cz')
-                ->to($insurance->getClientEmail())
-                ->subject('Новый заказ')
-                ->html(
-                    $this->renderView(
-                        'emails/confirm_order.html.twig',
-                        ['insurance' => $insurance, 'type' => $type]
-                    )
-                )
-            ;
-
-            $mailer->send($message);
+            $mailer->sendConfirmInsuranceOrder($insurance, $type);
+            $mailer->sendNotifyToMeInsurance($insurance, $type);
 
             if ($insurance->getPaymentMethod() == Insurance::PAYMENT_METHOD_ONLINE) {
                 $response = OpenPayU_Order::create($orderFactory->createOrder($insurance,
@@ -226,12 +215,14 @@ class PageController extends AbstractController
      * @Route("/payu/payment-callback", name="page_payment_callback")
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param MailerInterface $mailer
+     * @param EmailSender $mailer
      * @return Response
-     * @throws TransportExceptionInterface
      * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, MailerInterface $mailer)
+    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, EmailSender $mailer)
     {
         $responseData = json_decode($request->getContent());
         $insurance = $em
@@ -245,19 +236,7 @@ class PageController extends AbstractController
         if ($responseData->order->status === 'COMPLETED') {
             $insurance->setStatus(Insurance::STATUS_PAYED_SUCCESS);
 
-            $message = (new Email())
-                ->from('info@zastrachuj.cz')
-                ->to($insurance->getClientEmail())
-                ->subject('Спасибо за оплату!')
-                ->html(
-                    $this->renderView(
-                        'emails/payment_success.html.twig',
-                        ['insurance' => $insurance]
-                    )
-                )
-            ;
-
-            $mailer->send($message);
+            $mailer->sendConfirmPayment($insurance);
 
             $em->flush();
             return new Response();
@@ -432,11 +411,13 @@ class PageController extends AbstractController
      * @Route("/bank-reference", name="page_bank_reference")
      * @param Request $request
      * @param EntityManagerInterface $em
-     * @param MailerInterface $mailer
+     * @param EmailSender $mailer
      * @return RedirectResponse|Response
-     * @throws TransportExceptionInterface
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
      */
-    public function bankReferenceAction(Request $request, EntityManagerInterface $em, MailerInterface $mailer)
+    public function bankReferenceAction(Request $request, EntityManagerInterface $em, EmailSender $mailer)
     {
         $bankReference = new BankReference();
         $bankReference->setOrderTime(new DateTime());
@@ -446,22 +427,12 @@ class PageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $bankReference = $form->getData();
+
+            $mailer->sendConfirmBankReferenceOrder($bankReference);
+            $mailer->sendNotifyToMeBankReference($bankReference);
+
             $em->persist($bankReference);
             $em->flush();
-
-            $message = (new Email())
-                ->from('info@zastrachuj.cz')
-                ->to($bankReference->getEmail())
-                ->subject('Подтверждение заявки')
-                ->html(
-                    $this->renderView(
-                        'emails/confirm_bank_reference.html.twig',
-                        ['insurance' => $bankReference]
-                    )
-                )
-            ;
-
-            $mailer->send($message);
 
             return $this->redirectToRoute('page_bank_reference_success');
         }
@@ -475,8 +446,16 @@ class PageController extends AbstractController
     /**
      * @Route("/bank-reference/success", name="page_bank_reference_success")
      */
-    public function successApplyBankReference()
+    public function successApplyBankReferenceAction()
     {
         return $this->render('page/action/confirm_bank_reference.html.twig');
+    }
+
+    /**
+     * @Route("/how-order", name="page_how_order")
+     */
+    public function gowOrderAction()
+    {
+        return $this->render('page/action/how_order.html.twig');
     }
 }

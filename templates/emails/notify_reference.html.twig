@@ -1,0 +1,27 @@
+<div style="text-align: center; padding-bottom: 15px; padding-top: 15px; background-color: #da1931">
+    <a href="https://zastrachuj.cz{{ path('page_index') }}">
+        <img style="margin: auto; width: 350px" src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('assets/page/img/logo-zastrachuj.png') }}" alt="logo">
+    </a>
+</div>
+<div style="width: 70%; margin: auto;">
+    <h2 style="font-weight: bold; text-align: center">{{ 'email.header'|trans }}</h2>
+
+    <h3 style="text-align: center">
+        {{ 'email.bankReference.text1'|trans }} <a href="https://zastrachuj.cz/">zastrachuj.cz</a> -
+        <strong style="color: #ff1f31" style="font-weight: bold; font-size: 30px">{{ 'email.bankReference.text2'|trans }}</strong>
+    </h3>
+    <h3 style="text-align: center">
+        {{ 'email.bankReference.text3'|trans }}
+    </h3>
+    <br>
+    <h4 style="text-align: center">
+        {{ 'email.automaticText'|trans }}
+    </h4>
+    <br>
+    <p style="font-weight: bold; color: #da1931">
+        {{ 'email.footer.regards.text1'|trans }}
+    </p>
+    <p style="font-weight: bold; color: #da1931">
+        {{ 'email.footer.regards.text2'|trans }}
+    </p>
+</div>

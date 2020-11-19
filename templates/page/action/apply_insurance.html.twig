@@ -225,52 +225,54 @@
                         </div>
                         <div aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
-                                <h4 class="font-weight-bolder mb-4 mt-2">{{ 'form.texts.inportantDocuments'|trans }}</h4>
-                                <div class="row w-100 m-auto borders-conditions pb-4 pt-4">
-                                    <div class="col-2 text-center d-flex align-items-center justify-content-center">
-                                        <p class="mb-0 pdf-bages">
-                                            <strong class="order-online-text">PDF</strong>
-                                        </p>
-                                    </div>
-                                    <div class="col d-flex align-items-center">
-                                        {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
-                                            <a href="{{ path('page_doc_maxima_komplex_first') }}" target="_blank" class="color-red font-weight-bold conditions-links">
-                                                {% else %}
-                                                    <a href="{{ path('page_doc_maxima_urgent_first') }}" target="_blank" class="color-red font-weight-bold conditions-links">
-                                                {% endif%}
-                                            {{ 'form.texts.insuranceCondition1'|trans }}<br>
-                                            {{ 'form.texts.insuranceCondition2'|trans }}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row w-100 m-auto pb-4 pt-4">
-                                    <div class="col-2 text-center d-flex align-items-center justify-content-center">
-                                        <p class="mb-0 pdf-bages">
-                                            <strong class="order-online-text">PDF</strong>
-                                        </p>
-                                    </div>
-                                    <div class="col d-flex align-items-center">
-                                        {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
-                                            <a href="{{ path('page_doc_maxima_komplex_second') }}" target="_blank" class="color-red font-weight-bold conditions-links">
-                                        {% else %}
-                                                <a href="{{ path('page_doc_maxima_urgent_second') }}" target="_blank" class="color-red font-weight-bold conditions-links">
-                                        {% endif%}
-                                                {{ 'form.texts.insuranceInfoAboutPdf'|trans }}
+                                {% if name == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
+                                    <h4 class="font-weight-bolder mb-4 mt-2">{{ 'form.texts.inportantDocuments'|trans }}</h4>
+                                    <div class="row w-100 m-auto borders-conditions pb-4 pt-4">
+                                        <div class="col-2 text-center d-flex align-items-center justify-content-center">
+                                            <p class="mb-0 pdf-bages">
+                                                <strong class="order-online-text">PDF</strong>
+                                            </p>
+                                        </div>
+                                        <div class="col d-flex align-items-center">
+                                            {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
+                                                <a href="{{ path('page_doc_maxima_komplex_first') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                                    {% else %}
+                                                        <a href="{{ path('page_doc_maxima_urgent_first') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                                    {% endif%}
+                                                {{ 'form.texts.insuranceCondition1'|trans }}<br>
+                                                {{ 'form.texts.insuranceCondition2'|trans }}
                                             </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row w-100 m-auto borders-conditions pb-4 pt-4">
-                                    <div class="col-2 text-center d-flex align-items-center justify-content-center">
-                                        <p class="mb-0 pdf-bages">
-                                            <strong class="order-online-text">PDF</strong>
-                                        </p>
+                                    <div class="row w-100 m-auto pb-4 pt-4">
+                                        <div class="col-2 text-center d-flex align-items-center justify-content-center">
+                                            <p class="mb-0 pdf-bages">
+                                                <strong class="order-online-text">PDF</strong>
+                                            </p>
+                                        </div>
+                                        <div class="col d-flex align-items-center">
+                                            {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
+                                                <a href="{{ path('page_doc_maxima_komplex_second') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                            {% else %}
+                                                    <a href="{{ path('page_doc_maxima_urgent_second') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                            {% endif%}
+                                                    {{ 'form.texts.insuranceInfoAboutPdf'|trans }}
+                                                </a>
+                                        </div>
                                     </div>
-                                    <div class="col d-flex align-items-center">
-                                        <a href="{{ path('page_doc_maxima_komplex_third') }}" target="_blank" class="color-red font-weight-bold conditions-links">
-                                            {{ 'form.texts.informationAboutContract'|trans }}
-                                        </a>
+                                    <div class="row w-100 m-auto borders-conditions pb-4 pt-4">
+                                        <div class="col-2 text-center d-flex align-items-center justify-content-center">
+                                            <p class="mb-0 pdf-bages">
+                                                <strong class="order-online-text">PDF</strong>
+                                            </p>
+                                        </div>
+                                        <div class="col d-flex align-items-center">
+                                            <a href="{{ path('page_doc_maxima_komplex_third') }}" target="_blank" class="color-red font-weight-bold conditions-links">
+                                                {{ 'form.texts.informationAboutContract'|trans }}
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
+                                {% endif %}
                                 <h4 class="font-weight-bolder mb-3 mt-4">{{ 'form.texts.insuranceConditionText'|trans }}</h4>
                                 <textarea class="w-100 text-area-condition" readonly>
                                     Общие условия страхования, Информация для потребителя, Информация о продукте и Протокол переговоров перед заключением договора являются неотъемлемой частью страхового договора. Страхователь подтверждает, что перед заключением договора страхования он был ознакомлен с Общими условиями страхования, на чешском языке ему была предоставлена ясная и понятная информация о страховщике и информация о страховых отношениях, как это понимается в § 2760 Гражданского кодекса. Страховщик уделил особое внимание положениям в условиях страхования, которые выделены цветом, и исключениям.

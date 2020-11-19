@@ -1,0 +1,20 @@
+{% extends 'page/layout.html.twig' %}
+
+{% block description %}{{ 'description.index'|trans }}{% endblock %}
+{% block keywords %}{{ 'keywords.index'|trans }}{% endblock %}
+{% block title %}{{ 'tittle.license'|trans }}{% endblock %}
+
+{% block body %}
+    {% include 'page/components/header.html.twig' %}
+    <section class="container">
+        <h1 class="margin-top-30 text-uppercase font-semi-bold text-center margin-bottom-30">{{ 'page.howBuy.tittle'|trans }}</h1>
+        <video class="video-content" width="100%" controls>
+            <source src="{{ asset('assets/page/img/howBuy.mov') }}" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+    </section>
+
+
+    {% include 'page/components/footer.html.twig' %}
+
+{% endblock %}

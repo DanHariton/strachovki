@@ -1,13 +1,19 @@
-<div class="container">
-    <h2 class="font-weight-bold mb-3">{{ 'email.confirmPayment.header'|trans }}</h2>
-    <h3 class="mb-2"><u>
+<div style="text-align: center; padding-bottom: 15px; padding-top: 15px; background-color: #da1931">
+    <a href="https://zastrachuj.cz{{ path('page_index') }}">
+        <img style="margin: auto; width: 350px"
+             src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('assets/page/img/logo-zastrachuj.png') }}" alt="zastrachuj.cz">
+    </a>
+</div>
+<div style="width: 70%; margin: auto;">
+    <h1 style="font-weight: bold; text-align: center">{{ 'email.confirmPayment.header'|trans }}</h1>
+    <h3 style="text-align: center;"><u>
             {{ 'email.detail.insuranceName'|trans }}
             <strong style="color: #DA1931">
-                {% if insurance.insuranceName == 'maxima' %}
+                {% if insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
                     Maxima pojišťovna
-                {% elseif insurance.insuranceName == 'uniqa' %}
+                {% elseif insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_UNIQA") %}
                     Pojišťovna UNIQA
-                {% elseif insurance.insuranceName == 'pvzp' %}
+                {% elseif insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
                     Pojišťovna VZP
                 {% else %}
                     ERGO pojišťovna
@@ -23,14 +29,15 @@
     </p>
     <p class="mb-2">{{ 'email.detail.duration'|trans }} <strong>{{ insurance.insuranceDuration }}</strong> {{ 'email.detail.month'|trans }}</p>
     <h2 class="font-weight-bold" style="color: #DA1931">{{ 'email.confirmPayment.thanks'|trans }}</h2>
-    <br><br>
-    <h4 class="text-center">
+    <br>
+    <h4 style="text-align: center">
         {{ 'email.automaticText'|trans }}
     </h4>
-    <p class="mb-2 color-red">
+    <br>
+    <p style="font-weight: bold; color: #da1931">
         {{ 'email.footer.regards.text1'|trans }}
     </p>
-    <p class="mb-2 color-red">
+    <p style="font-weight: bold; color: #da1931">
         {{ 'email.footer.regards.text2'|trans }}
     </p>
 </div>

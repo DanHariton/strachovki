@@ -5,9 +5,7 @@ namespace App\Service;
 
 
 use OpenPayU_Configuration;
-use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class OrderFactory
 {

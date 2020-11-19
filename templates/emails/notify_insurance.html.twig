@@ -1,0 +1,70 @@
+<div style="text-align: center; padding-bottom: 15px; padding-top: 15px; background-color: #da1931">
+    <a href="https://zastrachuj.cz{{ path('page_index') }}">
+        <img style="margin: auto; width: 350px" src="https://zastrachuj.cz/{{ asset('assets/page/img/logo-white.png') }}" alt="logo">
+
+        {#        <img style="margin: auto; width: 350px" src="{{ app.request.scheme ~'://' ~ app.request.httpHost ~ asset('assets/page/img/logo-zastrachuj.png') }}" alt="logo">#}
+    </a>
+</div>
+<div style="width: 70%; margin: auto;">
+    <h2 style="font-weight:bold; text-align: center">{{ 'email.header'|trans }}</h2>
+    <h3 style="text-align: center">
+        <u>
+            {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
+                {{ 'form.texts.komplexInsurance'|trans }}
+            {% else %}
+                {{ 'form.texts.necessaryInsurance'|trans }}
+            {% endif %}
+            <strong style="color: #DA1931">
+                {% if insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
+                    Maxima pojišťovna
+                {% elseif insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_UNIQA") %}
+                    Pojišťovna UNIQA
+                {% elseif insurance.insuranceName == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
+                    Pojišťovna VZP
+                {% else %}
+                    ERGO pojišťovna
+                {% endif %}
+            </strong>
+        </u>
+    </h3>
+    <h3 class="mb-2">
+        {{ 'email.detail.forWhom'|trans }} <u><strong>{{ insurance.clientName }} {{ insurance.clientSName }}</strong></u>
+    </h3>
+    <p class="mb-2">{{ 'email.detail.dateBirth'|trans }} <strong>{{ insurance.dateBirth|date('d.m.Y') }}</strong></p>
+    <p class="mb-2">
+        {{ 'email.detail.validFrom'|trans }} <strong>{{ insurance.startDate|date('d.m.Y') }}</strong> {{ 'email.detail.validTo'|trans }} <strong>{{ insurance.endDate|date('d.m.Y') }}</strong>
+    </p>
+    <p class="mb-2">{{ 'email.detail.duration'|trans }} <strong>{{ insurance.insuranceDuration }}</strong> {{ 'email.detail.month'|trans }}</p>
+    <p class="mb-2" style="border-bottom: 2px solid #da1931; padding-bottom: 10px">
+        {{ 'email.paymentInfo.method'|trans }}
+        {% if insurance.paymentMethod == constant("App\\Entity\\Insurance::PAYMENT_METHOD_CASH") %}
+            <strong style="color: #DA1931; font-size: 14px">
+                {{ 'email.paymentInfo.methodCash'|trans }}
+                <a href="https://zastrachuj.cz{{ path('page_contact') }}">{{ 'email.paymentInfo.methodLink'|trans }}</a>
+            </strong>
+        {% else %}
+            <strong style="color: #DA1931; font-size: 14px">{{ 'email.paymentInfo.methodCard'|trans }}</strong>
+        {% endif %}
+    </p>
+    <p class="mb-2">
+        {{ 'email.paymentInfo.paidOnlineText'|trans }}
+    </p>
+    <p class="mb-2">
+        {{ 'email.paymentInfo.instruktion'|trans }} - <br><strong style="color: #228be6; font-size: 16px">{{ insurance.paymentPassword }}</strong>
+    </p>
+    <p class="mb-2">
+        {{ 'email.paymentInfo.instruktionForm'|trans }}
+        <strong><a href="https://zastrachuj.cz{{ path('page_pay_online') }}">{{ 'email.paymentInfo.linkText'|trans }}</a></strong>
+    </p>
+    <br>
+    <h4 style="text-align: center">
+        {{ 'email.automaticText'|trans }}
+    </h4>
+    <br>
+    <p style="font-weight: bold; color: #da1931">
+        {{ 'email.footer.regards.text1'|trans }}
+    </p>
+    <p style="font-weight: bold; color: #da1931">
+        {{ 'email.footer.regards.text2'|trans }}
+    </p>
+</div>
