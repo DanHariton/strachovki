@@ -48,16 +48,15 @@ class EmailSender
 
     /**
      * @param Insurance $insurance
-     * @param $type
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendConfirmInsuranceOrder(Insurance $insurance, $type)
+    public function sendConfirmInsuranceOrder(Insurance $insurance)
     {
         $this->send($insurance->getClientEmail(), 'Новый заказ', $this->templating->render(
             'emails/confirm_order.html.twig',
-            ['insurance' => $insurance, 'type' => $type]
+            ['insurance' => $insurance, 'type' => $insurance->getInsuranceType()]
         ));
     }
 
@@ -84,8 +83,7 @@ class EmailSender
     public function sendConfirmBankReferenceOrder(BankReference $bankReference)
     {
         $this->send($bankReference->getEmail(), 'Подтверждение заявки', $this->templating->render(
-            'emails/confirm_bank_reference.html.twig',
-            ['insurance' => $bankReference]
+            'emails/confirm_bank_reference.html.twig'
         ));
     }
 
@@ -96,25 +94,23 @@ class EmailSender
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendNotifyToMeInsurance($insurance, $type)
+    public function sendNotifyToMeInsurance($insurance)
     {
         $this->send($this->bag->get('email.kota'), 'Уведомление о новом заказе страховки', $this->templating->render(
             'emails/notify_insurance.html.twig',
-            ['insurance' => $insurance, 'type' => $type]
+            ['insurance' => $insurance, 'type' => $insurance->getInsuranceType()]
         ));
     }
 
     /**
-     * @param BankReference $bankReference
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendNotifyToMeBankReference(BankReference $bankReference)
+    public function sendNotifyToMeBankReference()
     {
         $this->send($this->bag->get('email.kota'), 'Уведомление о новой заявке на справку из банка', $this->templating->render(
-            'emails/notify_reference.html.twig',
-            ['insurance' => $bankReference]
+            'emails/notify_reference.html.twig'
         ));
     }
 }

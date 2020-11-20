@@ -4,6 +4,7 @@
 namespace App\Service;
 
 
+use App\Entity\Insurance;
 use OpenPayU_Configuration;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -27,7 +28,13 @@ class OrderFactory
         OpenPayU_Configuration::setOauthClientSecret($this->params->get('payu_auth_password'));
     }
 
-    public function createOrder($insurance, $successPaymentUrl, $callbackUrl)
+    /**
+     * @param Insurance $insurance
+     * @param $successPaymentUrl
+     * @param $callbackUrl
+     * @return mixed
+     */
+    public function createOrder(Insurance $insurance, $successPaymentUrl, $callbackUrl)
     {
         $order['continueUrl'] = $successPaymentUrl;
         $order['notifyUrl'] = $callbackUrl;

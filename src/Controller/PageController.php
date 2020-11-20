@@ -163,8 +163,8 @@ class PageController extends AbstractController
             $insurance->setPaidToInsuranceCompany(false);
             $insurance->setSentToClient(false);
 
-            $mailer->sendConfirmInsuranceOrder($insurance, $type);
-            $mailer->sendNotifyToMeInsurance($insurance, $type);
+            $mailer->sendConfirmInsuranceOrder($insurance);
+            $mailer->sendNotifyToMeInsurance($insurance);
 
             if ($insurance->getPaymentMethod() == Insurance::PAYMENT_METHOD_ONLINE) {
                 $response = OpenPayU_Order::create($orderFactory->createOrder($insurance,
@@ -429,7 +429,7 @@ class PageController extends AbstractController
             $bankReference = $form->getData();
 
             $mailer->sendConfirmBankReferenceOrder($bankReference);
-            $mailer->sendNotifyToMeBankReference($bankReference);
+            $mailer->sendNotifyToMeBankReference();
 
             $em->persist($bankReference);
             $em->flush();
