@@ -20,6 +20,10 @@ class InsurancePriceFactory
         $this->em = $em;
     }
 
+    /**
+     * @param Insurance $insurance
+     * @return int|null
+     */
     public function calculatePriceByAge(Insurance $insurance)
     {
         $now = new \DateTime();
@@ -139,9 +143,18 @@ class InsurancePriceFactory
         return $insurance->getPrice();
     }
 
+    /**
+     * @param InsurancePrice $insurancePrice
+     * @param $duration
+     * @return int|null
+     */
     private function setInsurancePrice(InsurancePrice $insurancePrice, $duration)
     {
         switch ($duration) {
+            case 1:
+                return $insurancePrice->getOneMonth();
+            case 2:
+                return $insurancePrice->getTwoMonth();
             case 3:
                 return $insurancePrice->getThreeMonth();
             case 4:
