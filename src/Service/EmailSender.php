@@ -54,7 +54,7 @@ class EmailSender
      */
     public function sendConfirmInsuranceOrder(Insurance $insurance)
     {
-        $this->send($insurance->getClientEmail(), 'Новый заказ', $this->templating->render(
+        $this->send($insurance->getClientEmail(), 'Подтверждение заказа на zastrachuj.cz', $this->templating->render(
             'emails/confirm_order.html.twig',
             ['insurance' => $insurance, 'type' => $insurance->getInsuranceType()]
         ));
@@ -68,7 +68,7 @@ class EmailSender
      */
     public function sendConfirmPayment(Insurance $insurance)
     {
-        $this->send($insurance->getClientEmail(), 'Спасибо за оплату', $this->templating->render(
+        $this->send($insurance->getClientEmail(), 'Спасибо за оплату!', $this->templating->render(
             'emails/payment_success.html.twig',
             ['insurance' => $insurance]
         ));
@@ -82,14 +82,13 @@ class EmailSender
      */
     public function sendConfirmBankReferenceOrder(BankReference $bankReference)
     {
-        $this->send($bankReference->getEmail(), 'Подтверждение заявки', $this->templating->render(
+        $this->send($bankReference->getEmail(), 'Подтверждение заказа на zastrachuj.cz', $this->templating->render(
             'emails/confirm_bank_reference.html.twig'
         ));
     }
 
     /**
      * @param Insurance $insurance
-     * @param $type
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
