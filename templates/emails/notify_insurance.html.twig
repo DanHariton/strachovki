@@ -5,7 +5,7 @@
     </a>
 </div>
 <div style="width: 70%; margin: auto;">
-    <h2 style="font-weight:bold; text-align: center">{{ 'email.header'|trans }}</h2>
+    <h2 style="font-weight:bold; text-align: center">Новый заказ</h2>
     <h3 style="text-align: center">
         <u>
             {% if type == constant("App\\Entity\\Insurance::INSURANCE_TYPE_COMPLEX") %}
@@ -44,16 +44,6 @@
         {% else %}
             <strong style="color: #DA1931; font-size: 14px">{{ 'email.paymentInfo.methodCard'|trans }}</strong>
         {% endif %}
-    </p>
-    <p class="mb-2">
-        {{ 'email.paymentInfo.paidOnlineText'|trans }}
-    </p>
-    <p class="mb-2">
-        {{ 'email.paymentInfo.instruktion'|trans }} - <br><strong style="color: #228be6; font-size: 16px">{{ insurance.paymentPassword }}</strong>
-    </p>
-    <p class="mb-2">
-        {{ 'email.paymentInfo.instruktionForm'|trans }}
-        <strong><a href="https://zastrachuj.cz{{ path('page_pay_online') }}">{{ 'email.paymentInfo.linkText'|trans }}</a></strong>
     </p>
     <br>
     <h4 style="text-align: center">

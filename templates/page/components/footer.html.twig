@@ -8,10 +8,13 @@
                         <a class="nav-link pr-2 pl-2" href="{{ path('page_index') }}">Главная</a>
                     </li>
                     <li class="nav-item mt-1 mb-1">
-                        <a class="nav-link pr-2 pl-2" href="{{ path('page_our_license') }}">Наша лицензия</a>
+                        <a class="nav-link pr-2 pl-2" href="{{ path('page_our_license') }}">{{ 'page.menu.license'|trans }}</a>
                     </li>
                     <li class="nav-item mt-1 mb-1">
-                        <a class="nav-link pr-2 pl-2" href="{{ path('page_contact') }}">Контакты</a>
+                        <a class="nav-link pr-2 pl-2" href="{{ path('page_contact') }}">{{ 'page.menu.contacts'|trans }}</a>
+                    </li>
+                    <li class="nav-item mt-1 mb-1">
+                        <a class="nav-link pr-2 pl-2" href="{{ path('page_about_us') }}">{{ 'page.menu.aboutUs'|trans }}</a>
                     </li>
                     <li class="nav-item mt-1 mb-1">
                         <a class="nav-link pr-2 pl-2" href="{{ path('page_insurance_options') }}">Оформить онлайн</a>
@@ -22,7 +25,7 @@
                 <h4 class="text-white pr-2 pl-2 border-bottom pb-2">Полезные ссылки</h4>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mt-1 mb-1">
-                        <a class="nav-link pr-2 pl-2" href="{{ path('page_how_order') }}">Видеоинструкция</a>
+                        <a class="nav-link pr-2 pl-2" href="{{ path('page_how_order') }}">{{ 'page.menu.video'|trans }}</a>
                     </li>
                     <li class="nav-item mt-1 mb-1">
                         <a class="nav-link pr-2 pl-2" href="{{ path('page_faq') }}">Часто задаваемые вопросы</a>

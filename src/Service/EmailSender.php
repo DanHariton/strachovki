@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\BankReference;
+use App\Entity\ClientsPhones;
 use App\Entity\Insurance;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -93,7 +94,7 @@ class EmailSender
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendNotifyToMeInsurance($insurance)
+    public function sendNotifyToMeInsurance(Insurance $insurance)
     {
         $this->send($this->bag->get('email.kota'), 'Уведомление о новом заказе страховки', $this->templating->render(
             'emails/notify_insurance.html.twig',
@@ -102,14 +103,30 @@ class EmailSender
     }
 
     /**
+     * @param BankReference $bankReference
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function sendNotifyToMeBankReference()
+    public function sendNotifyToMeBankReference(BankReference $bankReference)
     {
         $this->send($this->bag->get('email.kota'), 'Уведомление о новой заявке на справку из банка', $this->templating->render(
-            'emails/notify_reference.html.twig'
+            'emails/notify_reference.html.twig',
+            ['reference' => $bankReference]
+        ));
+    }
+
+    /**
+     * @param ClientsPhones $clientsPhones
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function sendNotifyQuestion(ClientsPhones $clientsPhones)
+    {
+        $this->send($this->bag->get('email.kota'), 'Вопрос от клиента', $this->templating->render(
+            'emails/notify_question.html.twig',
+            ['phone' => $clientsPhones]
         ));
     }
 }

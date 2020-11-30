@@ -25,6 +25,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class PageController extends AbstractController
 {
@@ -32,9 +35,13 @@ class PageController extends AbstractController
      * @Route("/", name="page_index")
      * @param Request $request
      * @param EntityManagerInterface $em
+     * @param EmailSender $sender
      * @return RedirectResponse|Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    public function indexAction(Request $request, EntityManagerInterface $em, EmailSender $sender)
     {
         $clientPhones = new ClientsPhones();
         $form = $this->createForm(ClientPhoneType::class, $clientPhones)
@@ -45,7 +52,8 @@ class PageController extends AbstractController
             $em->persist($clientPhones);
             $em->flush();
 
-            $this->addFlash('success', (new FakeTranslator())->trans('page.applyClientPhone.flash.success'));
+            $sender->sendNotifyQuestion($clientPhones);
+
             return $this->redirectToRoute('page_index');
         }
 
@@ -131,9 +139,9 @@ class PageController extends AbstractController
      * @param EmailSender $mailer
      * @return RedirectResponse|Response
      * @throws \OpenPayU_Exception
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function applyInsuranceAction($name, $type, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory,
                                          InsurancePriceFactory $insurancePriceFactory, EmailSender $mailer)
@@ -218,9 +226,9 @@ class PageController extends AbstractController
      * @param EmailSender $mailer
      * @return Response
      * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function paymentCallbackAction(Request $request, EntityManagerInterface $em, EmailSender $mailer)
     {
@@ -413,9 +421,9 @@ class PageController extends AbstractController
      * @param EntityManagerInterface $em
      * @param EmailSender $mailer
      * @return RedirectResponse|Response
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     public function bankReferenceAction(Request $request, EntityManagerInterface $em, EmailSender $mailer)
     {
@@ -427,12 +435,11 @@ class PageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $bankReference = $form->getData();
-
-            $mailer->sendConfirmBankReferenceOrder($bankReference);
-            $mailer->sendNotifyToMeBankReference();
-
             $em->persist($bankReference);
             $em->flush();
+
+            $mailer->sendConfirmBankReferenceOrder($bankReference);
+            $mailer->sendNotifyToMeBankReference($bankReference);
 
             return $this->redirectToRoute('page_bank_reference_success');
         }
