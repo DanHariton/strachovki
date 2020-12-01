@@ -231,11 +231,9 @@ class PageController extends AbstractController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, EmailSender $mailer, LoggerInterface $logger)
+    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, EmailSender $mailer)
     {
-        $logger->info('IM HERE DANYLO!!!!!!');
         $responseData = json_decode($request->getContent());
-        $logger->info($request->getContent());
         $insurance = $em
             ->getRepository(Insurance::class)
             ->findOneByPaymentId($responseData->order->orderId);
