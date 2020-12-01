@@ -235,7 +235,7 @@ class PageController extends AbstractController
     {
         $logger->info('IM HERE DANYLO!!!!!!');
         $responseData = json_decode($request->getContent());
-        $logger->info($responseData);
+        $logger->info($request->getContent());
         $insurance = $em
             ->getRepository(Insurance::class)
             ->findOneByPaymentId($responseData->order->orderId);
