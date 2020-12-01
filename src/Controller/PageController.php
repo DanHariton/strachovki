@@ -17,6 +17,7 @@ use App\Util\FakeTranslator;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use OpenPayU_Order;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -230,9 +231,11 @@ class PageController extends AbstractController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, EmailSender $mailer)
+    public function paymentCallbackAction(Request $request, EntityManagerInterface $em, EmailSender $mailer, LoggerInterface $logger)
     {
+        $logger->info('IM HERE DANYLO!!!!!!');
         $responseData = json_decode($request->getContent());
+        $logger->info($responseData);
         $insurance = $em
             ->getRepository(Insurance::class)
             ->findOneByPaymentId($responseData->order->orderId);
