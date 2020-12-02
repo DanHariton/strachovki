@@ -39,7 +39,7 @@
                     {% for insurance in insurances %}
                         <tr>
                             <td {% if insurance.status == constant("App\\Entity\\Insurance::STATUS_PAYED_SUCCESS") %}
-                                    style="background-color: #1e7e34"
+                                    style="background-color: #1cc88a"
                                 {% endif%}
                                 {% if insurance.status == constant("App\\Entity\\Insurance::STATUS_PAYED_ERROR") %}
                                     style="background-color: #78261f"

@@ -7,5 +7,5 @@ php bin/console doctrine:database:create
 php bin/console doctrine:schema:update --dump-sql --force
 npm i
 npm run prod
-sudo ln -sfn ${WORKSPACE}/public /var/www/html/csr
+sudo ln -sfn ${WORKSPACE}/public /var/www/html
 sudo service httpd restart
