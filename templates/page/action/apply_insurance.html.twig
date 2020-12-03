@@ -151,6 +151,9 @@
                                     </div>
                                 </div>
                                 <h5 class="font-weight-bolder mb-3 mt-4">{{ 'form.texts.himselfInsurant'|trans }}</h5>
+                                {% if name == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
+                                    <h5 id="pzvp-alert" class="hide font-weight-bolder mb-3 color-red">{{ 'form.texts.alertPvzp'|trans }}</h5>
+                                {% endif %}
                                 <div class="d-flex justify-content-start">
                                     <div id="insurantChoseLeft" class="choseInsurantLeft">Да</div>
                                     <div id="insurantChoseRight" class="choseInsurantRight">Нет</div>

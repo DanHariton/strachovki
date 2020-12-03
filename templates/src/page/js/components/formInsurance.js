@@ -39,6 +39,7 @@ let insuranceType = null;
 let insurancePriceListIndex = null;
 let insurancePriceListIndexDefault = null;
 let priceListAll = null;
+let pvzpCheck = true;
 
 $(document).ready(function () {
     priceListAll = JSON.parse(atob($('#insurance-price').data('array')));
@@ -66,8 +67,55 @@ $('#insurance_startDate').change(function () {
 });
 
 $('#insurance_dateBirth_year').change(function() {
-   checkAge($('#insurance_dateBirth_year').val(), priceListAll);
+    let clientAge = $('#insurance_dateBirth_year').val();
+    checkAge(clientAge, priceListAll);
+    if (insuranceSelected === INSURANCE_PVZP) {
+        console.log("KUKUSIKI");
+        insurancePvzpCheckAge(clientAge);
+    }
 });
+
+function insurancePvzpCheckAge(age) {
+    let diffAge = moment().diff(age, 'years', false);
+    if (diffAge < 18) {
+        alert($('#pzvp-alert').text());
+        pvzpCheck = false;
+        insurantHimself = false;
+        $('#insurant-data').slideDown();
+        $('#pzvp-alert').removeClass('hide');
+        $('#insurantChoseRight').addClass('chosedInsurant');
+        $('#insurantChoseLeft').removeClass('chosedInsurant');
+        $('#insurance_nameInsurant').val("");
+        $('#insurance_snameInsurant').val("");
+        $('#insurance_emailInsurant').val("");
+        $('#insurance_mobileInsurant').val("");
+        $('#insurance_townInsurant').val("");
+        $('#insurance_streetInsurant').val("");
+        $('#insurance_postCodeInsurant').val("");
+        $('#insurance_genderInsurant').val("");
+        $('#insurance_dateBirthInsurant_day').val("");
+        $('#insurance_dateBirthInsurant_month').val("");
+        $('#insurance_dateBirthInsurant_year').val("");
+        checkStatusOrder();
+    } else {
+        insurantHimself = true;
+        $('#insurant-data').slideUp();
+        $('#pzvp-alert').addClass('hide');
+        $('#insurantChoseRight').removeClass('chosedInsurant');
+        $('#insurance_nameInsurant').val($('#insurance_clientName').val());
+        $('#insurance_snameInsurant').val($('#insurance_clientSName').val());
+        $('#insurance_emailInsurant').val($('#insurance_clientEmail').val());
+        $('#insurance_mobileInsurant').val($('#insurance_clientMobile').val());
+        $('#insurance_townInsurant').val($('#insurance_town').val());
+        $('#insurance_streetInsurant').val($('#insurance_street').val());
+        $('#insurance_postCodeInsurant').val($('#insurance_postCode').val());
+        $('#insurance_genderInsurant').val($('#insurance_gender').val());
+        $('#insurance_dateBirthInsurant_day').val($('#insurance_dateBirth_day').val());
+        $('#insurance_dateBirthInsurant_month').val($('#insurance_dateBirth_month').val());
+        $('#insurance_dateBirthInsurant_year').val($('#insurance_dateBirth_year').val());
+        checkStatusOrder();
+    }
+}
 
 function setTotalAmount() {
     $('#insurance-total-amount').empty();
@@ -463,22 +511,24 @@ $('#insurance_startDate').change(function () {
 });
 
 $('#insurantChoseLeft').click(function () {
-    insurantHimself = true;
-    $('#insurant-data').slideUp();
-    $('#insurantChoseLeft').addClass('chosedInsurant');
-    $('#insurantChoseRight').removeClass('chosedInsurant');
-    $('#insurance_nameInsurant').val($('#insurance_clientName').val());
-    $('#insurance_snameInsurant').val($('#insurance_clientSName').val());
-    $('#insurance_emailInsurant').val($('#insurance_clientEmail').val());
-    $('#insurance_mobileInsurant').val($('#insurance_clientMobile').val());
-    $('#insurance_townInsurant').val($('#insurance_town').val());
-    $('#insurance_streetInsurant').val($('#insurance_street').val());
-    $('#insurance_postCodeInsurant').val($('#insurance_postCode').val());
-    $('#insurance_genderInsurant').val($('#insurance_gender').val());
-    $('#insurance_dateBirthInsurant_day').val($('#insurance_dateBirth_day').val());
-    $('#insurance_dateBirthInsurant_month').val($('#insurance_dateBirth_month').val());
-    $('#insurance_dateBirthInsurant_year').val($('#insurance_dateBirth_year').val());
-    checkStatusOrder();
+    if (pvzpCheck) {
+        insurantHimself = true;
+        $('#insurant-data').slideUp();
+        $('#insurantChoseLeft').addClass('chosedInsurant');
+        $('#insurantChoseRight').removeClass('chosedInsurant');
+        $('#insurance_nameInsurant').val($('#insurance_clientName').val());
+        $('#insurance_snameInsurant').val($('#insurance_clientSName').val());
+        $('#insurance_emailInsurant').val($('#insurance_clientEmail').val());
+        $('#insurance_mobileInsurant').val($('#insurance_clientMobile').val());
+        $('#insurance_townInsurant').val($('#insurance_town').val());
+        $('#insurance_streetInsurant').val($('#insurance_street').val());
+        $('#insurance_postCodeInsurant').val($('#insurance_postCode').val());
+        $('#insurance_genderInsurant').val($('#insurance_gender').val());
+        $('#insurance_dateBirthInsurant_day').val($('#insurance_dateBirth_day').val());
+        $('#insurance_dateBirthInsurant_month').val($('#insurance_dateBirth_month').val());
+        $('#insurance_dateBirthInsurant_year').val($('#insurance_dateBirth_year').val());
+        checkStatusOrder();
+    }
 });
 
 $('#insurantChoseRight').click(function () {
