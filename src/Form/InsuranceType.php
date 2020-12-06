@@ -254,12 +254,25 @@ class InsuranceType extends AbstractType
                 'label' => $trans->trans('form.insurance.dateBirthInsurant.label'),
                 'format' => 'dd MM yyyy',
                 'widget' => 'choice',
-                'years' => range(2020, 1960),
+                'years' => range(2020, 1950),
                 'placeholder' => [
                     'year' => $trans->trans('form.insurance.birthDate.placeholder.year'),
                     'month' => $trans->trans('form.insurance.birthDate.placeholder.month'),
                     'day' => $trans->trans('form.insurance.birthDate.placeholder.date'),
                 ]
+            ])
+            ->add('passportInsurant', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.passportInsurant.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.passportInsurant.label')
+            ])
+            ->add('citizenshipInsurant', CountryType::class, [
+                'placeholder' => $trans->trans('form.insurance.citizenShip.placeholder'),
+                'label' => $trans->trans('form.insurance.citizenShip.label'),
+                'preferred_choices' => [
+                    'CZ', 'UA', 'RU', 'KZ', 'BY'
+                ],
             ])
             ->add('paymentMethod', ChoiceType::class, [
                 'label' => $trans->trans('form.insurance.paymentMethod.label'),

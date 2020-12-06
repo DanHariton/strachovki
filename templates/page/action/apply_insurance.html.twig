@@ -153,6 +153,7 @@
                                 <h5 class="font-weight-bolder mb-3 mt-4">{{ 'form.texts.himselfInsurant'|trans }}</h5>
                                 {% if name == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
                                     <h5 id="pzvp-alert" class="hide font-weight-bolder mb-3 color-red">{{ 'form.texts.alertPvzp'|trans }}</h5>
+                                    <h5 id="pzvp-alert-part" class="hide font-weight-bolder mb-3 color-red">{{ 'form.texts.alertPvzpPart2'|trans }}</h5>
                                 {% endif %}
                                 <div class="d-flex justify-content-start">
                                     <div id="insurantChoseLeft" class="choseInsurantLeft">Да</div>
@@ -197,9 +198,15 @@
                                                 {{ form_label(form.genderInsurant, null, {'label_attr': {'class': 'form-label'}}) }}
                                                 {{ form_widget(form.genderInsurant, {'attr': {'class': 'form-control'}}) }}
                                             </div>
+                                            <div class="ml-5 w-25">
+                                                {{ form_row(form.citizenshipInsurant) }}
+                                            </div>
                                         </div>
                                         <div class="mt-3">
                                             {{ form_row(form.dateBirthInsurant) }}
+                                        </div>
+                                        <div class="w-50 apply-container">
+                                            {{ form_row(form.passportInsurant) }}
                                         </div>
                                     </div>
                                 </div>

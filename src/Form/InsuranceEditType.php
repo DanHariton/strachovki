@@ -189,6 +189,18 @@ class InsuranceEditType extends AbstractType
                 'label' => $trans->trans('form.insurance.dateBirthInsurant.label'),
                 'widget' => 'single_text'
             ])
+            ->add('passportInsurant', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.passportInsurant.placeholder')
+                ],
+                'label' => $trans->trans('form.insurance.passportInsurant.label')
+            ])
+            ->add('citizenshipInsurant', CountryType::class, [
+                'label' => $trans->trans('form.insurance.citizenShip.label'),
+                'preferred_choices' => [
+                    'CZ', 'UA', 'RU', 'KZ', 'BY'
+                ],
+            ])
             ->add('save', SubmitType::class, [
                 'label' => $trans->trans('form.insurance.button.buttonAdmin.label')
             ])

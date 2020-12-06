@@ -194,6 +194,16 @@ class Insurance
      */
     private $insuranceType;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $passportInsurant;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $citizenshipInsurant;
+
 
     public function __construct()
     {
@@ -597,6 +607,30 @@ class Insurance
     public function setInsuranceType(string $insuranceType): self
     {
         $this->insuranceType = $insuranceType;
+
+        return $this;
+    }
+
+    public function getPassportInsurant(): ?string
+    {
+        return $this->passportInsurant;
+    }
+
+    public function setPassportInsurant(?string $passportInsurant): self
+    {
+        $this->passportInsurant = $passportInsurant;
+
+        return $this;
+    }
+
+    public function getCitizenshipInsurant(): ?string
+    {
+        return $this->citizenshipInsurant;
+    }
+
+    public function setCitizenshipInsurant(?string $citizenshipInsurant): self
+    {
+        $this->citizenshipInsurant = $citizenshipInsurant;
 
         return $this;
     }

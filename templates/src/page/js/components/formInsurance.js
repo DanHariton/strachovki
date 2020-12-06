@@ -70,7 +70,6 @@ $('#insurance_dateBirth_year').change(function() {
     let clientAge = $('#insurance_dateBirth_year').val();
     checkAge(clientAge, priceListAll);
     if (insuranceSelected === INSURANCE_PVZP) {
-        console.log("KUKUSIKI");
         insurancePvzpCheckAge(clientAge);
     }
 });
@@ -78,11 +77,12 @@ $('#insurance_dateBirth_year').change(function() {
 function insurancePvzpCheckAge(age) {
     let diffAge = moment().diff(age, 'years', false);
     if (diffAge < 18) {
-        alert($('#pzvp-alert').text());
+        alert($('#pzvp-alert').text() + '\n' + $('#pzvp-alert-part').text());
         pvzpCheck = false;
         insurantHimself = false;
         $('#insurant-data').slideDown();
         $('#pzvp-alert').removeClass('hide');
+        $('#pzvp-alert-part').removeClass('hide');
         $('#insurantChoseRight').addClass('chosedInsurant');
         $('#insurantChoseLeft').removeClass('chosedInsurant');
         $('#insurance_nameInsurant').val("");
@@ -96,11 +96,14 @@ function insurancePvzpCheckAge(age) {
         $('#insurance_dateBirthInsurant_day').val("");
         $('#insurance_dateBirthInsurant_month').val("");
         $('#insurance_dateBirthInsurant_year').val("");
+        $('#insurance_passportInsurant').val("");
+        $('#insurance_citizenshipInsurant').val("");
         checkStatusOrder();
     } else {
         insurantHimself = true;
         $('#insurant-data').slideUp();
         $('#pzvp-alert').addClass('hide');
+        $('#pzvp-alert-part').addClass('hide');
         $('#insurantChoseRight').removeClass('chosedInsurant');
         $('#insurance_nameInsurant').val($('#insurance_clientName').val());
         $('#insurance_snameInsurant').val($('#insurance_clientSName').val());
@@ -113,6 +116,8 @@ function insurancePvzpCheckAge(age) {
         $('#insurance_dateBirthInsurant_day').val($('#insurance_dateBirth_day').val());
         $('#insurance_dateBirthInsurant_month').val($('#insurance_dateBirth_month').val());
         $('#insurance_dateBirthInsurant_year').val($('#insurance_dateBirth_year').val());
+        $('#insurance_passportInsurant').val($('#insurance_passportId').val());
+        $('#insurance_citizenshipInsurant').val($('#insurance_citizenship').val());
         checkStatusOrder();
     }
 }
@@ -527,6 +532,8 @@ $('#insurantChoseLeft').click(function () {
         $('#insurance_dateBirthInsurant_day').val($('#insurance_dateBirth_day').val());
         $('#insurance_dateBirthInsurant_month').val($('#insurance_dateBirth_month').val());
         $('#insurance_dateBirthInsurant_year').val($('#insurance_dateBirth_year').val());
+        $('#insurance_passportInsurant').val($('#insurance_passportId').val());
+        $('#insurance_citizenshipInsurant').val($('#insurance_citizenship').val());
         checkStatusOrder();
     }
 });
@@ -547,6 +554,8 @@ $('#insurantChoseRight').click(function () {
     $('#insurance_dateBirthInsurant_day').val("");
     $('#insurance_dateBirthInsurant_month').val("");
     $('#insurance_dateBirthInsurant_year').val("");
+    $('#insurance_passportInsurant').val("");
+    $('#insurance_citizenshipInsurant').val("");
     checkStatusOrder();
 });
 
