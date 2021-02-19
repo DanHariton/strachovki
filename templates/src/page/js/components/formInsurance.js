@@ -52,6 +52,14 @@ $(document).ready(function () {
     setTotalAmount();
 });
 
+$('#insurance_methodSending').change(function () {
+   if ($('#insurance_methodSending').val() === '2') {
+       $('#methodPostAddress').removeClass('d-none');
+   } else {
+       $('#methodPostAddress').addClass('d-none');
+   }
+});
+
 $('#insurance_insuranceDuration').change(function () {
     setDate();
     if (insurancePriceListIndex !== null) {

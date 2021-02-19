@@ -6,6 +6,7 @@ use App\Entity\Insurance;
 use App\Util\FakeTranslator;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -281,6 +282,23 @@ class InsuranceType extends AbstractType
                     $trans->trans('form.insurance.paymentMethod.label') => '',
                     $trans->trans('form.insurance.paymentMethod.choice.payOnline') => Insurance::PAYMENT_METHOD_ONLINE,
                     $trans->trans('form.insurance.paymentMethod.choice.payCash') => Insurance::PAYMENT_METHOD_CASH,
+                ]
+            ])
+            ->add('sendOnEmail', CheckboxType::class, [
+                'label' => $trans->trans('form.insurance.sendOnEmail.label')
+            ])
+            ->add('methodSending', ChoiceType::class, [
+                'label' => $trans->trans('form.insurance.methodSending.label'),
+                'choices' => [
+                    $trans->trans('form.insurance.methodSending.label') => '',
+                    $trans->trans('form.insurance.methodSending.choice.office') => Insurance::METHOD_SENDING_IN_OFFICE,
+                    $trans->trans('form.insurance.methodSending.choice.post') => Insurance::METHOD_SENDING_POST,
+                ]
+            ])
+            ->add('methodPostAddress', TextType::class, [
+                'label' => $trans->trans('form.insurance.methodSendingPostAdress.label'),
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.methodSendingPostAdress.placeholder')
                 ]
             ])
             ->add('save', SubmitType::class, [

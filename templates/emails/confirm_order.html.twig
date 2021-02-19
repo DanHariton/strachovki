@@ -35,6 +35,25 @@
     </p>
     <p class="mb-2">{{ 'email.detail.duration'|trans }} <strong>{{ insurance.insuranceDuration }}</strong> {{ 'email.detail.month'|trans }}</p>
     <p class="mb-2" style="border-bottom: 2px solid #da1931; padding-bottom: 10px">
+        {{ 'email.methodSending.maintext'|trans }}
+        {% if insurance.sendOnEmail %}
+            <strong style="font-size: 14px">
+                {{ 'email.methodSending.email'|trans }}
+                {% if insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_IN_OFFICE") || insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_POST") %},{% endif %}
+            </strong>
+        {% endif %}
+        {% if insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_IN_OFFICE") || insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_POST") %}
+            <strong style="font-size: 14px">
+                {% if insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_IN_OFFICE") %}
+                    {{ 'email.methodSending.office'|trans }}
+                {% endif %}
+                {% if insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_POST") %}
+                    {{ 'email.methodSending.post'|trans }} ({{ insurance.methodPostAddress }})
+                {% endif %}
+            </strong>
+        {% endif %}
+    </p>
+    <p class="mb-2" style="border-bottom: 2px solid #da1931; padding-bottom: 10px">
         {{ 'email.paymentInfo.method'|trans }}
         {% if insurance.paymentMethod == constant("App\\Entity\\Insurance::PAYMENT_METHOD_CASH") %}
             <strong style="color: #DA1931; font-size: 14px">

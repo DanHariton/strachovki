@@ -303,6 +303,42 @@
                         <div class="card-header d-flex justify-content-between align-items-center background-red" id="headingTwo">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block font-semi-bold text-left collapsed text-white text-uppercase" type="button" aria-expanded="false" aria-controls="collapseTwo">
+                                    {{ 'form.texts.methodSending'|trans }}
+                                </button>
+                            </h2>
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") %}
+                                <h5 class="mb-0 text-white font-bold">Maxima pojišťovna a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_UNIQA") %}
+                                <h5 class="mb-0 text-white font-bold">UNIQA pojišťovna</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_PVZP") %}
+                                <h5 class="mb-0 text-white font-bold">Pojišťovna VZP, a.s.</h5>
+                            {% endif %}
+                            {% if name == constant("App\\Entity\\Insurance::INSURANCE_ERGO") %}
+                                <h5 class="mb-0 text-white font-bold">ERGO pojišťovna</h5>
+                            {% endif %}
+                        </div>
+                        <div aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-start flex-column">
+                                    <div class="w-50">
+                                        {{ form_row(form.sendOnEmail) }}
+                                    </div>
+                                    <div class="w-50">
+                                        {{ form_row(form.methodSending) }}
+                                    </div>
+                                    <div id="methodPostAddress" class="w-50 d-none">
+                                        {{ form_row(form.methodPostAddress) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card custom-border-red-form">
+                        <div class="card-header d-flex justify-content-between align-items-center background-red" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block font-semi-bold text-left collapsed text-white text-uppercase" type="button" aria-expanded="false" aria-controls="collapseTwo">
                                     {{ 'form.texts.paymentMethod'|trans }}
                                 </button>
                             </h2>

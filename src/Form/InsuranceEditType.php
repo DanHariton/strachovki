@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Insurance;
 use App\Util\FakeTranslator;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -200,6 +201,25 @@ class InsuranceEditType extends AbstractType
                 'preferred_choices' => [
                     'CZ', 'UA', 'RU', 'KZ', 'BY'
                 ],
+            ])
+            ->add('sendOnEmail', CheckboxType::class, [
+                'label' => $trans->trans('form.insurance.sendOnEmail.labelAdmin')
+            ])
+            ->add('methodSending', ChoiceType::class, [
+                'label' => $trans->trans('form.insurance.methodSending.labelAdmin'),
+                'empty_data' => true,
+                'choices' => [
+                    $trans->trans('form.insurance.methodSending.labelAdmin') => '',
+                    $trans->trans('form.insurance.methodSending.choiseAdmin.office') => Insurance::METHOD_SENDING_IN_OFFICE,
+                    $trans->trans('form.insurance.methodSending.choiseAdmin.post') => Insurance::METHOD_SENDING_POST,
+                ]
+
+            ])
+            ->add('methodPostAddress', TextType::class, [
+                'attr' => [
+                    'placeholder' => $trans->trans('form.insurance.methodSendingPostAdress.label')
+                ],
+                'label' => $trans->trans('form.insurance.methodSendingPostAdress.label')
             ])
             ->add('save', SubmitType::class, [
                 'label' => $trans->trans('form.insurance.button.buttonAdmin.label')

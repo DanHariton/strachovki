@@ -466,4 +466,12 @@ class PageController extends AbstractController
     {
         return $this->render('page/action/how_order.html.twig');
     }
+
+    /**
+     * @Route("/medical-support", name="page_medical_support")
+     */
+    public function medicalSupport()
+    {
+        return $this->render('page/action/medical_support.html.twig');
+    }
 }

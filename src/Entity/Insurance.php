@@ -21,6 +21,8 @@ class Insurance
     const STATUS_PAYED_ERROR = 2;
     const PAYMENT_METHOD_ONLINE = 0;
     const PAYMENT_METHOD_CASH = 1;
+    const METHOD_SENDING_IN_OFFICE = 1;
+    const METHOD_SENDING_POST = 2;
 
     /**
      * @ORM\Id()
@@ -203,6 +205,21 @@ class Insurance
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $citizenshipInsurant;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sendOnEmail;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $methodSending;
+
+    /**
+     * @ORM\Column(type="string", length=512, nullable=true)
+     */
+    private $methodPostAddress;
 
 
     public function __construct()
@@ -631,6 +648,42 @@ class Insurance
     public function setCitizenshipInsurant(?string $citizenshipInsurant): self
     {
         $this->citizenshipInsurant = $citizenshipInsurant;
+
+        return $this;
+    }
+
+    public function getSendOnEmail(): ?bool
+    {
+        return $this->sendOnEmail;
+    }
+
+    public function setSendOnEmail(?bool $sendOnEmail): self
+    {
+        $this->sendOnEmail = $sendOnEmail;
+
+        return $this;
+    }
+
+    public function getMethodSending(): ?int
+    {
+        return $this->methodSending;
+    }
+
+    public function setMethodSending(?int $methodSending): self
+    {
+        $this->methodSending = $methodSending;
+
+        return $this;
+    }
+
+    public function getMethodPostAddress(): ?string
+    {
+        return $this->methodPostAddress;
+    }
+
+    public function setMethodPostAddress(?string $methodPostAddress): self
+    {
+        $this->methodPostAddress = $methodPostAddress;
 
         return $this;
     }
