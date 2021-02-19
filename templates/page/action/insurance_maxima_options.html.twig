@@ -8,9 +8,14 @@
     {% include 'page/components/header.html.twig' %}
 
     <section class="container">
-        <h1 class="margin-bottom-50 margin-top-50 font-semi-bold text-center">
+        <h1 class="margin-top-50 font-semi-bold text-center">
             {{ 'page.insurances.text'|trans }} <strong class="color-red">Maxima</strong>
         </h1>
+        <p class="h4 mt-4 text-center margin-bottom-50 font-semi-bold color-red">
+            При покупке страховки - 1 час услуги
+            <a class="link-red color-red font-semi-bold" href="{{ path('page_medical_support') }}">«Медецинское сопровождение»</a>
+             - БЕСПЛАТНО!
+        </p>
 
         <div class="maxima-cards row d-flex justify-content-around margin-bottom-70">
             <div class="flip-card flip-card-options-insurance col-sm-5">
