@@ -39,15 +39,15 @@
         {% if insurance.sendOnEmail %}
             <strong style="font-size: 14px">
                 {{ 'email.methodSending.email'|trans }}
-                {% if insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_IN_OFFICE") || insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_POST") %},{% endif %}
+                {% if insurance.methodSendingPost || insurance.methodSendingPersonal) %},{% endif %}
             </strong>
         {% endif %}
-        {% if insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_IN_OFFICE") || insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_POST") %}
+        {% if insurance.methodSendingPost || insurance.methodSendingPersonal) %}
             <strong style="font-size: 14px">
-                {% if insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_IN_OFFICE") %}
+                {% if insurance.methodSendingPersonal %}
                     {{ 'email.methodSending.office'|trans }}
                 {% endif %}
-                {% if insurance.methodSending == constant("App\\Entity\\Insurance::METHOD_SENDING_POST") %}
+                {% if insurance.methodSendingPost %}
                     {{ 'email.methodSending.post'|trans }} ({{ insurance.methodPostAddress }})
                 {% endif %}
             </strong>

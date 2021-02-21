@@ -285,19 +285,21 @@ class InsuranceType extends AbstractType
                 ]
             ])
             ->add('sendOnEmail', CheckboxType::class, [
-                'label' => $trans->trans('form.insurance.sendOnEmail.label')
+                'label' => $trans->trans('form.insurance.sendOnEmail.label'),
+                'required' => false
             ])
-            ->add('methodSending', ChoiceType::class, [
-                'label' => $trans->trans('form.insurance.methodSending.label'),
-                'choices' => [
-                    $trans->trans('form.insurance.methodSending.label') => '',
-                    $trans->trans('form.insurance.methodSending.choice.office') => Insurance::METHOD_SENDING_IN_OFFICE,
-                    $trans->trans('form.insurance.methodSending.choice.post') => Insurance::METHOD_SENDING_POST,
-                ]
+            ->add('methodSendingPersonal', CheckboxType::class, [
+                'label' => $trans->trans('form.insurance.methodSending.choice.office'),
+                'required' => false
+            ])
+            ->add('methodSendingPost', CheckboxType::class, [
+                'label' => $trans->trans('form.insurance.methodSending.choice.post'),
+                'required' => false
             ])
             ->add('methodPostAddress', TextType::class, [
                 'label' => $trans->trans('form.insurance.methodSendingPostAdress.label'),
                 'attr' => [
+                    'readonly' => 'readonly',
                     'placeholder' => $trans->trans('form.insurance.methodSendingPostAdress.placeholder')
                 ]
             ])

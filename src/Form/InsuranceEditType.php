@@ -203,17 +203,16 @@ class InsuranceEditType extends AbstractType
                 ],
             ])
             ->add('sendOnEmail', CheckboxType::class, [
-                'label' => $trans->trans('form.insurance.sendOnEmail.labelAdmin')
+                'label' => $trans->trans('form.insurance.sendOnEmail.labelAdmin'),
+                'required' => false
             ])
-            ->add('methodSending', ChoiceType::class, [
-                'label' => $trans->trans('form.insurance.methodSending.labelAdmin'),
-                'empty_data' => true,
-                'choices' => [
-                    $trans->trans('form.insurance.methodSending.labelAdmin') => '',
-                    $trans->trans('form.insurance.methodSending.choiseAdmin.office') => Insurance::METHOD_SENDING_IN_OFFICE,
-                    $trans->trans('form.insurance.methodSending.choiseAdmin.post') => Insurance::METHOD_SENDING_POST,
-                ]
-
+            ->add('methodSendingPersonal', CheckboxType::class, [
+                'label' => $trans->trans('form.insurance.methodSending.choiseAdmin.office'),
+                'required' => false
+            ])
+            ->add('methodSendingPost', CheckboxType::class, [
+                'label' => $trans->trans('form.insurance.methodSending.choiseAdmin.post'),
+                'required' => false
             ])
             ->add('methodPostAddress', TextType::class, [
                 'attr' => [

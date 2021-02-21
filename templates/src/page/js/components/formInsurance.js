@@ -52,12 +52,21 @@ $(document).ready(function () {
     setTotalAmount();
 });
 
-$('#insurance_methodSending').change(function () {
-   if ($('#insurance_methodSending').val() === '2') {
-       $('#methodPostAddress').removeClass('d-none');
-   } else {
-       $('#methodPostAddress').addClass('d-none');
-   }
+$('#insurance_methodSendingPersonal').change(function () {
+    if ($('#insurance_methodSendingPersonal').is(':checked')) {
+        if ($('#insurance_methodSendingPost').is(':checked')) {
+            $('#insurance_methodSendingPost').prop('checked', false);
+            $('#insurance_methodPostAddress').prop('readonly', true);
+            $('#insurance_methodPostAddress').val('');
+        }
+    }
+});
+
+$('#insurance_methodSendingPost').change(function () {
+    if ($('#insurance_methodSendingPost').is(':checked')) {
+        $('#insurance_methodPostAddress').prop('readonly', false);
+        $('#insurance_methodSendingPersonal').prop('checked', false);
+    }
 });
 
 $('#insurance_insuranceDuration').change(function () {

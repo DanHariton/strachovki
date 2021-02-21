@@ -212,14 +212,19 @@ class Insurance
     private $sendOnEmail;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $methodSending;
-
-    /**
      * @ORM\Column(type="string", length=512, nullable=true)
      */
     private $methodPostAddress;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $methodSendingPersonal;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $methodSendingPost;
 
 
     public function __construct()
@@ -664,18 +669,6 @@ class Insurance
         return $this;
     }
 
-    public function getMethodSending(): ?int
-    {
-        return $this->methodSending;
-    }
-
-    public function setMethodSending(?int $methodSending): self
-    {
-        $this->methodSending = $methodSending;
-
-        return $this;
-    }
-
     public function getMethodPostAddress(): ?string
     {
         return $this->methodPostAddress;
@@ -684,6 +677,30 @@ class Insurance
     public function setMethodPostAddress(?string $methodPostAddress): self
     {
         $this->methodPostAddress = $methodPostAddress;
+
+        return $this;
+    }
+
+    public function getMethodSendingPersonal(): ?bool
+    {
+        return $this->methodSendingPersonal;
+    }
+
+    public function setMethodSendingPersonal(?bool $methodSendingPersonal): self
+    {
+        $this->methodSendingPersonal = $methodSendingPersonal;
+
+        return $this;
+    }
+
+    public function getMethodSendingPost(): ?bool
+    {
+        return $this->methodSendingPost;
+    }
+
+    public function setMethodSendingPost(?bool $methodSendingPost): self
+    {
+        $this->methodSendingPost = $methodSendingPost;
 
         return $this;
     }

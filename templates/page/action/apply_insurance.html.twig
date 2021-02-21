@@ -326,9 +326,12 @@
                                         {{ form_row(form.sendOnEmail) }}
                                     </div>
                                     <div class="w-50">
-                                        {{ form_row(form.methodSending) }}
+                                        {{ form_row(form.methodSendingPersonal) }}
                                     </div>
-                                    <div id="methodPostAddress" class="w-50 d-none">
+                                    <div class="w-50">
+                                        {{ form_row(form.methodSendingPost) }}
+                                    </div>
+                                    <div id="methodPostAddress" class="w-50">
                                         {{ form_row(form.methodPostAddress) }}
                                     </div>
                                 </div>
