@@ -287,34 +287,20 @@ page:
         more1: '** На случай беременности и родов распространяется срок ожидания продолжительностью 3 месяца и 8 месяцев'
     pvzp:
       label: 'Pojišťovna VZP'
-      whatInclude: 'Co pojištění obsahuje?'
-      text1: 'Unikátní zdravotní pojištění pro cizince, které je obdobou veřejného zdravotního pojištění'
-      text2: 'Úhrada za preventivní a dispenzární zdravotní péči včetně péče
-              související s těhotenstvím a porodem, za akutní stomatologii, za lékařem
-              předepsané ambulantní léky a prostředky zdravotnické techniky'
-      text3: 'Není nutné absolvovat vstupní lékařskou prohlídku vyjma připojištění typu „Novorozenec“'
-      text4: 'Možnost připojištění typu „Novorozenec“, které zahrnuje úhradu nákladů v případě poporodní péče
-              o novorozence pojištěné matky'
-      text5: 'Nepřetržité asistenční služby renomované společnosti AXA Assistance'
-      text6: 'Pojištění lze sjednat na dobu od 4 do 60 měsíců'
-      text7: 'Výše limitu je volitelná – 1,8 mil. Kč nebo 3 mil. Kč na 1 pojistnou událost'
-      whatInsuredText: 'Na co se pojištění vztahuje?'
-      text8: 'Úhrada nákladů za zdravotní služby poskytnuté zdravotnickým zařízením
-              v souvislosti s onemocněním nebo úrazem. Rozsah pojištění včetně
-              výluk je uveden v  pojistných podmínkách  tohoto pojištění'
-      text9: 'Úhrada za preventivní a dispenzární zdravotní péči včetně péče
-               související s těhotenstvím a porodem, na akutní stomatologii, na lékařem
-               předepsané ambulantní léky a prostředky zdravotnické techniky'
-      text10: 'Možnost připojištění typu „Novorozenec“, které zahrnuje úhradu nákladů
-               v případě poporodní péče o novorozence pojištěné matky'
-      text11: 'Možnost připojištění profesionálních sportů'
-      text12: 'Možnost připojištění pojištění léčebných výloh pro území tzv.
-               schengenského prostoru'
-      text13: 'Nad rámec pojištění můžete čerpat tyto nadstandardní služby:'
-      text14: 'preventivní prohlídka ke zjištění aktuálního zdravotního stavu'
-      text15: 'prohlídky a vyšetření ke zjištění konkrétního onemocnění (např.
-               laboratorní vyšetření krve, prostaty; vyšetření na zhoubný melanom kůže)'
-      text16: 'dentální hygiena'
+      whatInclude: 'Что включает страхование?'
+      text1: 'Оплата расходов на необходимую и неотложную первичную помощь и госпитализацию во всех медицинских
+              учреждениях Чешской Республики в необходимом объеме'
+      text2: 'Круглосуточная служба страхового ассистанса от престижной компании AXA Assistance'
+      text3: 'Договор страхования может быть заключен на срок от 1 дня до 36 месяцев'
+      text4: 'Предназначено для всех возрастных групп'
+      text6: 'Размер лимита ответственности – от 1,8 до 3 млн. чешских крон'
+      text7: 'Распространяется на Чешскую Республику и страны Шенгенской зоны'
+      whatInsuredText: 'На что распространяется страхование?'
+      text8: 'В страхование входит оплата расходов на исследования, необходимые для определения диагноза и порядка
+       лечения, необходимую первичную помощь и госпитализацию, включая экстренную стоматологическую помощь, лекарства,
+        выписанные амбулаторным врачом и возможную репатриацию на родину'
+      text9: 'Возможность дополнительного страхования спортивных соревнований, занятий опасными или экстремальными видами спорта'
+
     uniqa:
       label: 'UNIQA pojišťovna'
       maxPrice: 'Максимальная выплата до 100 000 €'
