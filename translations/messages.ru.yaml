@@ -94,7 +94,8 @@ page:
     text1: 'Страхование иностранцев'
     text2: 'Бесплатная визовая поддержка'
     text3: 'Помощь в получении справок'
-    text4: 'Лучшая цена на рынке'
+    text4: 'Медецинское сопровождение'
+    text5: 'Лучшая цена на рынке'
   aboutUs:
     mainText: 'О нас'
     part1: 'Компания KOŤA s.r.o. была создана в далёком 1999 году. За 21 год работы
@@ -305,9 +306,8 @@ page:
       label: 'UNIQA pojišťovna'
       maxPrice: 'Максимальная выплата до 100 000 €'
       komplexInsurance: 'Комплексное медицинское страхование иностранцев'
-      text1: 'Zahrnuje ambulantní ošetření i ústavní péči (včetně pohotovostní i záchranné služby
-              a poskytnutí léků), prevenci a dispenzární péči. Výše pojistného plnění je volitelná až do
-              100 000 EUR na jednu pojistnou událost'
+      text1: 'Включает в себя: амбулаторное лечение, а также стационарное лечение (включая услуги неотложной помощи,
+       а также предоставление лекарств), профилактику и диспансерное лечение. Размер возмещения до 100 000 евро за один страховой случай.'
 
 form:
   bankReference:

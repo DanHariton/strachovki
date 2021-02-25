@@ -6,6 +6,7 @@ use App\Entity\BankReference;
 use App\Entity\ClientsPhones;
 use App\Entity\Insurance;
 use App\Entity\InsurancePrice;
+use App\Entity\SendingPrice;
 use App\Form\BankReferenceType;
 use App\Form\ClientPhoneType;
 use App\Form\InsurancePaymentByPasswordType;
@@ -16,9 +17,12 @@ use App\Service\OrderFactory;
 use App\Util\FakeTranslator;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
+use OpenPayU_Exception;
 use OpenPayU_Order;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -139,10 +143,11 @@ class PageController extends AbstractController
      * @param InsurancePriceFactory $insurancePriceFactory
      * @param EmailSender $mailer
      * @return RedirectResponse|Response
-     * @throws \OpenPayU_Exception
+     * @throws OpenPayU_Exception
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
+     * @throws NonUniqueResultException
      */
     public function applyInsuranceAction($name, $type, Request $request, EntityManagerInterface $em, OrderFactory $orderFactory,
                                          InsurancePriceFactory $insurancePriceFactory, EmailSender $mailer)
@@ -151,6 +156,7 @@ class PageController extends AbstractController
         $insurance->setInsuranceName($name);
         $insurance->setInsuranceType($type);
         $insurancePrices = $em->getRepository(InsurancePrice::class)->findByName($name);
+        $methodSendingPrice = $em->getRepository(SendingPrice::class)->findByMethodSending(SendingPrice::METHOD_POST);
 
         if (!empty($insurancePrices)) {
             $insurancePriceList = [];
@@ -198,6 +204,7 @@ class PageController extends AbstractController
             'form' => $form->createView(),
             'name' => $name,
             'type' => $type,
+            'methodSendingPrice' => $methodSendingPrice,
             'insurancePrice' => $insurancePriceList ? base64_encode(json_encode($insurancePriceList)) : ''
         ]);
     }
@@ -226,7 +233,7 @@ class PageController extends AbstractController
      * @param EntityManagerInterface $em
      * @param EmailSender $mailer
      * @return Response
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -265,8 +272,8 @@ class PageController extends AbstractController
      * @param EntityManagerInterface $em
      * @param OrderFactory $orderFactory
      * @return RedirectResponse|Response
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \OpenPayU_Exception
+     * @throws NonUniqueResultException
+     * @throws OpenPayU_Exception
      */
     public function paymentOnlineAction(Request $request, EntityManagerInterface $em, OrderFactory $orderFactory)
     {
@@ -343,7 +350,7 @@ class PageController extends AbstractController
 
     /**
      * @Route("/documents/maxima-komlex-1", name="page_doc_maxima_komplex_first")
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public function maximaKomplexFirstAction()
     {
@@ -354,7 +361,7 @@ class PageController extends AbstractController
 
     /**
      * @Route("/documents/maxima-komlex-2", name="page_doc_maxima_komplex_second")
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public function maximaKomplexSecondAction()
     {
@@ -365,7 +372,7 @@ class PageController extends AbstractController
 
     /**
      * @Route("/documents/maxima-komlex-3", name="page_doc_maxima_komplex_third")
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public function maximaKomplexThirdAction()
     {
@@ -376,7 +383,7 @@ class PageController extends AbstractController
 
     /**
      * @Route("/documents/maxima-urgent-1", name="page_doc_maxima_urgent_first")
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public function maximaUrgentFirstAction()
     {
@@ -387,7 +394,7 @@ class PageController extends AbstractController
 
     /**
      * @Route("/documents/maxima-urgent-2", name="page_doc_maxima_urgent_second")
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     * @return BinaryFileResponse
      */
     public function maximaUrgentSecondAction()
     {
