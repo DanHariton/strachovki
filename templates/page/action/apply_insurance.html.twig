@@ -331,7 +331,7 @@
                                     <div class="w-75 d-flex">
                                         {{ form_row(form.methodSendingPost) }}
                                         {% if methodSendingPrice.methodSending == constant("App\\Entity\\SendingPrice::METHOD_POST") %}
-                                            &nbsp;(Цена доставки: {{ methodSendingPrice.price }},- kč)
+                                            &nbsp;(Стоимость доставки: {{ methodSendingPrice.price }},- kč)
                                         {% endif %}
                                     </div>
                                     <div id="methodPostAddress" class="w-50">
