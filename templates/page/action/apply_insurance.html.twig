@@ -27,7 +27,9 @@
                 <strong class="color-red">Ergo</strong>
             {% endif %}
         </h1>
-        <h4 class="text-center margin-bottom-50">{{ 'form.texts.forStudents'|trans }}</h4>
+        {% if name != constant("App\\Entity\\Insurance::INSURANCE_MAXIMA") or type != constant("App\\Entity\\Insurance::INSURANCE_TYPE_URGENT") %}
+            <h4 class="text-center margin-bottom-50">{{ 'form.texts.forStudents'|trans }}</h4>
+        {% endif %}
 
         {{ form_start(form) }}
             <div>

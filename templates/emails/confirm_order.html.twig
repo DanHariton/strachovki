@@ -39,10 +39,10 @@
         {% if insurance.sendOnEmail %}
             <strong style="font-size: 14px">
                 {{ 'email.methodSending.email'|trans }}
-                {% if insurance.methodSendingPost || insurance.methodSendingPersonal) %},{% endif %}
+                {% if insurance.methodSendingPost or insurance.methodSendingPersonal %},{% endif %}
             </strong>
         {% endif %}
-        {% if insurance.methodSendingPost || insurance.methodSendingPersonal) %}
+        {% if insurance.methodSendingPost or insurance.methodSendingPersonal %}
             <strong style="font-size: 14px">
                 {% if insurance.methodSendingPersonal %}
                     {{ 'email.methodSending.office'|trans }}
