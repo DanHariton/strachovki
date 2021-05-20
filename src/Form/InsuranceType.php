@@ -204,29 +204,34 @@ class InsuranceType extends AbstractType
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.nameInsurant.placeholder')
                 ],
-                'label' => $trans->trans('form.insurance.name.label')
+                'label' => $trans->trans('form.insurance.name.label'),
+                'required' => false
             ])
             ->add('snameInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.snameInsurant.placeholder')
                 ],
-                'label' => $trans->trans('form.insurance.sName.label')
+                'label' => $trans->trans('form.insurance.sName.label'),
+                'required' => false
             ])
             ->add('emailInsurant', EmailType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.email.placeholder')
                 ],
-                'label' => $trans->trans('form.insurance.email.label')
+                'label' => $trans->trans('form.insurance.email.label'),
+                'required' => false
             ])
             ->add('mobileInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.mobile.placeholder')
                 ],
-                'label' => $trans->trans('form.insurance.mobile.label')
+                'label' => $trans->trans('form.insurance.mobile.label'),
+                'required' => false
             ])
             ->add('genderInsurant', ChoiceType::class, [
                 'label' => $trans->trans('form.insurance.gender.label'),
                 'empty_data' => true,
+                'required' => false,
                 'choices' => [
                     $trans->trans('form.insurance.gender.label') => '',
                     $trans->trans('form.insurance.gender.choice.m') => 'M',
@@ -237,25 +242,29 @@ class InsuranceType extends AbstractType
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.town.placeholder')
                 ],
-                'label' => $trans->trans('form.insurance.town.label')
+                'label' => $trans->trans('form.insurance.town.label'),
+                'required' => false
             ])
             ->add('streetInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.street.placeholder')
                 ],
-                'label' => $trans->trans('form.insurance.street.label')
+                'label' => $trans->trans('form.insurance.street.label'),
+                'required' => false
             ])
             ->add('postCodeInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.postCode.placeholder')
                 ],
-                'label' => $trans->trans('form.insurance.postCode.label')
+                'label' => $trans->trans('form.insurance.postCode.label'),
+                'required' => false
             ])
             ->add('dateBirthInsurant', BirthdayType::class, [
                 'label' => $trans->trans('form.insurance.dateBirthInsurant.label'),
                 'format' => 'dd MM yyyy',
                 'widget' => 'choice',
                 'years' => range(2020, 1950),
+                'required' => false,
                 'placeholder' => [
                     'year' => $trans->trans('form.insurance.birthDate.placeholder.year'),
                     'month' => $trans->trans('form.insurance.birthDate.placeholder.month'),
@@ -266,11 +275,13 @@ class InsuranceType extends AbstractType
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.passportInsurant.placeholder')
                 ],
-                'label' => $trans->trans('form.insurance.passportInsurant.label')
+                'label' => $trans->trans('form.insurance.passportInsurant.label'),
+                'required' => false
             ])
             ->add('citizenshipInsurant', CountryType::class, [
                 'placeholder' => $trans->trans('form.insurance.citizenShip.placeholder'),
                 'label' => $trans->trans('form.insurance.citizenShip.label'),
+                'required' => false,
                 'preferred_choices' => [
                     'CZ', 'UA', 'RU', 'KZ', 'BY'
                 ],

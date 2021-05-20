@@ -66,6 +66,9 @@ $('#insurance_methodSendingPost').change(function () {
     if ($('#insurance_methodSendingPost').is(':checked')) {
         $('#insurance_methodPostAddress').prop('readonly', false);
         $('#insurance_methodSendingPersonal').prop('checked', false);
+    } else {
+        $('#insurance_methodPostAddress').prop('readonly', true);
+        $('#insurance_methodPostAddress').val('');
     }
 });
 
@@ -118,6 +121,7 @@ function insurancePvzpCheckAge(age) {
         checkStatusOrder();
     } else {
         insurantHimself = true;
+        pvzpCheck = true;
         $('#insurant-data').slideUp();
         $('#pzvp-alert').addClass('hide');
         $('#pzvp-alert-part').addClass('hide');
@@ -539,18 +543,31 @@ $('#insurantChoseLeft').click(function () {
         $('#insurantChoseLeft').addClass('chosedInsurant');
         $('#insurantChoseRight').removeClass('chosedInsurant');
         $('#insurance_nameInsurant').val($('#insurance_clientName').val());
+        $('#insurance_nameInsurant').removeAttr('required');
         $('#insurance_snameInsurant').val($('#insurance_clientSName').val());
+        $('#insurance_snameInsurant').removeAttr('required');
         $('#insurance_emailInsurant').val($('#insurance_clientEmail').val());
+        $('#insurance_emailInsurant').removeAttr('required');
         $('#insurance_mobileInsurant').val($('#insurance_clientMobile').val());
+        $('#insurance_mobileInsurant').removeAttr('required');
         $('#insurance_townInsurant').val($('#insurance_town').val());
+        $('#insurance_townInsurant').removeAttr('required');
         $('#insurance_streetInsurant').val($('#insurance_street').val());
+        $('#insurance_streetInsurant').removeAttr('required');
         $('#insurance_postCodeInsurant').val($('#insurance_postCode').val());
+        $('#insurance_postCodeInsurant').removeAttr('required');
         $('#insurance_genderInsurant').val($('#insurance_gender').val());
+        $('#insurance_genderInsurant').removeAttr('required');
         $('#insurance_dateBirthInsurant_day').val($('#insurance_dateBirth_day').val());
+        $('#insurance_dateBirthInsurant_day').removeAttr('required');
         $('#insurance_dateBirthInsurant_month').val($('#insurance_dateBirth_month').val());
+        $('#insurance_dateBirthInsurant_month').removeAttr('required');
         $('#insurance_dateBirthInsurant_year').val($('#insurance_dateBirth_year').val());
+        $('#insurance_dateBirthInsurant_year').removeAttr('required');
         $('#insurance_passportInsurant').val($('#insurance_passportId').val());
+        $('#insurance_passportInsurant').removeAttr('required');
         $('#insurance_citizenshipInsurant').val($('#insurance_citizenship').val());
+        $('#insurance_citizenshipInsurant').removeAttr('required');
         checkStatusOrder();
     }
 });
@@ -561,18 +578,31 @@ $('#insurantChoseRight').click(function () {
     $('#insurantChoseRight').addClass('chosedInsurant');
     $('#insurantChoseLeft').removeClass('chosedInsurant');
     $('#insurance_nameInsurant').val("");
+    $('#insurance_nameInsurant').setAttribute('required');
     $('#insurance_snameInsurant').val("");
+    $('#insurance_snameInsurant').setAttribute('required');
     $('#insurance_emailInsurant').val("");
+    $('#insurance_emailInsurant').setAttribute('required');
     $('#insurance_mobileInsurant').val("");
+    $('#insurance_mobileInsurant').setAttribute('required');
     $('#insurance_townInsurant').val("");
+    $('#insurance_townInsurant').setAttribute('required');
     $('#insurance_streetInsurant').val("");
+    $('#insurance_streetInsurant').setAttribute('required');
     $('#insurance_postCodeInsurant').val("");
+    $('#insurance_postCodeInsurant').setAttribute('required');
     $('#insurance_genderInsurant').val("");
+    $('#insurance_genderInsurant').setAttribute('required');
     $('#insurance_dateBirthInsurant_day').val("");
+    $('#insurance_dateBirthInsurant_day').setAttribute('required');
     $('#insurance_dateBirthInsurant_month').val("");
+    $('#insurance_dateBirthInsurant_month').setAttribute('required');
     $('#insurance_dateBirthInsurant_year').val("");
+    $('#insurance_dateBirthInsurant_year').setAttribute('required');
     $('#insurance_passportInsurant').val("");
+    $('#insurance_passportInsurant').setAttribute('required');
     $('#insurance_citizenshipInsurant').val("");
+    $('#insurance_citizenshipInsurant').setAttribute('required');
     checkStatusOrder();
 });
 
