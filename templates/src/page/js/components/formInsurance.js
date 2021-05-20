@@ -205,7 +205,7 @@ function checkAge(age, priceList) {
             }
         }
         if (insuranceType === URGENT_INSURANCE) {
-            if (diffAge >= 1 && diffAge <= 30) {
+            if (diffAge >= 1 && diffAge < 30) {
                 for (let i = 0; i < priceList.length; i++) {
                     if (priceList[i].name === PRICE_URGENT_MAXIMA) {
                         insurancePriceListIndex = i;
@@ -214,7 +214,7 @@ function checkAge(age, priceList) {
                     }
                 }
             }
-            if (diffAge >= 31 && diffAge <= 65) {
+            if (diffAge >= 30 && diffAge <= 65) {
                 for (let i = 0; i < priceList.length; i++) {
                     if (priceList[i].name === PRICE_URGENT_MAXIMA_MID) {
                         insurancePriceListIndex = i;

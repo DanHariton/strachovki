@@ -34,11 +34,11 @@ class InsurancePriceFactory
                     $insurance->setPrice($this->setInsurancePrice($this->em->getRepository(InsurancePrice::class)
                         ->findOneByName(InsurancePrice::PRICE_MAXIMA_YOUNG), $insurance->getInsuranceDuration()));
                 }
-                if ($interval->y >= 18 && $interval->y <= 30) {
+                if ($interval->y >= 18 && $interval->y < 30) {
                     $insurance->setPrice($this->setInsurancePrice($this->em->getRepository(InsurancePrice::class)
                         ->findOneByName(InsurancePrice::PRICE_MAXIMA), $insurance->getInsuranceDuration()));
                 }
-                if ($interval->y >= 31 && $interval->y <= 50) {
+                if ($interval->y >= 30 && $interval->y <= 50) {
                     $insurance->setPrice($this->setInsurancePrice($this->em->getRepository(InsurancePrice::class)
                         ->findOneByName(InsurancePrice::PRICE_MAXIMA_MEDIUM), $insurance->getInsuranceDuration()));
                 }
