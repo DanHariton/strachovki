@@ -139,28 +139,33 @@ class InsuranceEditType extends AbstractType
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.nameInsurant.placeholder')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.name.label2')
             ])
             ->add('snameInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.snameInsurant.placeholder')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.sName.label2')
             ])
             ->add('emailInsurant', EmailType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.email.placeholder')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.email.label2')
             ])
             ->add('mobileInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.mobile.placeholder')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.mobile.label2')
             ])
             ->add('genderInsurant', ChoiceType::class, [
                 'label' => $trans->trans('form.insurance.gender.label2'),
+                'required' => false,
                 'empty_data' => true,
                 'choices' => [
                     $trans->trans('form.insurance.gender.label') => '',
@@ -172,32 +177,38 @@ class InsuranceEditType extends AbstractType
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.town.placeholder')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.town.label2')
             ])
             ->add('streetInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.street.placeholder')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.street.label2')
             ])
             ->add('postCodeInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.postCode.placeholder')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.postCode.label2')
             ])
             ->add('dateBirthInsurant', DateType::class, [
                 'label' => $trans->trans('form.insurance.dateBirthInsurant.label'),
+                'required' => false,
                 'widget' => 'single_text'
             ])
             ->add('passportInsurant', TextType::class, [
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.passportInsurant.placeholder')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.passportInsurant.label')
             ])
             ->add('citizenshipInsurant', CountryType::class, [
                 'label' => $trans->trans('form.insurance.citizenShip.label'),
+                'required' => false,
                 'preferred_choices' => [
                     'CZ', 'UA', 'RU', 'KZ', 'BY'
                 ],
@@ -218,6 +229,7 @@ class InsuranceEditType extends AbstractType
                 'attr' => [
                     'placeholder' => $trans->trans('form.insurance.methodSendingPostAdress.label')
                 ],
+                'required' => false,
                 'label' => $trans->trans('form.insurance.methodSendingPostAdress.label')
             ])
             ->add('save', SubmitType::class, [

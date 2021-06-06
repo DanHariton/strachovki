@@ -558,11 +558,11 @@ $('#insurantChoseLeft').click(function () {
         $('#insurance_postCodeInsurant').removeAttr('required');
         $('#insurance_genderInsurant').val($('#insurance_gender').val());
         $('#insurance_genderInsurant').removeAttr('required');
-        $('#insurance_dateBirthInsurant_day').val($('#insurance_dateBirth_day').val());
+        //$('#insurance_dateBirthInsurant_day').val($('#insurance_dateBirth_day').val());
         $('#insurance_dateBirthInsurant_day').removeAttr('required');
-        $('#insurance_dateBirthInsurant_month').val($('#insurance_dateBirth_month').val());
+        //$('#insurance_dateBirthInsurant_month').val($('#insurance_dateBirth_month').val());
         $('#insurance_dateBirthInsurant_month').removeAttr('required');
-        $('#insurance_dateBirthInsurant_year').val($('#insurance_dateBirth_year').val());
+        //$('#insurance_dateBirthInsurant_year').val($('#insurance_dateBirth_year').val());
         $('#insurance_dateBirthInsurant_year').removeAttr('required');
         $('#insurance_passportInsurant').val($('#insurance_passportId').val());
         $('#insurance_passportInsurant').removeAttr('required');
